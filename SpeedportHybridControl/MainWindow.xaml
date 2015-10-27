@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeedportHybridControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Closing="Window_Closing"
+        SizeChanged="update_size"
+        Height="350"
+        Width="530"
+        MinHeight="350"
+        MinWidth="530"
+        Title="Speedport Hybrid Konfigurationsprogramm"
+        Icon="t-com icon.ico">
+    <Grid DataContext="{StaticResource MainWindowModel}" >
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="3,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Button IsEnabled="True"  Background="LightGreen" Click="button_click" x:Name="btnLogin" Content="Login"/>
+            <Button IsEnabled="True"  Background="LightGray"  Click="button_click" x:Name="btnStatus" Content="Status"/>
+            <Button IsEnabled="False" Background="LightGray"  Click="button_click" x:Name="btnOverview" Content="Overview"/>
+            <Button IsEnabled="{Binding Path=ButtonDSLPageIsActive}" Command="{Binding Path=SwitchToDSLPage}" Background="LightGray" x:Name="btnDsl" Content="DSL"/>
+            <Button IsEnabled="False" Background="LightGray"  Click="button_click" x:Name="btnLteInfo" Content="LteInfo"/>
+            <Button IsEnabled="False" Background="LightGray"  Click="button_click" x:Name="btnSyslog" Content="Syslog"/>
+            <Button IsEnabled="False" Background="LightGray"  Click="button_click" x:Name="btnTR181" Content="TR-181"/>
+            <Button IsEnabled="False" Background="LightGray"  Click="button_click" x:Name="btnPhone" Content="Anrufe"/>
+            <Button IsEnabled="False" Background="LightGray"  Click="button_click" x:Name="btnLan" Content="Lan"/>
+            <Button IsEnabled="False" Background="LightGray"  Click="button_click" x:Name="btnControls" Content="Controls"/>
+        </StackPanel>
+
+        <Button Command="{Binding Path=SwitchToAboutPage}" IsEnabled="True" Background="LightGray" x:Name="btnAbout" Content="Über" VerticalAlignment="Top" HorizontalAlignment="Right" Width="32" Margin="0,0,3,0"/>
+
+        <DockPanel Margin="0,22,0,0">
+            <Frame x:Name="frame" NavigationUIVisibility="Hidden" Panel.ZIndex="1" Content="{Binding Path=FrameSource}"/>
+        </DockPanel>
     </Grid>
 </Window>

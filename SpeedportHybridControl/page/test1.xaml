@@ -1,0 +1,72 @@
+﻿<Page x:Class="SpeedportHybridControl.page.test1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpeedportHybridControl.page"
+      mc:Ignorable="d" 
+      Width="Auto" Height="Auto"
+      Title="test1">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Left" Width="117" Height="282" VerticalAlignment="Top" Margin="10,0,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="0,3,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Button x:Name="button7" Content="Router Neustarten"/>
+            <Button x:Name="button9" Content="DSL neu verbinden"/>
+            <Button x:Name="button10" Content="Firmware-Update"/>
+            <Button x:Name="btnflushdns" Content="DNS Cache Leeren"/>
+            <Button x:Name="btnSpeedtest" Content="speedtest.net"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button x:Name="button17" Content="Werkseinstellungen" />
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" Width="117" Height="282" VerticalAlignment="Top" Margin="132,0,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="0,3,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button x:Name="button8" Content="LTE neu verbinden" />
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button x:Name="btnSpeedtest2" Content="speedtest.t-online.de"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button x:Name="btnDSLdisconnect" Content="DSL Trennen"/>
+            <Button x:Name="btnLTEdisconnect" Content="LTE Trennen"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" Width="140" Height="282" VerticalAlignment="Top" Margin="254,0,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="0,3,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button IsEnabled="False" x:Name="button" Content="DSL + LTE neu verbinden"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button x:Name="btnDSLconnect" Content="DSL Verbinden"/>
+            <Button x:Name="btnLTEconnect" Content="LTE Verbinden"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+            <Button Visibility="Hidden" Content="[SPACER]"/>
+        </StackPanel>
+    </Grid>
+</Page>

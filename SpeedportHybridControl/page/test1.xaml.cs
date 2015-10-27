@@ -12,25 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.ComponentModel;
-using SpeedportHybridControl.Implementations;
 
-namespace SpeedportHybridControl {
+namespace SpeedportHybridControl.page {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for test1.xaml
 	/// </summary>
-	public partial class MainWindow : Window {
-		public MainWindow () {
+	public partial class test1 : Page {
+		public test1 () {
 			InitializeComponent();
-		}
-
-		private void button_click (object sender, RoutedEventArgs e) {
-		}
-
-		void Window_Closing (object sender, CancelEventArgs e) {
-		}
-
-		public void update_size (object sender, SizeChangedEventArgs e) {
 		}
 	}
 }

@@ -5,16 +5,32 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedportHybridControl", "SpeedportHybridControl\SpeedportHybridControl.csproj", "{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedportHybridControl.Implementations", "SpeedportHybridControl.Implementations\SpeedportHybridControl.Implementations.csproj", "{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}.Debug|x86.Build.0 = Debug|Any CPU
 		{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}.Release|x86.ActiveCfg = Release|Any CPU
+		{50680F1A-2AF6-4A6A-8491-602E2F51CAC6}.Release|x86.Build.0 = Release|Any CPU
+		{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}.Debug|x86.Build.0 = Debug|Any CPU
+		{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{BF9D21E9-4823-455C-9BDA-E29C7CE1B0BE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
