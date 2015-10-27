@@ -2,6 +2,7 @@
 using SpeedportHybridControl.Implementations;
 using System.Windows.Controls;
 using SpeedportHybridControl.page;
+using System.Windows.Media;
 
 namespace SpeedportHybridControl.Model {
 	class MainWindowModel : SuperViewModel {
@@ -25,6 +26,18 @@ namespace SpeedportHybridControl.Model {
 		private bool _buttonPhonePageIsActive = false;
 		private bool _buttonLanPageIsActive = false;
 		private bool _buttonControlsPageIsActive = false;
+
+		private Brush _buttonLoginPageBackground = Brushes.LightGray;
+		private Brush _buttonStatusPageBackground = Brushes.LightGray;
+		private Brush _buttonOverviewPageBackground = Brushes.LightGray;
+		private Brush _buttonDSLPageBackground = Brushes.LightGray;
+		private Brush _buttonLteInfoPageBackground = Brushes.LightGray;
+		private Brush _buttonSyslogPageBackground = Brushes.LightGray;
+		private Brush _buttonTR181PageBackground = Brushes.LightGray;
+		private Brush _buttonPhonePageBackground = Brushes.LightGray;
+		private Brush _buttonLanPageBackground = Brushes.LightGray;
+		private Brush _buttonControlsPageBackground = Brushes.LightGray;
+		private Brush _buttonAboutPageBackground = Brushes.LightGray;
 
 		private Page _FrameSource;
 
@@ -123,6 +136,61 @@ namespace SpeedportHybridControl.Model {
 			set { SetProperty(ref _buttonControlsPageIsActive, value); }
 		}
 
+		public Brush ButtonLoginPageBackground {
+			get { return _buttonLoginPageBackground; }
+			set { SetProperty(ref _buttonLoginPageBackground, value); }
+		}
+
+		public Brush ButtonStatusPageBackground {
+			get { return _buttonStatusPageBackground; }
+			set { SetProperty(ref _buttonStatusPageBackground, value); }
+		}
+
+		public Brush ButtonOverviewPageBackground {
+			get { return _buttonOverviewPageBackground; }
+			set { SetProperty(ref _buttonOverviewPageBackground, value); }
+		}
+
+		public Brush ButtonDSLPageBackground {
+			get { return _buttonDSLPageBackground; }
+			set { SetProperty(ref _buttonDSLPageBackground, value); }
+		}
+
+		public Brush ButtonLteInfoPageBackground {
+			get { return _buttonLteInfoPageBackground; }
+			set { SetProperty(ref _buttonLteInfoPageBackground, value); }
+		}
+
+		public Brush ButtonSyslogPageBackground {
+			get { return _buttonSyslogPageBackground; }
+			set { SetProperty(ref _buttonSyslogPageBackground, value); }
+		}
+
+		public Brush ButtonTR181PageBackground {
+			get { return _buttonTR181PageBackground; }
+			set { SetProperty(ref _buttonTR181PageBackground, value); }
+		}
+
+		public Brush ButtonPhonePageBackground {
+			get { return _buttonPhonePageBackground; }
+			set { SetProperty(ref _buttonPhonePageBackground, value); }
+		}
+
+		public Brush ButtonLanPageBackground {
+			get { return _buttonLanPageBackground; }
+			set { SetProperty(ref _buttonLanPageBackground, value); }
+		}
+
+		public Brush ButtonControlsPageBackground {
+			get { return _buttonControlsPageBackground; }
+			set { SetProperty(ref _buttonControlsPageBackground, value); }
+		}
+
+		public Brush ButtonAboutPageBackground {
+			get { return _buttonAboutPageBackground; }
+			set { SetProperty(ref _buttonAboutPageBackground, value); }
+		}
+
 		public Page FrameSource {
 			get { return _FrameSource; }
 			set { SetProperty(ref _FrameSource, value); }
@@ -130,42 +198,52 @@ namespace SpeedportHybridControl.Model {
 
 		private void OnSwitchToLoginPageExecute () {
 			FrameSource = new LoginPage();
+			changeColor("login");
 		}
 
 		private void OnSwitchToStatusPageExecute () {
 			FrameSource = new StatusPage();
+			changeColor("status");
 		}
 
 		private void OnSwitchToOverviewPageExecute () {
 			FrameSource = new OverviewPage();
+			changeColor("overview");
 		}
 
 		private void OnSwitchToDSLPageExecute () {
 			FrameSource = new DslPage();
+			changeColor("dsl");
 		}
 
 		private void OnSwitchToLteInfoPageExecute () {
 			FrameSource = new LteInfoPage();
+			changeColor("lte");
 		}
 
 		private void OnSwitchToSyslogPageExecute () {
 			FrameSource = new SyslogPage();
+			changeColor("syslog");
 		}
 
 		private void OnSwitchToTR181PageExecute () {
 			FrameSource = new TR181Page();
+			changeColor("tr181");
 		}
 
 		private void OnSwitchToPhonePageExecute () {
 			FrameSource = new PhonePage();
+			changeColor("phone");
 		}
 
 		private void OnSwitchToLanPageExecute () {
 			FrameSource = new LanPage();
+			changeColor("lan");
 		}
 
 		private void OnSwitchToControlsPageExecute () {
 			FrameSource = new ControlsPage();
+			changeColor("controls");
 		}
 
 		private void OnSwitchToAboutPageExecute () {
@@ -178,10 +256,71 @@ namespace SpeedportHybridControl.Model {
 			ButtonLanPageIsActive = true;
 			ButtonControlsPageIsActive = true;
 			FrameSource = new AboutPage();
+			changeColor("about");
 		}
-		
+
+		public void changeColor (string sender) {
+			ButtonLoginPageBackground = Brushes.LightGray;
+			ButtonStatusPageBackground = Brushes.LightGray;
+			ButtonOverviewPageBackground = Brushes.LightGray;
+			ButtonDSLPageBackground = Brushes.LightGray;
+			ButtonLteInfoPageBackground = Brushes.LightGray;
+			ButtonSyslogPageBackground = Brushes.LightGray;
+			ButtonTR181PageBackground = Brushes.LightGray;
+			ButtonPhonePageBackground = Brushes.LightGray;
+			ButtonLanPageBackground = Brushes.LightGray;
+			ButtonControlsPageBackground = Brushes.LightGray;
+			ButtonAboutPageBackground = Brushes.LightGray;
+
+
+			if (sender.Equals("login")) {
+				ButtonLoginPageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("status")) {
+				ButtonStatusPageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("overview")) {
+				ButtonOverviewPageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("dsl")) {
+				ButtonDSLPageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("lte")) {
+				ButtonLteInfoPageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("syslog")) {
+				ButtonSyslogPageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("tr181")) {
+				ButtonTR181PageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("phone")) {
+				ButtonPhonePageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("lan")) {
+				ButtonLanPageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("controls")) {
+				ButtonControlsPageBackground = Brushes.LightGreen;
+			}
+
+			if (sender.Equals("about")) {
+				ButtonAboutPageBackground = Brushes.LightGreen;
+			}
+		}
+
 		public MainWindowModel () {
 			FrameSource = new LoginPage();
+			changeColor("login");
 
 			SwitchToLoginPage = new DelegateCommand(new Action(OnSwitchToLoginPageExecute));
 			SwitchToStatusPage = new DelegateCommand(new Action(OnSwitchToStatusPageExecute));

@@ -21,19 +21,19 @@
                 </Style>
             </StackPanel.Resources>
 
-            <Button Command="{Binding Path=SwitchToLoginPage}" Background="LightGreen" x:Name="btnLogin" Content="Login"/>
-            <Button Command="{Binding Path=SwitchToStatusPage}" Background="LightGray" Click="button_click" x:Name="btnStatus" Content="Status"/>
-            <Button Command="{Binding Path=SwitchToOverviewPage}" IsEnabled="{Binding Path=ButtonOverviewPageIsActive}" Background="LightGray"  x:Name="btnOverview" Content="Overview"/>
-            <Button Command="{Binding Path=SwitchToDSLPage}" IsEnabled="{Binding Path=ButtonDSLPageIsActive}" Background="LightGray" x:Name="btnDsl" Content="DSL"/>
-            <Button Command="{Binding Path=SwitchToLteInfoPage}" IsEnabled="{Binding Path=ButtonLteInfoPageIsActive}" Background="LightGray" x:Name="btnLteInfo" Content="LteInfo"/>
-            <Button Command="{Binding Path=SwitchToSyslogPage}" IsEnabled="{Binding Path=ButtonSyslogPageIsActive}" Background="LightGray" x:Name="btnSyslog" Content="Syslog"/>
-            <Button Command="{Binding Path=SwitchToTR181Page}" IsEnabled="{Binding Path=ButtonTR181PageIsActive}" Background="LightGray" x:Name="btnTR181" Content="TR-181"/>
-            <Button Command="{Binding Path=SwitchToPhonePage}" IsEnabled="{Binding Path=ButtonPhonePageIsActive}" Background="LightGray" x:Name="btnPhone" Content="Anrufe"/>
-            <Button Command="{Binding Path=SwitchToLanPage}" IsEnabled="{Binding Path=ButtonLanPageIsActive}" Background="LightGray" x:Name="btnLan" Content="Lan"/>
-            <Button Command="{Binding Path=SwitchToControlsPage}" IsEnabled="{Binding Path=ButtonControlsPageIsActive}" Background="LightGray" x:Name="btnControls" Content="Controls"/>
+            <Button Command="{Binding Path=SwitchToLoginPage}" Background="{Binding Path=ButtonLoginPageBackground}" x:Name="btnLogin" Content="Login"/>
+            <Button Command="{Binding Path=SwitchToStatusPage}" Background="{Binding Path=ButtonStatusPageBackground}" Click="button_click" x:Name="btnStatus" Content="Status"/>
+            <Button Command="{Binding Path=SwitchToOverviewPage}" IsEnabled="{Binding Path=ButtonOverviewPageIsActive}" Background="{Binding Path=ButtonOverviewPageBackground}"  x:Name="btnOverview" Content="Overview"/>
+            <Button Command="{Binding Path=SwitchToDSLPage}" IsEnabled="{Binding Path=ButtonDSLPageIsActive}" Background="{Binding Path=ButtonDSLPageBackground}" x:Name="btnDsl" Content="DSL"/>
+            <Button Command="{Binding Path=SwitchToLteInfoPage}" IsEnabled="{Binding Path=ButtonLteInfoPageIsActive}" Background="{Binding Path=ButtonLteInfoPageBackground}" x:Name="btnLteInfo" Content="LteInfo"/>
+            <Button Command="{Binding Path=SwitchToSyslogPage}" IsEnabled="{Binding Path=ButtonSyslogPageIsActive}" Background="{Binding Path=ButtonSyslogPageBackground}" x:Name="btnSyslog" Content="Syslog"/>
+            <Button Command="{Binding Path=SwitchToTR181Page}" IsEnabled="{Binding Path=ButtonTR181PageIsActive}" Background="{Binding Path=ButtonTR181PageBackground}" x:Name="btnTR181" Content="TR-181"/>
+            <Button Command="{Binding Path=SwitchToPhonePage}" IsEnabled="{Binding Path=ButtonPhonePageIsActive}" Background="{Binding Path=ButtonPhonePageBackground}" x:Name="btnPhone" Content="Anrufe"/>
+            <Button Command="{Binding Path=SwitchToLanPage}" IsEnabled="{Binding Path=ButtonLanPageIsActive}" Background="{Binding Path=ButtonLanPageBackground}" x:Name="btnLan" Content="Lan"/>
+            <Button Command="{Binding Path=SwitchToControlsPage}" IsEnabled="{Binding Path=ButtonControlsPageIsActive}" Background="{Binding Path=ButtonControlsPageBackground}" x:Name="btnControls" Content="Controls"/>
         </StackPanel>
 
-        <Button Command="{Binding Path=SwitchToAboutPage}" IsEnabled="True" Background="LightGray" x:Name="btnAbout" Content="Über" VerticalAlignment="Top" HorizontalAlignment="Right" Width="32" Margin="0,0,3,0"/>
+        <Button Command="{Binding Path=SwitchToAboutPage}" Background="{Binding Path=ButtonAboutPageBackground}" x:Name="btnAbout" Content="Über" VerticalAlignment="Top" HorizontalAlignment="Right" Width="32" Margin="0,0,3,0"/>
 
         <DockPanel Margin="0,22,0,0">
             <Frame x:Name="frame" NavigationUIVisibility="Hidden" Panel.ZIndex="1" Content="{Binding Path=FrameSource}"/>
