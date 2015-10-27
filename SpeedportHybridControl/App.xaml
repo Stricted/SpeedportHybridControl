@@ -2,11 +2,21 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SpeedportHybridControl"
-             xmlns:model="clr-namespace:SpeedportHybridControl.model"
+             xmlns:model="clr-namespace:SpeedportHybridControl.Model"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <model:MainWindowModel x:Key="MainWindowModel"></model:MainWindowModel>
+			
+            <model:Status x:Key="Status"></model:Status>
+            <model:LTE x:Key="LTE"></model:LTE>
+            <model:LTE x:Key="LTE2"></model:LTE>
+            <model:DSLViewModel x:Key="DSL"></model:DSLViewModel>
+            <model:SyslogData x:Key="SyslogData"></model:SyslogData>
+            <model:TR181 x:Key="TR181"></model:TR181>
+            <model:PhoneCallData x:Key="PhoneCallData"></model:PhoneCallData>
+            <model:DeviceData x:Key="DeviceData"></model:DeviceData>
+            <model:OverviewModel x:Key="OverviewModel"></model:OverviewModel>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

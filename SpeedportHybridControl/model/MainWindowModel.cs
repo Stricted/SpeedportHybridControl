@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using SpeedportHybridControl.Implementations;
-using SpeedportHybridControl.model;
 using System.Windows.Controls;
+using SpeedportHybridControl.page;
 
-
-namespace SpeedportHybridControl.model {
+namespace SpeedportHybridControl.Model {
 	class MainWindowModel : SuperViewModel {
 		private DelegateCommand _switchToLoginPage;
 		private DelegateCommand _switchToStatusPage;
@@ -23,8 +17,16 @@ namespace SpeedportHybridControl.model {
 		private DelegateCommand _switchToControlsPage;
 		private DelegateCommand _sitchToAboutPage;
 
+		private bool _buttonOverviewPageIsActive = false;
 		private bool _buttonDSLPageIsActive = false;
-		private Page _FrameSource = new page.test();
+		private bool _buttonLteInfoPageIsActive = false;
+		private bool _buttonSyslogPageIsActive = false;
+		private bool _buttonTR181PageIsActive = false;
+		private bool _buttonPhonePageIsActive = false;
+		private bool _buttonLanPageIsActive = false;
+		private bool _buttonControlsPageIsActive = false;
+
+		private Page _FrameSource;
 
 		public DelegateCommand SwitchToLoginPage {
 			get { return _switchToLoginPage; }
@@ -81,9 +83,44 @@ namespace SpeedportHybridControl.model {
 			set { SetProperty(ref _sitchToAboutPage, value); }
 		}
 
+		public bool ButtonOverviewPageIsActive {
+			get { return _buttonOverviewPageIsActive; }
+			set { SetProperty(ref _buttonOverviewPageIsActive, value); }
+		}
+
 		public bool ButtonDSLPageIsActive {
 			get { return _buttonDSLPageIsActive; }
 			set { SetProperty(ref _buttonDSLPageIsActive, value); }
+		}
+
+		public bool ButtonLteInfoPageIsActive {
+			get { return _buttonLteInfoPageIsActive; }
+			set { SetProperty(ref _buttonLteInfoPageIsActive, value); }
+		}
+
+		public bool ButtonSyslogPageIsActive {
+			get { return _buttonSyslogPageIsActive; }
+			set { SetProperty(ref _buttonSyslogPageIsActive, value); }
+		}
+
+		public bool ButtonTR181PageIsActive {
+			get { return _buttonTR181PageIsActive; }
+			set { SetProperty(ref _buttonTR181PageIsActive, value); }
+		}
+
+		public bool ButtonPhonePageIsActive {
+			get { return _buttonPhonePageIsActive; }
+			set { SetProperty(ref _buttonPhonePageIsActive, value); }
+		}
+
+		public bool ButtonLanPageIsActive {
+			get { return _buttonLanPageIsActive; }
+			set { SetProperty(ref _buttonLanPageIsActive, value); }
+		}
+
+		public bool ButtonControlsPageIsActive {
+			get { return _buttonControlsPageIsActive; }
+			set { SetProperty(ref _buttonControlsPageIsActive, value); }
 		}
 
 		public Page FrameSource {
@@ -91,37 +128,71 @@ namespace SpeedportHybridControl.model {
 			set { SetProperty(ref _FrameSource, value); }
 		}
 
-		private void OnSwitchToLogiPagenExecute () {
-			Console.WriteLine("button...");
+		private void OnSwitchToLoginPageExecute () {
+			FrameSource = new LoginPage();
 		}
 
-		private void OnSwitchToAboutPageExecute () {
-			Console.WriteLine("button...");
-			ButtonDSLPageIsActive = true;
-			FrameSource = new page.test1();
+		private void OnSwitchToStatusPageExecute () {
+			FrameSource = new StatusPage();
+		}
+
+		private void OnSwitchToOverviewPageExecute () {
+			FrameSource = new OverviewPage();
 		}
 
 		private void OnSwitchToDSLPageExecute () {
-			Console.WriteLine("button...");
+			FrameSource = new DslPage();
+		}
+
+		private void OnSwitchToLteInfoPageExecute () {
+			FrameSource = new LteInfoPage();
+		}
+
+		private void OnSwitchToSyslogPageExecute () {
+			FrameSource = new SyslogPage();
+		}
+
+		private void OnSwitchToTR181PageExecute () {
+			FrameSource = new TR181Page();
+		}
+
+		private void OnSwitchToPhonePageExecute () {
+			FrameSource = new PhonePage();
+		}
+
+		private void OnSwitchToLanPageExecute () {
+			FrameSource = new LanPage();
+		}
+
+		private void OnSwitchToControlsPageExecute () {
+			FrameSource = new ControlsPage();
+		}
+
+		private void OnSwitchToAboutPageExecute () {
+			ButtonOverviewPageIsActive = true;
 			ButtonDSLPageIsActive = true;
-			FrameSource = new page.test();
+			ButtonLteInfoPageIsActive = true;
+			ButtonSyslogPageIsActive = true;
+			ButtonTR181PageIsActive = true;
+			ButtonPhonePageIsActive = true;
+			ButtonLanPageIsActive = true;
+			ButtonControlsPageIsActive = true;
+			FrameSource = new AboutPage();
 		}
-
-		private void ExampleExecute () {
-
-		}
-
+		
 		public MainWindowModel () {
-			SwitchToLoginPage = new DelegateCommand(new Action(OnSwitchToLogiPagenExecute));
-			SwitchToStatusPage = new DelegateCommand(new Action(ExampleExecute));
-			SwitchToOverviewPage = new DelegateCommand(new Action(ExampleExecute));
+			FrameSource = new LoginPage();
+
+			SwitchToLoginPage = new DelegateCommand(new Action(OnSwitchToLoginPageExecute));
+			SwitchToStatusPage = new DelegateCommand(new Action(OnSwitchToStatusPageExecute));
+			SwitchToOverviewPage = new DelegateCommand(new Action(OnSwitchToOverviewPageExecute));
 			SwitchToDSLPage = new DelegateCommand(new Action(OnSwitchToDSLPageExecute));
-			SwitchToLteInfoPage = new DelegateCommand(new Action(ExampleExecute));
-			SwitchToSyslogPage = new DelegateCommand(new Action(ExampleExecute));
-			SwitchToTR181Page = new DelegateCommand(new Action(ExampleExecute));
-			SwitchToPhonePage = new DelegateCommand(new Action(ExampleExecute));
-			SwitchToLanPage = new DelegateCommand(new Action(ExampleExecute));
-			SwitchToControlsPage = new DelegateCommand(new Action(ExampleExecute));
+			SwitchToLteInfoPage = new DelegateCommand(new Action(OnSwitchToLteInfoPageExecute));
+			SwitchToSyslogPage = new DelegateCommand(new Action(OnSwitchToSyslogPageExecute));
+			SwitchToTR181Page = new DelegateCommand(new Action(OnSwitchToTR181PageExecute));
+			SwitchToPhonePage = new DelegateCommand(new Action(OnSwitchToPhonePageExecute));
+			SwitchToLanPage = new DelegateCommand(new Action(OnSwitchToLanPageExecute));
+			SwitchToControlsPage = new DelegateCommand(new Action(OnSwitchToControlsPageExecute));
 
 			SwitchToAboutPage = new DelegateCommand(new Action(OnSwitchToAboutPageExecute));
 		}

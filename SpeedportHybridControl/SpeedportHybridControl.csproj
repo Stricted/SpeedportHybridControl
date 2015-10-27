@@ -62,14 +62,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="model\MainWindowModel.cs" />
-    <Compile Include="model\SuperViewModel.cs" />
-    <Compile Include="page\test.xaml.cs">
-      <DependentUpon>test.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="page\test1.xaml.cs">
-      <DependentUpon>test1.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Model\bonding_client.cs" />
+    <Compile Include="Model\DeviceViewModel.cs" />
+    <Compile Include="Model\DSLViewModel.cs" />
+    <Compile Include="Model\LTEViewModel.cs" />
+    <Compile Include="Model\MainWindowModel.cs" />
+    <Compile Include="Model\OverviewModel.cs" />
+    <Compile Include="Model\PhoneCallViewModel.cs" />
+    <Compile Include="Model\StatusViewModel.cs" />
+    <Compile Include="Model\SuperViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,16 +83,87 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="page\test.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="page\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="page\test1.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="page\ControlsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\DslPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\LanPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\LteInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\OverviewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\PhonePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\StatusPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\SyslogPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\TR181Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\SyslogViewModel.cs" />
+    <Compile Include="Model\TR181ViewModel.cs" />
+    <Compile Include="page\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\ControlsPage.xaml.cs">
+      <DependentUpon>ControlsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\DslPage.xaml.cs">
+      <DependentUpon>DslPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\LanPage.xaml.cs">
+      <DependentUpon>LanPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\LteInfoPage.xaml.cs">
+      <DependentUpon>LteInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\OverviewPage.xaml.cs">
+      <DependentUpon>OverviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\PhonePage.xaml.cs">
+      <DependentUpon>PhonePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\StatusPage.xaml.cs">
+      <DependentUpon>StatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\SyslogPage.xaml.cs">
+      <DependentUpon>SyslogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\TR181Page.xaml.cs">
+      <DependentUpon>TR181Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -143,6 +215,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="t-com icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="SplashScreen1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,119 @@
+﻿<Page x:Class="SpeedportHybridControl.page.DslPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpeedportHybridControl.page"
+      xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+      mc:Ignorable="d"
+      Width="Auto" Height="Auto"
+      Title="DslPage">
+
+    <Grid DataContext="{StaticResource DSL}">
+        <GroupBox Header="Connection Status" HorizontalAlignment="Left" VerticalAlignment="Top" Width="213">
+            <Grid>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="120">
+                    <TextBlock TextWrapping="Wrap" Text="DSL operating-mode:"/>
+                    <TextBlock TextWrapping="Wrap" Text="Path mode:"/>
+                    <TextBlock TextWrapping="Wrap" Text="State:"/>
+                    <TextBlock TextWrapping="Wrap" Text="Training results:"/>
+                    <TextBlock TextWrapping="Wrap" Text="Mode LO/I2:"/>
+                    <TextBlock TextWrapping="Wrap" Text="VPI/VCI:"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="81" Margin="120,0,0,0">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Connection.dsl_operaing_mode}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Connection.path_mode}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Connection.state}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Connection.training_results}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Connection.mode_lo}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Connection.vpi_vci}"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Statistik Ø" HorizontalAlignment="Left" VerticalAlignment="Top" Width="213" Margin="0,120,0,0">
+            <Grid>
+                <StackPanel Margin="0,0,150,0">
+                    <TextBlock />
+                    <TextBlock Text="CRC/min" />
+                    <TextBlock Text="HEC/min" />
+                    <TextBlock Text="FEC/min" />
+                </StackPanel>
+                <StackPanel Margin="51,0,81,0">
+                    <TextBlock TextAlignment="Center" Text="Upstream" />
+                    <TextBlock TextAlignment="Center" Text="{Binding Line.uCRCsec}" />
+                    <TextBlock TextAlignment="Center" Text="{Binding Line.uHECsec}" />
+                    <TextBlock TextAlignment="Center" Text="{Binding Line.uFECsec}" />
+                </StackPanel>
+                <StackPanel Margin="120,0,0,0">
+                    <TextBlock TextAlignment="Center" Text="Downstream" />
+                    <TextBlock TextAlignment="Center" Text="{Binding Line.dCRCsec}" />
+                    <TextBlock TextAlignment="Center" Text="{Binding Line.dHECsec}" />
+                    <TextBlock TextAlignment="Center" Text="{Binding Line.dFECsec}" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        
+        <StackPanel Margin="0,211,0,0" VerticalAlignment="Top" Height="55">
+            <TextBlock Text="{Binding lastCRC}" />
+            <TextBlock Text="{Binding lastHEC}" />
+            <TextBlock Text="{Binding lastFEC}" />
+        </StackPanel>
+        
+        <GroupBox Header="Line Status" HorizontalAlignment="Left" VerticalAlignment="Top" Width="296" Margin="218,0,0,0">
+            <Grid>
+                <StackPanel Margin="0,0,171,0">
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text="Actual Data Rate:"/>
+                    <TextBlock TextWrapping="Wrap" Text="Attainable Data Rate:"/>
+                    <TextBlock TextWrapping="Wrap" Text="SNR Margin:"/>
+                    <TextBlock TextWrapping="Wrap" Text="Signal-level:"/>
+                    <TextBlock TextWrapping="Wrap" Text="Line Attenuation:"/>
+                    <TextBlock TextWrapping="Wrap" Text="FEC Size:"/>
+                    <TextBlock TextWrapping="Wrap" Text="Codeword size:"/>
+                    <TextBlock TextWrapping="Wrap" Text="Interleave delay:"/>
+                    <TextBlock TextWrapping="Wrap" Text="CRC error count:"/>
+                    <TextBlock TextWrapping="Wrap" Text="HEC error count:"/>
+                    <TextBlock TextWrapping="Wrap" Text="FEC error count:"/>
+                </StackPanel>
+
+                <StackPanel Margin="113,0,96,0">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Upstream"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uactual}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uattainable}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uSNR}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uSignal}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uLine}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uFEC_size}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uCodeword}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uInterleave}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uCRC}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uHEC}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.uHEC}"/>
+                </StackPanel>
+
+                <StackPanel Width="94" Margin="188,0,2,0">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Downstream"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dactual}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dattainable}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dSNR}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dSignal}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dLine}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dFEC_size}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dCodeword}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dInterleave}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dCRC}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dHEC}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Line.dFEC}"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <ToggleButton x:Name="autoreload" Content="Automatisch aktualisieren" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="button_click"/>
+        <ToggleButton x:Name="btnLog" Content="Log" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="button_click" Margin="145,0,0,0" IsEnabled="False"/>
+
+        <Button x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom" Click="button_click" />
+        <TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+    </Grid>
+</Page>

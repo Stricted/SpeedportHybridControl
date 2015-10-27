@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace SpeedportHybridControl.model {
+namespace SpeedportHybridControl.Model {
 	public class SuperViewModel : INotifyPropertyChanged {
 
 		public event PropertyChangedEventHandler PropertyChanged;

@@ -1,0 +1,81 @@
+﻿<Page x:Class="SpeedportHybridControl.page.TR181Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpeedportHybridControl"
+      mc:Ignorable="d" 
+      Width="Auto" Height="Auto"
+      Title="TR181Page">
+
+    <Grid DataContext="{StaticResource TR181}">
+        <GroupBox Header="TR181 Parameter" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid>
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Enable:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="Status:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="Mode:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="ServerName:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="ServerIP:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="AvailableBW:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="LastErrorInfo:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="HelloStatus:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,0,0,0">
+                    <TextBlock Text="{Binding enable1}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding status1}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding mode}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding servername}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding severip}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding bw}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding errorinfo}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding hellostatus}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Interface Status" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="335,76,0,0">
+            <Grid>
+                <StackPanel HorizontalAlignment="Left" Width="121" >
+                    <TextBlock Text="LTE tunnel (LTE:tun):" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="DSL tunnel (DSL:tun):" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="Bonding (Bond):" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </StackPanel>
+
+                <StackPanel Margin="121,0,0,0" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding lte_tunnel}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding dsl_tunnel}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding bonding}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Einstellungen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="335,0,0,0" Height="76">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="QueueSkbTimeOut:" VerticalAlignment="Top" Margin="0,3,0,0"/>
+                <TextBox x:Name="tbQueue" HorizontalAlignment="Left" Margin="115,2,0,0" TextWrapping="Wrap" Text="{Binding QueueSkbTimeOut}" VerticalAlignment="Top" Width="42" />
+                <Button x:Name="btnSave" Content="Speichern" HorizontalAlignment="Left" Margin="44,34,0,0" VerticalAlignment="Top" Width="75" Click="button_click" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="BYPASS Info" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,151,0,0" Width="208">
+            <Grid>
+                <StackPanel Margin="0,0,61,0">
+                    <TextBlock Text="DSL IP Up BandWidth:" />
+                    <TextBlock Text="DSL IP Down BandWidth:" />
+                    <TextBlock Text="Up ReservedBWRatio:" />
+                    <TextBlock Text="Down ReservedBWRatio:" />
+                    <TextBlock Text="Bypass Check Interval:" />
+                </StackPanel>
+                <StackPanel Margin="135,0,0,0">
+                    <TextBlock TextAlignment="Center" Text="{Binding bypass_up_bw}" />
+                    <TextBlock TextAlignment="Center" Text="{Binding bypass_dw_bw}" />
+                    <TextBlock TextAlignment="Center" Text="{Binding bypass_up_rb}" />
+                    <TextBlock TextAlignment="Center" Text="{Binding bypass_dw_rb}" />
+                    <TextBlock TextAlignment="Center" Text="{Binding bypass_check}" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        <Button x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom" Click="button_click" />
+    </Grid>
+</Page>

@@ -1,0 +1,71 @@
+﻿<Page x:Class="SpeedportHybridControl.page.OverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpeedportHybridControl"
+      mc:Ignorable="d" 
+      Width="Auto" Height="Auto"
+      Title="OverviewPage">
+
+    <Grid DataContext="{StaticResource OverviewModel}">
+        <GroupBox Header="Internet" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="174">
+            <Grid>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding onlinestatus}" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding dsl_link_status}" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="LTE-Empfangsstärke" VerticalAlignment="Top"/>
+                    <Image Source="{Binding lte_image}"  HorizontalAlignment="Left" Margin="142,-16,0,0" VerticalAlignment="Top" Height="20"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Telefonie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,76,0,0" Width="174">
+            <Grid>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left" Text="{Binding number_status}" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding use_dect}" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding dect_devices}" VerticalAlignment="Top"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Heimnetzwerk" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="179,0,0,0" Height="264" Width="321">
+            <Grid Margin="0,0,0,7">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Verbundene Geräte:" VerticalAlignment="Top" Width="107" Margin="0,10,0,0"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding devices}" VerticalAlignment="Top" Width="192" Margin="112,10,0,0"/>
+
+                <GroupBox Header="WLAN" HorizontalAlignment="Left" VerticalAlignment="Top" Height="196" Width="154" Margin="0,39,0,0">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding use_wlan}" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding use_wlan_5ghz}" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding wlan_enc}" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding wlan_power}" VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Netzwerkspeicher" HorizontalAlignment="Left" VerticalAlignment="Top" Height="196" Width="154" Margin="155,39,0,0">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding external_devices}" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding nas_sync_active}" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding nas_backup_active}" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding mc_state}" VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Visibility="Collapsed" Header="Sicherheits-Status" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,173,0,0" Width="174">
+            <Grid>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Firewall aktiv" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Liste der sicheren E-Mail-Server aus" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Telekom-Datenschutz Aus" VerticalAlignment="Top"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        
+        <TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        <Button x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom" Click="button_click" />
+    </Grid>
+</Page>
