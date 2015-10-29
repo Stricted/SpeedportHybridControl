@@ -21,7 +21,7 @@
                 </Style>
             </StackPanel.Resources>
 
-            <Button Command="{Binding Path=SwitchToLoginPage}" Background="{Binding Path=ButtonLoginPageBackground}" x:Name="btnLogin" Content="Login"/>
+            <Button Command="{Binding Path=SwitchToLoginPage}" Background="{Binding Path=ButtonLoginPageBackground}" x:Name="btnLogin" Content="{Binding Path=LoginButtonContent}"/>
             <Button Command="{Binding Path=SwitchToStatusPage}" Background="{Binding Path=ButtonStatusPageBackground}" Click="button_click" x:Name="btnStatus" Content="Status"/>
             <Button Command="{Binding Path=SwitchToOverviewPage}" IsEnabled="{Binding Path=ButtonOverviewPageIsActive}" Background="{Binding Path=ButtonOverviewPageBackground}"  x:Name="btnOverview" Content="Overview"/>
             <Button Command="{Binding Path=SwitchToDSLPage}" IsEnabled="{Binding Path=ButtonDSLPageIsActive}" Background="{Binding Path=ButtonDSLPageBackground}" x:Name="btnDsl" Content="DSL"/>

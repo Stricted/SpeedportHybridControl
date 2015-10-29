@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Threading;
+using System;
+using SpeedportHybridControl.Model;
 
 namespace SpeedportHybridControl.page {
 	/// <summary>

@@ -6,6 +6,8 @@ using System.Windows.Media;
 
 namespace SpeedportHybridControl.Model {
 	class MainWindowModel : SuperViewModel {
+		private string _loginButtonContent = "Login";
+
 		private DelegateCommand _switchToLoginPage;
 		private DelegateCommand _switchToStatusPage;
 		private DelegateCommand _switchToOverviewPage;
@@ -40,6 +42,11 @@ namespace SpeedportHybridControl.Model {
 		private Brush _buttonAboutPageBackground = Brushes.LightGray;
 
 		private Page _FrameSource;
+
+		public string LoginButtonContent {
+			get { return _loginButtonContent; }
+			set { SetProperty(ref _loginButtonContent, value); }
+		}
 
 		public DelegateCommand SwitchToLoginPage {
 			get { return _switchToLoginPage; }

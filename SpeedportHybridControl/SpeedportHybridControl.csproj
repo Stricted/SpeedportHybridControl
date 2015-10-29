@@ -65,6 +65,7 @@
     <Compile Include="Model\bonding_client.cs" />
     <Compile Include="Model\DeviceViewModel.cs" />
     <Compile Include="Model\DSLViewModel.cs" />
+    <Compile Include="Model\LoginPageModel.cs" />
     <Compile Include="Model\LTEViewModel.cs" />
     <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\OverviewModel.cs" />
