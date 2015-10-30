@@ -254,14 +254,6 @@ namespace SpeedportHybridControl.Model {
 		}
 
 		private void OnSwitchToAboutPageExecute () {
-			ButtonOverviewPageIsActive = true;
-			ButtonDSLPageIsActive = true;
-			ButtonLteInfoPageIsActive = true;
-			ButtonSyslogPageIsActive = true;
-			ButtonTR181PageIsActive = true;
-			ButtonPhonePageIsActive = true;
-			ButtonLanPageIsActive = true;
-			ButtonControlsPageIsActive = true;
 			FrameSource = new AboutPage();
 			changeColor("about");
 		}

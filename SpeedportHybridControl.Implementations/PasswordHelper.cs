@@ -5,79 +5,59 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SpeedportHybridControl.Implementations {
+
+	// see http://antonymale.co.uk/2015/08/binding-to-a-passwordbox-password-in-wpf
 	public static class PasswordHelper {
+		private static readonly DependencyProperty PasswordInitializedProperty =
+			DependencyProperty.RegisterAttached("PasswordInitialized", typeof(bool), typeof(PasswordHelper), new PropertyMetadata(false));
+
+		private static readonly DependencyProperty SettingPasswordProperty =
+			DependencyProperty.RegisterAttached("SettingPassword", typeof(bool), typeof(PasswordHelper), new PropertyMetadata(false));
+
+		public static string GetPassword (DependencyObject obj) {
+			return (string)obj.GetValue(PasswordProperty);
+		}
+		public static void SetPassword (DependencyObject obj, string value) {
+			obj.SetValue(PasswordProperty, value);
+		}
+		// We play a trick here. If we set the initial value to something, it'll be set to something else when the binding kicks in,
+		// and HandleBoundPasswordChanged will be called, which allows us to set up our event subscription.
+		// If the binding sets us to a value which we already are, then this doesn't happen. Therefore start with a value that's
+		// definitely unique.
 		public static readonly DependencyProperty PasswordProperty =
-			DependencyProperty.RegisterAttached("Password",
-			typeof(string), typeof(PasswordHelper),
-			new FrameworkPropertyMetadata(string.Empty, OnPasswordPropertyChanged));
+			DependencyProperty.RegisterAttached("Password", typeof(string), typeof(PasswordHelper),
+				new FrameworkPropertyMetadata(Guid.NewGuid().ToString(), HandleBoundPasswordChanged) {
+					BindsTwoWayByDefault = true,
+					DefaultUpdateSourceTrigger = UpdateSourceTrigger.LostFocus // Match the default on Binding
+				});
 
-		public static readonly DependencyProperty AttachProperty =
-			DependencyProperty.RegisterAttached("Attach",
-			typeof(bool), typeof(PasswordHelper), new PropertyMetadata(false, Attach));
-
-		private static readonly DependencyProperty IsUpdatingProperty =
-		   DependencyProperty.RegisterAttached("IsUpdating", typeof(bool),
-		   typeof(PasswordHelper));
-
-
-		public static void SetAttach (DependencyObject dp, bool value) {
-			dp.SetValue(AttachProperty, value);
-		}
-
-		public static bool GetAttach (DependencyObject dp) {
-			return (bool)dp.GetValue(AttachProperty);
-		}
-
-		public static string GetPassword (DependencyObject dp) {
-			return (string)dp.GetValue(PasswordProperty);
-		}
-
-		public static void SetPassword (DependencyObject dp, string value) {
-			dp.SetValue(PasswordProperty, value);
-		}
-
-		private static bool GetIsUpdating (DependencyObject dp) {
-			return (bool)dp.GetValue(IsUpdatingProperty);
-		}
-
-		private static void SetIsUpdating (DependencyObject dp, bool value) {
-			dp.SetValue(IsUpdatingProperty, value);
-		}
-
-		private static void OnPasswordPropertyChanged (DependencyObject sender,
-			DependencyPropertyChangedEventArgs e) {
-			PasswordBox passwordBox = sender as PasswordBox;
-			passwordBox.PasswordChanged -= PasswordChanged;
-
-			if (!(bool)GetIsUpdating(passwordBox)) {
-				passwordBox.Password = (string)e.NewValue;
-			}
-			passwordBox.PasswordChanged += PasswordChanged;
-		}
-
-		private static void Attach (DependencyObject sender,
-			DependencyPropertyChangedEventArgs e) {
-			PasswordBox passwordBox = sender as PasswordBox;
-
+		private static void HandleBoundPasswordChanged (DependencyObject dp, DependencyPropertyChangedEventArgs e) {
+			var passwordBox = dp as PasswordBox;
 			if (passwordBox == null)
 				return;
 
-			if ((bool)e.OldValue) {
-				passwordBox.PasswordChanged -= PasswordChanged;
+			// If we're being called because we set the value of the property we're bound to (from inside 
+			// HandlePasswordChanged, then do nothing - we already have the latest value).
+			if ((bool)passwordBox.GetValue(SettingPasswordProperty))
+				return;
+
+			// If this is the initial set (see the comment on PasswordProperty), set ourselves up
+			if (!(bool)passwordBox.GetValue(PasswordInitializedProperty)) {
+				passwordBox.SetValue(PasswordInitializedProperty, true);
+				passwordBox.PasswordChanged += HandlePasswordChanged;
 			}
 
-			if ((bool)e.NewValue) {
-				passwordBox.PasswordChanged += PasswordChanged;
-			}
+			passwordBox.Password = e.NewValue as string;
 		}
 
-		private static void PasswordChanged (object sender, RoutedEventArgs e) {
-			PasswordBox passwordBox = sender as PasswordBox;
-			SetIsUpdating(passwordBox, true);
+		private static void HandlePasswordChanged (object sender, RoutedEventArgs e) {
+			var passwordBox = (PasswordBox)sender;
+			passwordBox.SetValue(SettingPasswordProperty, true);
 			SetPassword(passwordBox, passwordBox.Password);
-			SetIsUpdating(passwordBox, false);
+			passwordBox.SetValue(SettingPasswordProperty, false);
 		}
 	}
 }

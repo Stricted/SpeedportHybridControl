@@ -6,19 +6,20 @@
       xmlns:local="clr-namespace:SpeedportHybridControl"
       xmlns:Implementations="clr-namespace:SpeedportHybridControl.Implementations;assembly=SpeedportHybridControl.Implementations"
       mc:Ignorable="d"
-      Loaded="loaded"
       Width="Auto" Height="Auto"
       Title="LoginPage">
 
     <Grid DataContext="{StaticResource LoginPageModel}">
-        <TextBlock x:Name="diTextBlock" HorizontalAlignment="Left" Margin="51,21,0,0" TextWrapping="Wrap" Text="Domain/IP:" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding Path=ip, Mode=TwoWay}" x:Name="tbip" HorizontalAlignment="Left" Height="23" Margin="115,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Grid Visibility="{Binding Path=LoginFieldsVisibility}">
+            <TextBlock HorizontalAlignment="Left" Margin="51,21,0,0" TextWrapping="Wrap" Text="Domain/IP:" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding Path=ip, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="115,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <TextBlock x:Name="tbpw" Text="Passwort:" HorizontalAlignment="Left" Margin="55,49,0,0" VerticalAlignment="Top" />
-        <PasswordBox Implementations:PasswordHelper.Attach="True" Implementations:PasswordHelper.Password="{Binding Path=password, Mode=TwoWay}"  Visibility="{Binding Path=PasswordBoxVisibility}" x:Name="PasswordBox" HorizontalAlignment="Left" Height="23" Margin="115,42,0,0" VerticalAlignment="Top" Width="120" ForceCursor="True" />
-        <TextBox Text="{Binding Path=password, Mode=TwoWay}" x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="23" Margin="115,42,0,0" VerticalAlignment="Top" Width="120" Visibility="{Binding Path=PasswordTextBoxVisibility}"/>
-        <CheckBox Command="{Binding Path=ShowPasswordCommand}" IsChecked="{Binding Path=ShowPassword, Mode=TwoWay}" x:Name="PasswordCheckBox" Content="Passwort anzeigen" Margin="240,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <CheckBox Command="{Binding Path=SavePasswordCommand}" IsChecked="{Binding Path=SavePassword, Mode=TwoWay}"  x:Name="cbSave" Content="Passwort speichern" Margin="240,65,0,0" Checked="CheckBox" Unchecked="CheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <Button Command="{Binding Path=LoginCommand}" x:Name="button1" Content="{Binding Path=LoginButtonText}" HorizontalAlignment="Left" Margin="115,70,0,0" VerticalAlignment="Top" Width="75" IsDefault="True"/>
+            <TextBlock Text="Passwort:" HorizontalAlignment="Left" Margin="55,49,0,0" VerticalAlignment="Top" />
+            <PasswordBox Implementations:PasswordHelper.Password="{Binding Path=password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Visibility="{Binding Path=PasswordBoxVisibility}" x:Name="passwordBox" HorizontalAlignment="Left" Height="23" Margin="115,42,0,0" VerticalAlignment="Top" Width="120" ForceCursor="True" />
+            <TextBox Text="{Binding Path=password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="115,42,0,0" VerticalAlignment="Top" Width="120" Visibility="{Binding Path=PasswordTextBoxVisibility}"/>
+            <CheckBox Command="{Binding Path=ShowPasswordCommand}" IsChecked="{Binding Path=ShowPassword, Mode=TwoWay}" Content="Passwort anzeigen" Margin="240,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <CheckBox Command="{Binding Path=SavePasswordCommand}" IsChecked="{Binding Path=SavePassword, Mode=TwoWay}" Content="Passwort speichern" Margin="240,65,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        </Grid>
+        <Button Command="{Binding Path=LoginCommand}" Content="{Binding Path=LoginButtonText}" HorizontalAlignment="Left" Margin="115,70,0,0" VerticalAlignment="Top" Width="75" IsDefault="True"/>
     </Grid>
 </Page>

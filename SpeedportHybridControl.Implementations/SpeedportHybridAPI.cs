@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace SpeedportHybridControl.Implementations {
 	public class SpeedportHybridAPI : SingletonFactory<SpeedportHybridAPI> {
-		public string ip = "speedport.ip";
+		public string _ip = "speedport.ip";
 		private DateTime _lastReboot = DateTime.MinValue;
 		private bool _checkIsActive = false;
 		public string _password;
@@ -19,7 +19,12 @@ namespace SpeedportHybridControl.Implementations {
 		public string _hash;
 		public string _derivedk;
 		public CookieContainer _cookie = new CookieContainer();
-		
+
+		public string ip {
+			get { return _ip; }
+			set { _ip = value; }
+		}
+
 		/**
 		 * Requests the password-challenge from the router.
 		 *

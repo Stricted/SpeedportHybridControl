@@ -12,6 +12,7 @@ namespace SpeedportHybridControl.Model {
 		private bool _savePassword;
 		private Visibility _passwordBoxVisibility = Visibility.Visible;
 		private Visibility _passwordTextBoxVisibility = Visibility.Hidden;
+		private Visibility _loginFieldsVisibility = Visibility.Visible;
 
 		private DelegateCommand _showPasswordCommand;
 		private DelegateCommand _savePasswordCommand;
@@ -50,6 +51,11 @@ namespace SpeedportHybridControl.Model {
 		public Visibility PasswordTextBoxVisibility {
 			get { return _passwordTextBoxVisibility; }
 			set { SetProperty(ref _passwordTextBoxVisibility, value); }
+		}
+
+		public Visibility LoginFieldsVisibility {
+			get { return _loginFieldsVisibility; }
+			set { SetProperty(ref _loginFieldsVisibility, value); }
 		}
 
 		public DelegateCommand ShowPasswordCommand {
@@ -93,25 +99,34 @@ namespace SpeedportHybridControl.Model {
 				bool login = SpeedportHybridAPI.getInstance().login(password);
 				if (login.Equals(true)) {
 					if (SavePassword.Equals(true)) {
-						/*
+						
 						SettingsModel SettingsModel = new SettingsModel {
 							password = password,
 							ip = SpeedportHybridAPI.getInstance().ip
 						};
 
 						Settings.save(SettingsModel);
-						*/
+						
 					}
 					else {
-						/*
+						
 						SettingsModel SettingsModel = new SettingsModel {
 							password = string.Empty,
 							ip = SpeedportHybridAPI.getInstance().ip
 						};
 
 						Settings.save(SettingsModel);
-						*/
+						
 					}
+					LoginFieldsVisibility = Visibility.Hidden;
+                    mwm.ButtonOverviewPageIsActive = true;
+					mwm.ButtonDSLPageIsActive = true;
+					mwm.ButtonLteInfoPageIsActive = true;
+					mwm.ButtonSyslogPageIsActive = true;
+					mwm.ButtonTR181PageIsActive = true;
+					mwm.ButtonPhonePageIsActive = true;
+					mwm.ButtonLanPageIsActive = true;
+					mwm.ButtonControlsPageIsActive = true;
 
 					LoginButtonText = "Logout";
 					mwm.LoginButtonContent = "Logout";
@@ -124,6 +139,17 @@ namespace SpeedportHybridControl.Model {
 			else {
 				if (SpeedportHybridAPI.getInstance().logout().Equals(true)) {
 					// TODO: util.logout();
+
+					LoginFieldsVisibility = Visibility.Visible;
+					mwm.ButtonOverviewPageIsActive = false;
+					mwm.ButtonDSLPageIsActive = false;
+					mwm.ButtonLteInfoPageIsActive = false;
+					mwm.ButtonSyslogPageIsActive = false;
+					mwm.ButtonTR181PageIsActive = false;
+					mwm.ButtonPhonePageIsActive = false;
+					mwm.ButtonLanPageIsActive = false;
+					mwm.ButtonControlsPageIsActive = false;
+
 					LoginButtonText = "Login";
 					mwm.LoginButtonContent = "Login";
 				}
@@ -131,8 +157,18 @@ namespace SpeedportHybridControl.Model {
 		}
 
 		public LoginPageModel () {
-			// TODO: ip = Settings....
-			// TODO: SpeedportHybridAPI.getInstance().ip = ip;
+			SettingsModel settings = Settings.load();
+			if (settings.ip.IsNullOrEmpty().Equals(false)) {
+				ip = settings.ip;
+			}
+
+			SpeedportHybridAPI.getInstance().ip = ip;
+
+			if (settings.password.IsNullOrEmpty().Equals(false)) {
+				SavePassword = true;
+				password = settings.password;
+            }
+
 			ShowPasswordCommand = new DelegateCommand(new Action(OnShowPasswordCommandExecute));
 			SavePasswordCommand = new DelegateCommand(new Action(OnSavePasswordCommandExecute));
 			LoginCommand = new DelegateCommand(new Action(OnLoginCommandExecute));
