@@ -74,5 +74,5 @@ namespace SpeedportHybridControl.Implementations {
 
 		public SettingsModel () {
 		}
-    }
+	}
 }

@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\SpeedportHybrid.cs" />
     <Compile Include="Model\bonding_client.cs" />
     <Compile Include="Model\DeviceViewModel.cs" />
     <Compile Include="Model\DSLViewModel.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Model\PhoneCallViewModel.cs" />
     <Compile Include="Model\StatusViewModel.cs" />
     <Compile Include="Model\SuperViewModel.cs" />
+    <Compile Include="Data\SpeedportHybridAPI.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

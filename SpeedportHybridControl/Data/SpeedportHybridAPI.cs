@@ -8,8 +8,11 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Threading;
 using System.Collections.Generic;
+using SpeedportHybridControl.Implementations;
+using SpeedportHybridControl.Model;
+using Newtonsoft.Json;
 
-namespace SpeedportHybridControl.Implementations {
+namespace SpeedportHybridControl.Data {
 	public class SpeedportHybridAPI : SingletonFactory<SpeedportHybridAPI> {
 		public string _ip = "speedport.ip";
 		private DateTime _lastReboot = DateTime.MinValue;
@@ -153,9 +156,6 @@ namespace SpeedportHybridControl.Implementations {
 		 * @return	bool
 		 */
 		public bool checkLogin () {
-			// TODO:
-
-			/*
 			if (_checkIsActive.Equals(false)) {
 				_checkIsActive = true;
 				if (isLoggedin().Equals(false)) {
@@ -173,8 +173,10 @@ namespace SpeedportHybridControl.Implementations {
 						_hash = "";
 						_derivedk = "";
 
-						util.logout();
-						new Thread(() => { MessageBox.Show("Session expired.", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
+						LoginPageModel lpm = Application.Current.FindResource("LoginPageModel") as LoginPageModel;
+						lpm.LogoutAction();
+
+                        new Thread(() => { MessageBox.Show("Session expired.", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
 						_checkIsActive = false;
 						return false;
 					}
@@ -185,7 +187,6 @@ namespace SpeedportHybridControl.Implementations {
 			else {
 				Console.WriteLine("check allready in progress");
 			}
-			*/
 
 			return true;
 		}
@@ -225,8 +226,6 @@ namespace SpeedportHybridControl.Implementations {
 		 * reboot the router
 		 */
 		public void reboot () {
-			// TODO:
-			/*
 			if (checkLogin().Equals(false))
 				return;
 
@@ -244,7 +243,8 @@ namespace SpeedportHybridControl.Implementations {
 					_hash = "";
 					_derivedk = "";
 
-					util.logout();
+					LoginPageModel lpm = Application.Current.FindResource("LoginPageModel") as LoginPageModel;
+					lpm.LogoutAction();
 				}
 				
 				jArray = null;
@@ -254,7 +254,6 @@ namespace SpeedportHybridControl.Implementations {
 			}
 
 			response = null;
-			*/
 		}
 
 		/**
@@ -558,8 +557,6 @@ namespace SpeedportHybridControl.Implementations {
 		 * @param	string	value
 		 */
 		public void setQueueSkbTimeOut (string value) {
-			// TODO:
-			/*
 			if (checkLogin().Equals(false))
 				return;
 
@@ -583,7 +580,6 @@ namespace SpeedportHybridControl.Implementations {
 			}
 
 			response = null;
-			*/
 		}
 
 		/**
@@ -592,8 +588,6 @@ namespace SpeedportHybridControl.Implementations {
 		 * @param	string	value
 		 */
 		public void setAntennaMode (string value) {
-			// TODO:
-			/*
 			if (checkLogin().Equals(false))
 				return;
 
@@ -630,7 +624,6 @@ namespace SpeedportHybridControl.Implementations {
 			}
 
 			response = null;
-			*/
 		}
 
 		/**

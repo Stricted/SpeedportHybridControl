@@ -1,7 +1,7 @@
 ﻿using Noesis.Javascript;
 
 namespace SpeedportHybridControl.Implementations {
-	class sjcl {
+	public class sjcl {
 		private string jssjcl;
 		public sjcl () {
 			jssjcl = string.Concat(

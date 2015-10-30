@@ -1,5 +1,6 @@
 ﻿using System;
 using SpeedportHybridControl.Implementations;
+using SpeedportHybridControl.Data;
 using System.Windows;
 using System.Threading;
 
@@ -119,7 +120,7 @@ namespace SpeedportHybridControl.Model {
 						
 					}
 					LoginFieldsVisibility = Visibility.Hidden;
-                    mwm.ButtonOverviewPageIsActive = true;
+					mwm.ButtonOverviewPageIsActive = true;
 					mwm.ButtonDSLPageIsActive = true;
 					mwm.ButtonLteInfoPageIsActive = true;
 					mwm.ButtonSyslogPageIsActive = true;
@@ -139,21 +140,25 @@ namespace SpeedportHybridControl.Model {
 			else {
 				if (SpeedportHybridAPI.getInstance().logout().Equals(true)) {
 					// TODO: util.logout();
-
-					LoginFieldsVisibility = Visibility.Visible;
-					mwm.ButtonOverviewPageIsActive = false;
-					mwm.ButtonDSLPageIsActive = false;
-					mwm.ButtonLteInfoPageIsActive = false;
-					mwm.ButtonSyslogPageIsActive = false;
-					mwm.ButtonTR181PageIsActive = false;
-					mwm.ButtonPhonePageIsActive = false;
-					mwm.ButtonLanPageIsActive = false;
-					mwm.ButtonControlsPageIsActive = false;
-
-					LoginButtonText = "Login";
-					mwm.LoginButtonContent = "Login";
+					LogoutAction();
 				}
 			}
+		}
+
+		public void LogoutAction () {
+			MainWindowModel mwm = Application.Current.FindResource("MainWindowModel") as MainWindowModel;
+			LoginFieldsVisibility = Visibility.Visible;
+			mwm.ButtonOverviewPageIsActive = false;
+			mwm.ButtonDSLPageIsActive = false;
+			mwm.ButtonLteInfoPageIsActive = false;
+			mwm.ButtonSyslogPageIsActive = false;
+			mwm.ButtonTR181PageIsActive = false;
+			mwm.ButtonPhonePageIsActive = false;
+			mwm.ButtonLanPageIsActive = false;
+			mwm.ButtonControlsPageIsActive = false;
+
+			LoginButtonText = "Login";
+			mwm.LoginButtonContent = "Login";
 		}
 
 		public LoginPageModel () {
@@ -167,7 +172,7 @@ namespace SpeedportHybridControl.Model {
 			if (settings.password.IsNullOrEmpty().Equals(false)) {
 				SavePassword = true;
 				password = settings.password;
-            }
+			}
 
 			ShowPasswordCommand = new DelegateCommand(new Action(OnShowPasswordCommandExecute));
 			SavePasswordCommand = new DelegateCommand(new Action(OnSavePasswordCommandExecute));

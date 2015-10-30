@@ -3,6 +3,8 @@ using SpeedportHybridControl.Implementations;
 using System.Windows.Controls;
 using SpeedportHybridControl.page;
 using System.Windows.Media;
+using System.Threading;
+using SpeedportHybridControl.Data;
 
 namespace SpeedportHybridControl.Model {
 	class MainWindowModel : SuperViewModel {
@@ -211,6 +213,7 @@ namespace SpeedportHybridControl.Model {
 		private void OnSwitchToStatusPageExecute () {
 			FrameSource = new StatusPage();
 			changeColor("status");
+			new Thread(() => { SpeedportHybrid.initStatus(); }).Start();
 		}
 
 		private void OnSwitchToOverviewPageExecute () {
