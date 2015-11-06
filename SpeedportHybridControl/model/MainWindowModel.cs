@@ -206,62 +206,106 @@ namespace SpeedportHybridControl.Model {
 		}
 
 		private void OnSwitchToLoginPageExecute () {
-			FrameSource = new LoginPage();
-			changeColor("login");
+			changePage("login");
 		}
 
 		private void OnSwitchToStatusPageExecute () {
-			FrameSource = new StatusPage();
-			changeColor("status");
+			changePage("status");
 			new Thread(() => { SpeedportHybrid.initStatus(); }).Start();
 		}
 
 		private void OnSwitchToOverviewPageExecute () {
-			FrameSource = new OverviewPage();
-			changeColor("overview");
+			changePage("overview");
+			new Thread(() => { SpeedportHybrid.initOverview(); }).Start();
 		}
 
 		private void OnSwitchToDSLPageExecute () {
-			FrameSource = new DslPage();
-			changeColor("dsl");
+			changePage("dsl");
+			new Thread(() => { SpeedportHybrid.initDSL(); }).Start();
 		}
 
 		private void OnSwitchToLteInfoPageExecute () {
-			FrameSource = new LteInfoPage();
-			changeColor("lte");
+			changePage("lte");
+			new Thread(() => { SpeedportHybrid.initLTE(); }).Start();
 		}
 
 		private void OnSwitchToSyslogPageExecute () {
-			FrameSource = new SyslogPage();
-			changeColor("syslog");
+			changePage("syslog");
+			new Thread(() => { SpeedportHybrid.initSyslog(); }).Start();
 		}
 
 		private void OnSwitchToTR181PageExecute () {
-			FrameSource = new TR181Page();
-			changeColor("tr181");
+			changePage("tr181");
+			new Thread(() => { SpeedportHybrid.initTR181(); }).Start();
 		}
 
 		private void OnSwitchToPhonePageExecute () {
-			FrameSource = new PhonePage();
-			changeColor("phone");
+			changePage("phone");
+			new Thread(() => { SpeedportHybrid.initPhone(); }).Start();
 		}
 
 		private void OnSwitchToLanPageExecute () {
-			FrameSource = new LanPage();
-			changeColor("lan");
+			changePage("lan");
+			new Thread(() => { SpeedportHybrid.initLan(); }).Start();
 		}
 
 		private void OnSwitchToControlsPageExecute () {
-			FrameSource = new ControlsPage();
-			changeColor("controls");
+			changePage("controls");
 		}
 
 		private void OnSwitchToAboutPageExecute () {
-			FrameSource = new AboutPage();
-			changeColor("about");
+			changePage("about");
 		}
 
-		public void changeColor (string sender) {
+		private void changePage (string page) {
+			if (object.Equals(FrameSource, null).Equals(false)) {
+				if (FrameSource.Content.GetType().Equals(typeof(LteInfoPage))) {
+					// TODO: lteInfoPage.StopTimer();
+				}
+
+				if (FrameSource.Content.GetType().Equals(typeof(DslPage))) {
+					// TODO: dslPage.StopTimer();
+				}
+			}
+
+			if (page.Equals("login")) {
+				FrameSource = new LoginPage();
+			}
+			else if (page.Equals("status")) {
+				FrameSource = new StatusPage();
+			}
+			else if (page.Equals("overview")) {
+				FrameSource = new OverviewPage();
+			}
+			else if (page.Equals("dsl")) {
+				FrameSource = new DslPage();
+			}
+			else if (page.Equals("lte")) {
+				FrameSource = new LteInfoPage();
+			}
+			else if (page.Equals("syslog")) {
+				FrameSource = new SyslogPage();
+			}
+			else if (page.Equals("tr181")) {
+				FrameSource = new TR181Page();
+			}
+			else if (page.Equals("phone")) {
+				FrameSource = new PhonePage();
+			}
+			else if (page.Equals("lan")) {
+				FrameSource = new LanPage();
+			}
+			else if (page.Equals("controls")) {
+				FrameSource = new ControlsPage();
+			}
+			else if (page.Equals("about")) {
+				FrameSource = new AboutPage();
+			}
+
+			changeColor(page);
+		}
+
+		private void changeColor (string page) {
 			ButtonLoginPageBackground = Brushes.LightGray;
 			ButtonStatusPageBackground = Brushes.LightGray;
 			ButtonOverviewPageBackground = Brushes.LightGray;
@@ -274,55 +318,53 @@ namespace SpeedportHybridControl.Model {
 			ButtonControlsPageBackground = Brushes.LightGray;
 			ButtonAboutPageBackground = Brushes.LightGray;
 
-
-			if (sender.Equals("login")) {
+			if (page.Equals("login")) {
 				ButtonLoginPageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("status")) {
+			if (page.Equals("status")) {
 				ButtonStatusPageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("overview")) {
+			if (page.Equals("overview")) {
 				ButtonOverviewPageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("dsl")) {
+			if (page.Equals("dsl")) {
 				ButtonDSLPageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("lte")) {
+			if (page.Equals("lte")) {
 				ButtonLteInfoPageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("syslog")) {
+			if (page.Equals("syslog")) {
 				ButtonSyslogPageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("tr181")) {
+			if (page.Equals("tr181")) {
 				ButtonTR181PageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("phone")) {
+			if (page.Equals("phone")) {
 				ButtonPhonePageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("lan")) {
+			if (page.Equals("lan")) {
 				ButtonLanPageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("controls")) {
+			if (page.Equals("controls")) {
 				ButtonControlsPageBackground = Brushes.LightGreen;
 			}
 
-			if (sender.Equals("about")) {
+			if (page.Equals("about")) {
 				ButtonAboutPageBackground = Brushes.LightGreen;
 			}
 		}
 
 		public MainWindowModel () {
-			FrameSource = new LoginPage();
-			changeColor("login");
+			changePage("login");
 
 			SwitchToLoginPage = new DelegateCommand(new Action(OnSwitchToLoginPageExecute));
 			SwitchToStatusPage = new DelegateCommand(new Action(OnSwitchToStatusPageExecute));
