@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace SpeedportHybridControl.Implementations {
 	public static class Cryptography {
-		private static string EncryptionKey = "FD25B8d0afB9DDB";
-		private static byte[] salt = new byte[] { 82, 9, 106, 213, 48, 54, 165, 56, 191, 64, 163, 158, 129 };
+		private static string KEY = "8E16A57381AFDA47856682CEBE85DCF5982F59321AE28B2822C1C9E1FC481C50";
+		private static string IV = "7CD37E78623793D4C4BB81DB73B08522";
 
 		public static string Encrypt (string clearText) {
 			byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
@@ -17,9 +18,13 @@ namespace SpeedportHybridControl.Implementations {
 					return result;
 				}
 
-				Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, salt);
-				encryptor.Key = pdb.GetBytes(32);
-				encryptor.IV = pdb.GetBytes(16);
+				encryptor.KeySize = 256;
+				encryptor.BlockSize = 128;
+				encryptor.Mode = CipherMode.CBC;
+				encryptor.Padding = PaddingMode.PKCS7;
+				encryptor.Key = util.HexToByte(KEY);
+				encryptor.IV = util.HexToByte(IV);
+
 				using (MemoryStream ms = new MemoryStream()) {
 					using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write)) {
 						cs.Write(clearBytes, 0, clearBytes.Length);
@@ -41,9 +46,13 @@ namespace SpeedportHybridControl.Implementations {
 					return result;
 				}
 
-				Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, salt);
-				encryptor.Key = pdb.GetBytes(32);
-				encryptor.IV = pdb.GetBytes(16);
+				encryptor.KeySize = 256;
+				encryptor.BlockSize = 128;
+				encryptor.Mode = CipherMode.CBC;
+				encryptor.Padding = PaddingMode.PKCS7;
+				encryptor.Key = util.HexToByte(KEY);
+				encryptor.IV = util.HexToByte(IV);
+				
 				using (MemoryStream ms = new MemoryStream()) {
 					using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write)) {
 						cs.Write(cipherBytes, 0, cipherBytes.Length);

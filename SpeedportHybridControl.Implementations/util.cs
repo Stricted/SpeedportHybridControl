@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -9,6 +10,10 @@ using System.Xml;
 
 namespace SpeedportHybridControl.Implementations {
 	public static class util {
+		public static byte[] HexToByte (string hex) {
+			return Enumerable.Range(0, hex.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
+		}
+
 		/**
 		 * get sha256
 		 *

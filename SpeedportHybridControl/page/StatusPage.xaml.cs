@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SpeedportHybridControl.Model;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SpeedportHybridControl.page {

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using SpeedportHybridControl.Implementations;
 using SpeedportHybridControl.Model;
 using Newtonsoft.Json;
+using System.Security;
 
 namespace SpeedportHybridControl.Data {
 	public class SpeedportHybridAPI : SingletonFactory<SpeedportHybridAPI> {
@@ -70,16 +71,16 @@ namespace SpeedportHybridControl.Data {
 		 * @param	string	$password
 		 * @return	bool
 		 */
-		public bool login (string passwort) {
-			if (passwort.IsNullOrEmpty()) {
+		public bool login (string password) {
+			if (password.IsNullOrEmpty()) {
 				return false;
 			}
 
 			_cookie = new CookieContainer();
 
-			_password = passwort;
+			_password = password;
 			_challenge = getChallenge();
-			_hash = string.Concat(_challenge, ":", _password).sha256();
+			_hash = string.Concat(_challenge, ":", password).sha256();
 			
 			string response = sendRequest("data/Login.json", string.Concat("csrf_token=nulltoken&showpw=0&password=", _hash));
 			if (response.IsNullOrEmpty())
@@ -174,9 +175,11 @@ namespace SpeedportHybridControl.Data {
 						_derivedk = "";
 
 						LoginPageModel lpm = Application.Current.FindResource("LoginPageModel") as LoginPageModel;
-						lpm.LogoutAction();
+						lpm.LoginCommand.Execute();
+						MainWindowModel mwm = Application.Current.FindResource("MainWindowModel") as MainWindowModel;
+						mwm.SwitchToLoginPage.Execute();
 
-                        new Thread(() => { MessageBox.Show("Session expired.", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
+						new Thread(() => { MessageBox.Show("Session expired.", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
 						_checkIsActive = false;
 						return false;
 					}
@@ -244,7 +247,9 @@ namespace SpeedportHybridControl.Data {
 					_derivedk = "";
 
 					LoginPageModel lpm = Application.Current.FindResource("LoginPageModel") as LoginPageModel;
-					lpm.LogoutAction();
+					lpm.LoginCommand.Execute();
+					MainWindowModel mwm = Application.Current.FindResource("MainWindowModel") as MainWindowModel;
+					mwm.SwitchToLoginPage.Execute();
 				}
 				
 				jArray = null;

@@ -5,8 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeedportHybridControl"
         mc:Ignorable="d"
-        Closing="Window_Closing"
-        SizeChanged="update_size"
         Height="350"
         Width="530"
         MinHeight="350"
@@ -22,7 +20,7 @@
             </StackPanel.Resources>
 
             <Button Command="{Binding Path=SwitchToLoginPage}" Background="{Binding Path=ButtonLoginPageBackground}" x:Name="btnLogin" Content="{Binding Path=LoginButtonContent}"/>
-            <Button Command="{Binding Path=SwitchToStatusPage}" Background="{Binding Path=ButtonStatusPageBackground}" Click="button_click" x:Name="btnStatus" Content="Status"/>
+            <Button Command="{Binding Path=SwitchToStatusPage}" Background="{Binding Path=ButtonStatusPageBackground}" x:Name="btnStatus" Content="Status"/>
             <Button Command="{Binding Path=SwitchToOverviewPage}" IsEnabled="{Binding Path=ButtonOverviewPageIsActive}" Background="{Binding Path=ButtonOverviewPageBackground}"  x:Name="btnOverview" Content="Overview"/>
             <Button Command="{Binding Path=SwitchToDSLPage}" IsEnabled="{Binding Path=ButtonDSLPageIsActive}" Background="{Binding Path=ButtonDSLPageBackground}" x:Name="btnDsl" Content="DSL"/>
             <Button Command="{Binding Path=SwitchToLteInfoPage}" IsEnabled="{Binding Path=ButtonLteInfoPageIsActive}" Background="{Binding Path=ButtonLteInfoPageBackground}" x:Name="btnLteInfo" Content="LteInfo"/>
@@ -36,7 +34,7 @@
         <Button Command="{Binding Path=SwitchToAboutPage}" Background="{Binding Path=ButtonAboutPageBackground}" x:Name="btnAbout" Content="Über" VerticalAlignment="Top" HorizontalAlignment="Right" Width="32" Margin="0,0,3,0"/>
 
         <DockPanel Margin="0,22,0,0">
-            <Frame x:Name="frame" NavigationUIVisibility="Hidden" Panel.ZIndex="1" Content="{Binding Path=FrameSource}"/>
+            <Frame x:Name="frame" NavigationUIVisibility="Hidden" Panel.ZIndex="1" Content="{Binding Path=FrameSource, NotifyOnSourceUpdated=True}"/>
         </DockPanel>
     </Grid>
 </Window>

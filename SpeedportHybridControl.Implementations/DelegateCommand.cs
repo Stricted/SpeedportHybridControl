@@ -9,13 +9,13 @@ namespace SpeedportHybridControl.Implementations {
 			_executeMethod = executeMethod;
 		}
 
-		public bool CanExecute (object parameter) {
+		public bool CanExecute (object parameter = null) {
 			return true;
 		}
 
 		public event EventHandler CanExecuteChanged;
 
-		public void Execute (object parameter) {
+		public void Execute (object parameter = null) {
 			_executeMethod.Invoke();
 		}
 	}

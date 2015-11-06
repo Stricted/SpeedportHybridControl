@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using SpeedportHybridControl.Implementations;
+using Microsoft.Win32;
 
 namespace SpeedportHybridControl {
 	/// <summary>
@@ -22,15 +23,6 @@ namespace SpeedportHybridControl {
 	public partial class MainWindow : Window {
 		public MainWindow () {
 			InitializeComponent();
-		}
-
-		private void button_click (object sender, RoutedEventArgs e) {
-		}
-
-		void Window_Closing (object sender, CancelEventArgs e) {
-		}
-
-		public void update_size (object sender, SizeChangedEventArgs e) {
 		}
 	}
 }
