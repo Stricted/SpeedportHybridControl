@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SpeedportHybridControl"
              xmlns:model="clr-namespace:SpeedportHybridControl.Model"
+             xmlns:pagemodel="clr-namespace:SpeedportHybridControl.PageModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <model:MainWindowModel x:Key="MainWindowModel"></model:MainWindowModel>
-            <model:LoginPageModel x:Key="LoginPageModel"></model:LoginPageModel>
+            <pagemodel:MainWindowModel x:Key="MainWindowModel"></pagemodel:MainWindowModel>
+            <pagemodel:LoginPageModel x:Key="LoginPageModel"></pagemodel:LoginPageModel>
+            <pagemodel:StatusPageModel x:Key="StatusPageModel"></pagemodel:StatusPageModel>
             
             <model:Status x:Key="Status"></model:Status>
             <model:LTE x:Key="LTE"></model:LTE>

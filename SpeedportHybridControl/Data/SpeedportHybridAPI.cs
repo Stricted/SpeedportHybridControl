@@ -12,6 +12,7 @@ using SpeedportHybridControl.Implementations;
 using SpeedportHybridControl.Model;
 using Newtonsoft.Json;
 using System.Security;
+using SpeedportHybridControl.PageModel;
 
 namespace SpeedportHybridControl.Data {
 	public class SpeedportHybridAPI : SingletonFactory<SpeedportHybridAPI> {

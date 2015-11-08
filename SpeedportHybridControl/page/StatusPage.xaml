@@ -111,6 +111,6 @@
         </GroupBox>
         
         <TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-        <Button x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom" Click="button_click" />
+        <Button DataContext="{StaticResource StatusPageModel}" Command="{Binding Path=ReloadCommand}" x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>

@@ -5,8 +5,9 @@ using SpeedportHybridControl.page;
 using System.Windows.Media;
 using System.Threading;
 using SpeedportHybridControl.Data;
+using SpeedportHybridControl.Model;
 
-namespace SpeedportHybridControl.Model {
+namespace SpeedportHybridControl.PageModel {
 	class MainWindowModel : SuperViewModel {
 		private string _loginButtonContent = "Login";
 

@@ -4,8 +4,9 @@ using SpeedportHybridControl.Data;
 using System.Windows;
 using System.Threading;
 using System.Security;
+using SpeedportHybridControl.Model;
 
-namespace SpeedportHybridControl.Model {
+namespace SpeedportHybridControl.PageModel {
 	class LoginPageModel : SuperViewModel {
 		private string _ip = "speedport.ip";
 		private string _password;
@@ -101,24 +102,20 @@ namespace SpeedportHybridControl.Model {
 				bool login = SpeedportHybridAPI.getInstance().login(password);
 				if (login.Equals(true)) {
 					if (SavePassword.Equals(true)) {
-						
 						SettingsModel SettingsModel = new SettingsModel {
 							password = password,
 							ip = SpeedportHybridAPI.getInstance().ip
 						};
 
 						Settings.save(SettingsModel);
-						
 					}
 					else {
-						
 						SettingsModel SettingsModel = new SettingsModel {
 							password = string.Empty,
 							ip = SpeedportHybridAPI.getInstance().ip
 						};
 
 						Settings.save(SettingsModel);
-						
 					}
 					LoginFieldsVisibility = Visibility.Hidden;
 					mwm.ButtonOverviewPageIsActive = true;
