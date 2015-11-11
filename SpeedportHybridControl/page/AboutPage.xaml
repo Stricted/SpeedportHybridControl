@@ -8,18 +8,18 @@
       Width="Auto" Height="Auto"
       Title="AboutPage">
 
-    <Grid>
+    <Grid DataContext="{StaticResource AboutPageModel}">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="SpeedportHybridControl" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" Text="Copyright © 2015 stricted.net" VerticalAlignment="Top"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" Text="Version:" VerticalAlignment="Top"/>
         <TextBlock x:Name="tbVersion" HorizontalAlignment="Left" Margin="57,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <Button x:Name="btnBugtracker" Content="Bugtracker" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="button_click"/>
-        <Button x:Name="btnUpdate" Content="Auf Update prüfen" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Click="button_click"/>
+        <Button Command="{Binding Path=BugtrackerCommand}" x:Name="btnBugtracker" Content="Bugtracker" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
+        <Button Command="{Binding Path=UpdateCommand}" x:Name="btnUpdate" Content="Auf Update prüfen" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" />
 
 
-        <Button x:Name="btnDonate" BorderBrush="Transparent" Background="Transparent" HorizontalAlignment="Right" Width="106" Height="48" VerticalAlignment="Bottom" Click="button_click" Margin="0,0,10,10">
+        <Button Command="{Binding Path=DonateCommand}" x:Name="btnDonate" BorderBrush="Transparent" Background="Transparent" HorizontalAlignment="Right" Width="106" Height="48" VerticalAlignment="Bottom" Margin="0,0,10,10">
             <Image Source="../assets/btn_donateCC_LG.gif" x:Name="image" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
         </Button>
     </Grid>

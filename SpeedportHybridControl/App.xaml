@@ -19,6 +19,7 @@
             <pagemodel:PhonePageModel x:Key="PhonePageModel"></pagemodel:PhonePageModel>
             <pagemodel:LanPageModel x:Key="LanPageModel"></pagemodel:LanPageModel>
             <pagemodel:ControlsPageModel x:Key="ControlsPageModel"></pagemodel:ControlsPageModel>
+            <pagemodel:AboutPageModel x:Key="AboutPageModel"></pagemodel:AboutPageModel>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
