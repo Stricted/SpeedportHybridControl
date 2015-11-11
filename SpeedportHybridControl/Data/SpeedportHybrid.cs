@@ -564,7 +564,7 @@ namespace SpeedportHybridControl.Data {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 					return;
 
-				SyslogData syslog = Application.Current.FindResource("SyslogData") as SyslogData;
+				SyslogPageModel syslog = Application.Current.FindResource("SyslogPageModel") as SyslogPageModel;
 
 				string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/SystemMessages.json");
 				if (response.IsNullOrEmpty())

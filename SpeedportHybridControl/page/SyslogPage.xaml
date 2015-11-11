@@ -7,19 +7,14 @@
       mc:Ignorable="d"
       Width="Auto" Height="Auto"
       Title="SyslogPage">
-    <Page.CommandBindings>
-        <CommandBinding
-        Command="ApplicationCommands.Copy"
-        Executed="CommandBinding_Executed"/>
-    </Page.CommandBindings>
-    <Grid DataContext="{StaticResource SyslogData}">
+    <Grid DataContext="{StaticResource SyslogPageModel}">
         <TextBlock HorizontalAlignment="Right" Margin="0,0,124,0" Text="Suche:" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSearch" HorizontalAlignment="Right" VerticalAlignment="Top" Width="120" Text="" TextChanged="TextChanged"/>
+        <TextBox x:Name="tbSearch" HorizontalAlignment="Right" VerticalAlignment="Top" Width="120" Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <ListView ItemsSource="{Binding syslogList}" x:Name="listView" Margin="0,23,0,39">
+        <ListView ItemsSource="{Binding filteredList}" SelectedItem="{Binding Path=SelectedItem, UpdateSourceTrigger=PropertyChanged}" x:Name="listView" Margin="0,23,0,39">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Copy" Command="ApplicationCommands.Copy"/>
+                    <MenuItem Header="Copy" Command="{Binding Path=CopyCommand, NotifyOnTargetUpdated=True}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.Resources>
@@ -36,8 +31,8 @@
         </ListView>
 
         <TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-        <Button x:Name="btnClear" Content="Leeren" Click="button_click" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="72"/>
+        <Button Command="{Binding Path=ClearCommand}" x:Name="btnClear" Content="Leeren" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="72"/>
 
-        <Button x:Name="btnReload" Content="Aktualisieren" Margin="218,0,218,0" Click="button_click" VerticalAlignment="Bottom"/>
+        <Button Command="{Binding Path=ReloadCommand}" x:Name="btnReload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>

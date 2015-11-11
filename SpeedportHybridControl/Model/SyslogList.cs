@@ -1,24 +1,10 @@
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SpeedportHybridControl.Model {
-	public class SyslogData : SuperViewModel {
-		private List<SyslogList> _syslogList;
-		private string _datetime;
-
-		public List<SyslogList> syslogList {
-			get { return _syslogList; }
-			set { SetProperty(ref _syslogList, value); }
-		}
-
-		public string datetime {
-			get { return _datetime; }
-			set { SetProperty(ref _datetime, value); }
-		}
-
-		public SyslogData() {
-		}
-	}
-
 	public class SyslogList : SuperViewModel {
 		private string _message;
 		private string _timestamp;
@@ -37,7 +23,7 @@ namespace SpeedportHybridControl.Model {
 			return string.Concat(timestamp, ": ", message);
 		}
 
-		public SyslogList() {
+		public SyslogList () {
 		}
 	}
 }

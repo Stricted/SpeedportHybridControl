@@ -14,8 +14,8 @@
             <pagemodel:OverviewPageModel x:Key="OverviewPageModel"></pagemodel:OverviewPageModel>
             <pagemodel:DslPageModel x:Key="DslPageModel"></pagemodel:DslPageModel>
             <pagemodel:LteInfoModel x:Key="LteInfoModel"></pagemodel:LteInfoModel>
+            <pagemodel:SyslogPageModel x:Key="SyslogPageModel"></pagemodel:SyslogPageModel>
             
-            <model:SyslogData x:Key="SyslogData"></model:SyslogData>
             <model:TR181 x:Key="TR181"></model:TR181>
             <model:PhoneCallData x:Key="PhoneCallData"></model:PhoneCallData>
             <model:DeviceData x:Key="DeviceData"></model:DeviceData>
