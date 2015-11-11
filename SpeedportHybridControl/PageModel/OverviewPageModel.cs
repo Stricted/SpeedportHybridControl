@@ -1,5 +1,13 @@
-﻿namespace SpeedportHybridControl.Model {
-	public class OverviewModel : SuperViewModel {
+﻿using SpeedportHybridControl.Data;
+using SpeedportHybridControl.Implementations;
+using SpeedportHybridControl.Model;
+using System;
+using System.Threading;
+
+namespace SpeedportHybridControl.PageModel {
+	class OverviewPageModel : SuperViewModel {
+		private DelegateCommand _reloadCommand;
+
 		private string _onlinestatus;
 		private string _dsl_link_status;
 		private string _lte_image = "../assets/lte0.png";
@@ -11,12 +19,21 @@
 		private string _use_wlan_5ghz;
 		private string _wlan_enc;
 		private string _wlan_power;
-		private string _external_devices; 
+		private string _external_devices;
 		private string _nas_sync_active;
 		private string _nas_backup_active;
 		private string _mc_state;
 		private string _days_online;
 		private string _datetime;
+
+		public DelegateCommand ReloadCommand {
+			get { return _reloadCommand; }
+			set { SetProperty(ref _reloadCommand, value); }
+		}
+
+		private void OnReloadCommandExecute () {
+			new Thread(() => { SpeedportHybrid.initOverview(); }).Start();
+		}
 
 		public string onlinestatus {
 			get { return _onlinestatus; }
@@ -103,8 +120,8 @@
 			set { SetProperty(ref _datetime, value); }
 		}
 
-		public OverviewModel () {
-
+		public OverviewPageModel () {
+			ReloadCommand = new DelegateCommand(new Action(OnReloadCommandExecute));
 		}
 	}
 }

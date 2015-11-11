@@ -1,6 +1,4 @@
-﻿using SpeedportHybridControl.Model;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace SpeedportHybridControl.page {
 	/// <summary>
@@ -9,14 +7,6 @@ namespace SpeedportHybridControl.page {
 	public partial class OverviewPage : Page {
 		public OverviewPage() {
 			InitializeComponent();
-		}
-
-		private void button_click (object sender, RoutedEventArgs e) {
-			/*
-			if (sender.Equals(reload)) {
-				util.init("Overview");
-			}
-			*/
 		}
 	}
 }

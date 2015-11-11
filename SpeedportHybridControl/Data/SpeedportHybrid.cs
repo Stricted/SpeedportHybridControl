@@ -17,7 +17,7 @@ namespace SpeedportHybridControl.Data {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 					return;
 
-				OverviewModel overview = Application.Current.FindResource("OverviewModel") as OverviewModel;
+				OverviewPageModel overview = Application.Current.FindResource("OverviewPageModel") as OverviewPageModel;
 
 				string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/Overview.json");
 				if (response.IsNullOrEmpty())
@@ -365,14 +365,14 @@ namespace SpeedportHybridControl.Data {
 			if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 				return;
 
-			DSLViewModel dsl = Application.Current.FindResource("DSL") as DSLViewModel;
+			DslPageModel dsl = Application.Current.FindResource("DslPageModel") as DslPageModel;
 
 			string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/dsl.json");
 			if (response.IsNullOrEmpty())
 				return;
 			
 			try {
-				DSLViewModel obj = JsonConvert.DeserializeObject<DSLViewModel>(response);
+				DslPageModel obj = JsonConvert.DeserializeObject<DslPageModel>(response);
 
 				double difference = Math.Ceiling((DateTime.Now - SpeedportHybridAPI.getInstance().getLastReboot()).TotalSeconds) / 60;
 

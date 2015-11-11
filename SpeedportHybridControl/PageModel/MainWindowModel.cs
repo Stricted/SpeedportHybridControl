@@ -263,12 +263,14 @@ namespace SpeedportHybridControl.PageModel {
 
 		private void changePage (string page) {
 			if (object.Equals(FrameSource, null).Equals(false)) {
-				if (FrameSource.Content.GetType().Equals(typeof(LteInfoPage))) {
+				Console.WriteLine("HERE!!!");
+				if (FrameSource.GetType().Equals(typeof(LteInfoPage))) {
 					// TODO: lteInfoPage.StopTimer();
 				}
 
-				if (FrameSource.Content.GetType().Equals(typeof(DslPage))) {
-					// TODO: dslPage.StopTimer();
+                if (FrameSource.GetType().Equals(typeof(DslPage))) {
+					DslPageModel dsl = Application.Current.FindResource("DslPageModel") as DslPageModel;
+					dsl.StopTimer();
 				}
 			}
 
