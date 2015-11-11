@@ -10,11 +10,5 @@ namespace SpeedportHybridControl.page {
 		public StatusPage() {
 			InitializeComponent();
 		}
-
-		private void button_click(object sender, RoutedEventArgs e) {
-			if (sender.Equals(reload)) {
-				//util.init("Status");
-			}
-		}
     }
 }

@@ -223,6 +223,11 @@
   <ItemGroup>
     <SplashScreen Include="SplashScreen1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="vcredist\vcredist_x86.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

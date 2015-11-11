@@ -6,9 +6,12 @@ using System.Windows.Media;
 using System.Threading;
 using SpeedportHybridControl.Data;
 using SpeedportHybridControl.Model;
+using System.Windows;
 
 namespace SpeedportHybridControl.PageModel {
 	class MainWindowModel : SuperViewModel {
+		public const string VERSION = "1.0-pre9"; //TODO: change this later
+
 		private string _loginButtonContent = "Login";
 
 		private DelegateCommand _switchToLoginPage;
@@ -365,6 +368,15 @@ namespace SpeedportHybridControl.PageModel {
 		}
 
 		public MainWindowModel () {
+			if (util.checkInstalled("Microsoft Visual C++ 2010  x86 Redistributable - 10.0.40219").Equals(false)) {
+				new Thread(() => { MessageBox.Show("Bitte installiere das 'Microsoft Visual C++ 2010 Redistributable Package' aus den ordner 'vcredis' um das programm vollständig benutzen zu können.", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Warning); }).Start();
+			}
+
+			if (util.checkUpdate(VERSION).Equals(true)) {
+				new Thread(() => { MessageBox.Show("Ein Update ist verfügbar.", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Warning); }).Start();
+			}
+
+
 			changePage("login");
 
 			SwitchToLoginPage = new DelegateCommand(new Action(OnSwitchToLoginPageExecute));

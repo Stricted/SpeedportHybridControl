@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 using System.Security.Cryptography;
@@ -152,18 +153,17 @@ namespace SpeedportHybridControl.Implementations {
 
 			return Brushes.Transparent;
 		}
-		
+
 		/**
 		 * check for update
 		 */
-		/*
-		public static bool checkUpdate () {
+		public static bool checkUpdate (string currentVersion) {
 			try {
 				XmlDocument xmlDocument = new XmlDocument();
 				xmlDocument.Load("https://stricted.net/version.xml");
 
 				string version = xmlDocument.DocumentElement["version"].InnerText;
-				if (MainWindow.VERSION.Equals(version).Equals(false)) {
+				if (currentVersion.Equals(version).Equals(false)) {
 					return true;
 				}
 			}
@@ -173,7 +173,6 @@ namespace SpeedportHybridControl.Implementations {
 
 			return false;
 		}
-		*/
 
 		/**
 		 * process login stuff
@@ -265,5 +264,37 @@ namespace SpeedportHybridControl.Implementations {
 			}
 		}
 		*/
+
+		public static bool checkInstalled (string c_name) {
+			string displayName = string.Empty;
+
+			string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+			RegistryKey key = Registry.LocalMachine.OpenSubKey(registryKey);
+			if (key != null) {
+				foreach (RegistryKey subkey in key.GetSubKeyNames().Select(keyName => key.OpenSubKey(keyName))) {
+					displayName = subkey.GetValue("DisplayName") as string;
+
+					if (string.IsNullOrWhiteSpace(displayName).Equals(false) && displayName.Equals(c_name)) {
+						return true;
+					}
+				}
+				key.Close();
+			}
+
+			registryKey = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+			key = Registry.LocalMachine.OpenSubKey(registryKey);
+			if (key != null) {
+				foreach (RegistryKey subkey in key.GetSubKeyNames().Select(keyName => key.OpenSubKey(keyName))) {
+					displayName = subkey.GetValue("DisplayName") as string;
+
+					if (string.IsNullOrWhiteSpace(displayName).Equals(false) && displayName.Equals(c_name)) {
+						return true;
+					}
+				}
+				key.Close();
+			}
+
+			return false;
+		}
 	}
 }
