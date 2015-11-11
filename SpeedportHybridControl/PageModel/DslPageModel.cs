@@ -24,7 +24,14 @@ namespace SpeedportHybridControl.PageModel {
 		private string _lastHEC;
 		private string _lastFEC;
 
-
+		private int lastdFEC;
+		private int lastuFEC;
+		private int lastdHEC;
+		private int lastuHEC;
+		private int lastdCRC;
+		private int lastuCRC;
+		private DateTime lastReload;
+		
 		public Connection Connection {
 			get { return _Connection; }
 			set { SetProperty(ref _Connection, value); }
@@ -82,7 +89,36 @@ namespace SpeedportHybridControl.PageModel {
 		}
 
 		private void OnReloadCommandExecute () {
-			new Thread(() => { SpeedportHybrid.initDSL(); }).Start();
+			new Thread(() => {
+				SpeedportHybrid.initDSL();
+
+				if (lastReload.Equals(DateTime.MinValue).Equals(false)) {
+					DateTime now = DateTime.Now;
+					double difference = Math.Ceiling(Math.Ceiling((DateTime.Now - lastReload).TotalSeconds) / 60);
+
+					double diffdCRC = Math.Ceiling((Line.dCRC - lastdCRC) / difference);
+					double diffuCRC = Math.Ceiling((Line.uCRC - lastuCRC) / difference);
+					lastCRC = string.Format("CRC/min (last {0} min) Upstream: {1} Downstream: {2}", difference, diffuCRC, diffdCRC);
+
+					double diffdHEC = Math.Ceiling((Line.dHEC - lastdHEC) / difference);
+					double diffuHEC = Math.Ceiling((Line.uHEC - lastuHEC) / difference);
+					lastHEC = string.Format("HEC/min (last {0} min) Upstream: {1} Downstream: {2}", difference, diffuHEC, diffdHEC);
+
+					double diffdFEC = Math.Ceiling((Line.dFEC - lastdFEC) / difference);
+					double diffuFEC = Math.Ceiling((Line.uFEC - lastuFEC) / difference);
+					lastFEC = string.Format("FEC/min (last {0} min) Upstream: {1} Downstream: {2}", difference, diffuFEC, diffdFEC);
+				}
+
+				lastReload = DateTime.Now;
+				lastdCRC = Line.dCRC;
+				lastuCRC = Line.uCRC;
+
+				lastdHEC = Line.dHEC;
+				lastuHEC = Line.uHEC;
+
+				lastdFEC = Line.dFEC;
+				lastuFEC = Line.uFEC;
+			}).Start();
 		}
 
 		private void OnAutoReloadCommandExecute () {

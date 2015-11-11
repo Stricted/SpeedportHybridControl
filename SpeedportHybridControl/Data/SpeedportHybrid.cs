@@ -751,7 +751,7 @@ namespace SpeedportHybridControl.Data {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 					return;
 
-				DeviceData deviceData = Application.Current.FindResource("DeviceData") as DeviceData;
+				LanPageModel deviceData = Application.Current.FindResource("LanPageModel") as LanPageModel;
 
 				List<DeviceList> deviceList = new List<DeviceList>();
 

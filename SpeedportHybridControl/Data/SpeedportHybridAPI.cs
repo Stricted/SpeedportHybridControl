@@ -9,7 +9,6 @@ using System.Windows;
 using System.Threading;
 using System.Collections.Generic;
 using SpeedportHybridControl.Implementations;
-using SpeedportHybridControl.Model;
 using Newtonsoft.Json;
 using SpeedportHybridControl.PageModel;
 

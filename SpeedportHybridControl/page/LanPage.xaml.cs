@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace SpeedportHybridControl.page {
 	/// <summary>
@@ -8,14 +7,6 @@ namespace SpeedportHybridControl.page {
 	public partial class LanPage : Page {
 		public LanPage() {
 			InitializeComponent();
-		}
-
-		private void button_click(object sender, RoutedEventArgs e) {
-			/*
-			if (sender.Equals(reload)) {
-				util.init("Lan");
-			}
-			*/
 		}
 	}
 }
