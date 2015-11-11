@@ -307,19 +307,19 @@ namespace SpeedportHybridControl.Data {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 					return;
 
-				LTE lte = null;
+				LteInfoModel lte = null;
 				if (popup.Equals(true)) {
-					lte = Application.Current.FindResource("LTE2") as LTE;
+					//lte = Application.Current.FindResource("LTE2") as LTE;
 				}
 				else {
-					lte = Application.Current.FindResource("LTE") as LTE;
+					lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
 				}
 
 				string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/lteinfo.json");
 				if (response.IsNullOrEmpty())
 					return;
 
-				LTE obj = JsonConvert.DeserializeObject<LTE>(response);
+				LteInfoModel obj = JsonConvert.DeserializeObject<LteInfoModel>(response);
 				response = null;
 
 				lte.imei = obj.imei;
@@ -599,7 +599,7 @@ namespace SpeedportHybridControl.Data {
 
 						// Funkzellen Info
 						if (msg.ToString().Contains("(LT004)") && isLTE.Equals(true)) {
-							LTE lte = Application.Current.FindResource("LTE") as LTE;
+							LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
 							//LTE lte2 = Application.Current.FindResource("LTE2") as LTE;
 
 							string[] parts = msg.ToString().Split(',');

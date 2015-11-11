@@ -600,7 +600,7 @@ namespace SpeedportHybridControl.Data {
 			if (response.IsNullOrEmpty())
 				return;
 			try {
-				LTE obj = JsonConvert.DeserializeObject<LTE>(response);
+				LteInfoModel obj = JsonConvert.DeserializeObject<LteInfoModel>(response);
 
 				string antenna_mode;
 				if (obj.antenna_mode.Equals("Antennal set to internal")) {

@@ -38,6 +38,10 @@
     <ApplicationIcon>t-com icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamicDataDisplay, Version=0.3.0.1, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicDataDisplay.0.3.0.1\lib\net45\DynamicDataDisplay.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -63,6 +67,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\SpeedportHybrid.cs" />
+    <Compile Include="ltepopup.xaml.cs">
+      <DependentUpon>ltepopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\bonding_client.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\DeviceViewModel.cs" />
@@ -70,11 +77,15 @@
     <Compile Include="Model\StatusPhoneListModel.cs" />
     <Compile Include="PageModel\DslPageModel.cs" />
     <Compile Include="PageModel\LoginPageModel.cs" />
-    <Compile Include="Model\LTEViewModel.cs" />
+    <Compile Include="PageModel\LteInfoModel.cs" />
     <Compile Include="PageModel\MainWindowModel.cs" />
     <Compile Include="Model\PhoneCallViewModel.cs" />
     <Compile Include="Model\SuperViewModel.cs" />
     <Compile Include="Data\SpeedportHybridAPI.cs" />
+    <Page Include="ltepopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:SpeedportHybridControl"
              xmlns:model="clr-namespace:SpeedportHybridControl.Model"
              xmlns:pagemodel="clr-namespace:SpeedportHybridControl.PageModel"
+             ShutdownMode="OnMainWindowClose"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -12,9 +13,8 @@
             <pagemodel:StatusPageModel x:Key="StatusPageModel"></pagemodel:StatusPageModel>
             <pagemodel:OverviewPageModel x:Key="OverviewPageModel"></pagemodel:OverviewPageModel>
             <pagemodel:DslPageModel x:Key="DslPageModel"></pagemodel:DslPageModel>
+            <pagemodel:LteInfoModel x:Key="LteInfoModel"></pagemodel:LteInfoModel>
             
-            <model:LTE x:Key="LTE"></model:LTE>
-            <model:LTE x:Key="LTE2"></model:LTE>
             <model:SyslogData x:Key="SyslogData"></model:SyslogData>
             <model:TR181 x:Key="TR181"></model:TR181>
             <model:PhoneCallData x:Key="PhoneCallData"></model:PhoneCallData>

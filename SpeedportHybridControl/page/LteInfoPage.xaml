@@ -8,7 +8,7 @@
       Width="Auto" Height="Auto"
       Title="LteInfoPage">
 
-    <Grid DataContext="{StaticResource LTE}">
+    <Grid DataContext="{StaticResource LteInfoModel}">
         <GroupBox Header="LTE-parameter" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid>
                 <StackPanel HorizontalAlignment="Left" Width="86">
@@ -41,22 +41,22 @@
                 </StackPanel>
             </Grid>
         </GroupBox>
-        <ToggleButton x:Name="autoreload" Content="Automatisch aktualisieren" HorizontalAlignment="Left" Margin="0,214,0,0" VerticalAlignment="Top" Click="button_click"/>
-        <Button x:Name="btnPopup" Content="Popup" HorizontalAlignment="Left" Margin="145,214,0,0" VerticalAlignment="Top" Click="button_click"/>
+        <ToggleButton Command="{Binding Path=AutoReloadCommand}" IsChecked="{Binding Path=AutoReload}" x:Name="autoreload" Content="Automatisch aktualisieren" HorizontalAlignment="Left" Margin="0,214,0,0" VerticalAlignment="Top"/>
+        <Button Command="{Binding Path=PopupCommand}" x:Name="btnPopup" Content="Popup" HorizontalAlignment="Left" Margin="145,214,0,0" VerticalAlignment="Top"/>
 
         <GroupBox Header="Einstelungen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="188,209,0,0" Height="45" Width="284">
             <Grid>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Antennen Modus:" VerticalAlignment="Top"/>
-                <ComboBox x:Name="cbAntenna" SelectedValue="{Binding antenna_mode2}" SelectedValuePath="Name" HorizontalAlignment="Left" Width="91" Margin="101,1,0,0">
+                <ComboBox x:Name="cbAntenna" SelectedValue="{Binding antenna_mode2}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" SelectedValuePath="Name" HorizontalAlignment="Left" Width="91" Margin="101,1,0,0">
                     <ComboBoxItem Content="Automatisch" Name="Auto" HorizontalAlignment="Left" Width="92"/>
                     <ComboBoxItem Content="Intern" Name="Inner" HorizontalAlignment="Left" Width="92"/>
                     <ComboBoxItem Content="Extern" Name="Outer" HorizontalAlignment="Left" Width="92"/>
                 </ComboBox>
-                <Button x:Name="btnSave" Content="Speichern" HorizontalAlignment="Left" Margin="197,1,0,2" Width="75" Click="button_click" />
+                <Button Command="{Binding Path=SaveCommand}" x:Name="btnSave" Content="Speichern" HorizontalAlignment="Left" Margin="197,1,0,2" Width="75"/>
             </Grid>
         </GroupBox>
 
         <TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-        <Button x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom" Click="button_click" />
+        <Button Command="{Binding Path=ReloadCommand}" x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>

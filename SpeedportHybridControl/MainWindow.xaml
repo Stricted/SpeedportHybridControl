@@ -9,9 +9,10 @@
         Width="530"
         MinHeight="350"
         MinWidth="530"
-        Title="Speedport Hybrid Konfigurationsprogramm"
+        DataContext="{StaticResource MainWindowModel}"
+        Title="{Binding Path=Title}"
         Icon="t-com icon.ico">
-    <Grid DataContext="{StaticResource MainWindowModel}" >
+    <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">

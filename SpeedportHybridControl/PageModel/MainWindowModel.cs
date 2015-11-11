@@ -49,6 +49,8 @@ namespace SpeedportHybridControl.PageModel {
 
 		private Page _FrameSource;
 
+		private string _title;
+
 		public string LoginButtonContent {
 			get { return _loginButtonContent; }
 			set { SetProperty(ref _loginButtonContent, value); }
@@ -209,6 +211,11 @@ namespace SpeedportHybridControl.PageModel {
 			set { SetProperty(ref _FrameSource, value); }
 		}
 
+		public string Title {
+			get { return _title; }
+			set { SetProperty(ref _title, value); }
+		}
+
 		private void OnSwitchToLoginPageExecute () {
 			changePage("login");
 		}
@@ -263,9 +270,9 @@ namespace SpeedportHybridControl.PageModel {
 
 		private void changePage (string page) {
 			if (object.Equals(FrameSource, null).Equals(false)) {
-				Console.WriteLine("HERE!!!");
 				if (FrameSource.GetType().Equals(typeof(LteInfoPage))) {
-					// TODO: lteInfoPage.StopTimer();
+					LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
+					lte.StopTimer();
 				}
 
                 if (FrameSource.GetType().Equals(typeof(DslPage))) {
@@ -370,6 +377,8 @@ namespace SpeedportHybridControl.PageModel {
 		}
 
 		public MainWindowModel () {
+			Title = string.Concat("Speedport Hybrid Konfigurationsprogramm", " (version ", VERSION, ")");
+
 			if (util.checkInstalled("Microsoft Visual C++ 2010  x86 Redistributable - 10.0.40219").Equals(false)) {
 				new Thread(() => { MessageBox.Show("Bitte installiere das 'Microsoft Visual C++ 2010 Redistributable Package' aus den ordner 'vcredis' um das programm vollständig benutzen zu können.", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Warning); }).Start();
 			}
@@ -377,7 +386,6 @@ namespace SpeedportHybridControl.PageModel {
 			if (util.checkUpdate(VERSION).Equals(true)) {
 				new Thread(() => { MessageBox.Show("Ein Update ist verfügbar.", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Warning); }).Start();
 			}
-
 
 			changePage("login");
 

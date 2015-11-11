@@ -65,6 +65,7 @@ namespace SpeedportHybridControl.PageModel {
 			get { return _autoReloadCommand; }
 			set { SetProperty(ref _autoReloadCommand, value); }
 		}
+
 		public bool AutoReload {
 			get { return _autoReload; }
 			set { SetProperty(ref _autoReload, value); }

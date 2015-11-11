@@ -1,0 +1,52 @@
+﻿<Window x:Class="SpeedportHybridControl.ltepopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpeedportHybridControl"
+        mc:Ignorable="d"
+        xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+        Height="423.4"
+        Width="530"
+        Closing="Window_Closing"
+        Title="LteInfo"
+        Icon="t-com icon.ico">
+    <!--
+    <Grid DataContext="{StaticResource LTE2}">
+        <ToggleButton Background="Transparent" BorderBrush="Transparent" x:Name="btnPin" HorizontalAlignment="Left" Margin="10,2,0,0" Height="20" VerticalAlignment="Top" Click="button_click">
+            <Image Source="assets/pin.png" x:Name="image" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+        </ToggleButton>
+        <ToggleButton x:Name="btnLog" Content="Log" HorizontalAlignment="Right" Margin="0,2,10,0" Height="20" VerticalAlignment="Top"/>
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="54,2,0,0" TextWrapping="Wrap" Text="Cell ID" VerticalAlignment="Top" Width="85"/>
+        <TextBlock FontSize="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="39,15,0,0" TextWrapping="Wrap" Text="{Binding cellid}" VerticalAlignment="Top" Width="122" Height="27"/>
+
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="285,2,0,0" TextWrapping="Wrap" Text="Physical Cell ID" VerticalAlignment="Top" Width="85"/>
+        <TextBlock FontSize="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="264,15,0,0" TextWrapping="Wrap" Text="{Binding phycellid}" VerticalAlignment="Top" Width="122" Height="27"/>
+
+
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="76,57,0,0" TextWrapping="Wrap" Text="RSRQ" VerticalAlignment="Top" Width="85"/>
+        <TextBlock TextAlignment="Center" Background="{Binding rsrq_bg}" FontSize="100" HorizontalAlignment="Left" Margin="0,73,0,0" TextWrapping="Wrap" Text="{Binding rsrq}" VerticalAlignment="Top" Width="236" Height="127" />
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="76,209,0,0" TextWrapping="Wrap" Text="RSRP" VerticalAlignment="Top" Width="85"/>
+        <TextBlock TextAlignment="Center" Background="{Binding rsrp_bg}" FontSize="100" HorizontalAlignment="Left" Margin="0,225,0,0" TextWrapping="Wrap" Text="{Binding rsrp}" VerticalAlignment="Top" Width="236" Height="138" />
+
+        <TextBlock Text="{Binding datetime}" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+
+        <d3:ChartPlotter x:Name="plotter" Margin="241,73,0,0" HorizontalAlignment="Left" Width="271" Height="147" VerticalAlignment="Top" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center">
+            <d3:ChartPlotter.HorizontalAxis>
+                <d3:HorizontalDateTimeAxis Name="dateAxis"/>
+            </d3:ChartPlotter.HorizontalAxis>
+            <d3:VerticalAxisTitle FontFamily="Georgia" Content="RSRQ" />
+            <d3:HorizontalAxisTitle FontFamily="Georgia" Content="Date"/>
+        </d3:ChartPlotter>
+
+        <d3:ChartPlotter x:Name="plotter2" Margin="241,225,0,0" HorizontalAlignment="Left" Width="271" Height="159" VerticalAlignment="Top" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center">
+            <d3:ChartPlotter.HorizontalAxis>
+                <d3:HorizontalDateTimeAxis Name="dateAxis2"/>
+            </d3:ChartPlotter.HorizontalAxis>
+            <d3:VerticalAxisTitle FontFamily="Georgia" Content="RSRP" />
+            <d3:HorizontalAxisTitle FontFamily="Georgia" Content="Date"/>
+        </d3:ChartPlotter>
+
+    </Grid>
+    -->
+</Window>
