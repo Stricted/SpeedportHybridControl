@@ -66,12 +66,12 @@
     <Compile Include="Model\bonding_client.cs" />
     <Compile Include="Model\DeviceViewModel.cs" />
     <Compile Include="Model\DSLViewModel.cs" />
+    <Compile Include="Model\StatusPhoneListModel.cs" />
     <Compile Include="PageModel\LoginPageModel.cs" />
     <Compile Include="Model\LTEViewModel.cs" />
     <Compile Include="PageModel\MainWindowModel.cs" />
     <Compile Include="Model\OverviewModel.cs" />
     <Compile Include="Model\PhoneCallViewModel.cs" />
-    <Compile Include="Model\StatusViewModel.cs" />
     <Compile Include="Model\SuperViewModel.cs" />
     <Compile Include="Data\SpeedportHybridAPI.cs" />
     <Page Include="MainWindow.xaml">

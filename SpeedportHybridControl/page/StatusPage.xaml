@@ -8,7 +8,7 @@
       Width="Auto" Height="Auto"
       Title="StatusPage">
 
-    <Grid DataContext="{StaticResource Status}">
+    <Grid DataContext="{StaticResource StatusPageModel}">
         <GroupBox Header="Status-Informationen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235">
             <Grid>
                 <StackPanel HorizontalAlignment="Left" Width="120">
@@ -111,6 +111,6 @@
         </GroupBox>
         
         <TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-        <Button DataContext="{StaticResource StatusPageModel}" Command="{Binding Path=ReloadCommand}" x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom"/>
+        <Button Command="{Binding Path=ReloadCommand}" x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>

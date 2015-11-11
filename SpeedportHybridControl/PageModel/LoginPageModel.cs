@@ -3,7 +3,6 @@ using SpeedportHybridControl.Implementations;
 using SpeedportHybridControl.Data;
 using System.Windows;
 using System.Threading;
-using System.Security;
 using SpeedportHybridControl.Model;
 
 namespace SpeedportHybridControl.PageModel {

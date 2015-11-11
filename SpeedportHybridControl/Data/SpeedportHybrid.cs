@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Windows;
 using SpeedportHybridControl.Model;
+using SpeedportHybridControl.PageModel;
 using SpeedportHybridControl.Implementations;
 
 namespace SpeedportHybridControl.Data {
@@ -402,7 +403,7 @@ namespace SpeedportHybridControl.Data {
 
 		public static void initStatus() {
 			try {
-				Status status = Application.Current.FindResource("Status") as Status;
+				StatusPageModel status = Application.Current.FindResource("StatusPageModel") as StatusPageModel;
 				string response = SpeedportHybridAPI.getInstance().sendRequest("data/status.json");
 				if (response.IsNullOrEmpty())
 					return;
@@ -450,7 +451,7 @@ namespace SpeedportHybridControl.Data {
 				status.dsl_downstream = string.Concat(jArray.getVar("dsl_downstream"), " kBit/s");
 				status.dsl_upstream = string.Concat(jArray.getVar("dsl_upstream"), " kBit/s");
 
-				List<StatusPhoneList> statusPhoneList = new List<StatusPhoneList>();
+				List<StatusPhoneListModel> statusPhoneList = new List<StatusPhoneListModel>();
 				status.addphonenumber = null;
 
 				foreach (JToken jToken in jArray) {
@@ -465,7 +466,7 @@ namespace SpeedportHybridControl.Data {
 							pstatus = "Nicht aktiv";
 						}
 
-						statusPhoneList.Add(new StatusPhoneList() { number = pnumber, status = pstatus });
+						statusPhoneList.Add(new StatusPhoneListModel() { number = pnumber, status = pstatus });
 					}
 				}
 

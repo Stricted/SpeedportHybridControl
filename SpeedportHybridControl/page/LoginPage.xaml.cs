@@ -1,9 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Threading;
-using System;
-using SpeedportHybridControl.Model;
-using SpeedportHybridControl.Implementations;
+﻿using System.Windows.Controls;
 
 namespace SpeedportHybridControl.page {
 	/// <summary>

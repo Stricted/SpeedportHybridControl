@@ -4,8 +4,6 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
-using System.Windows;
 using System.Windows.Media;
 using System.Xml;
 
@@ -173,97 +171,6 @@ namespace SpeedportHybridControl.Implementations {
 
 			return false;
 		}
-
-		/**
-		 * process login stuff
-		 */
-		/*
-		public static void login () {
-			try {
-				Application.Current.Dispatcher.BeginInvoke(new Action(() => {
-					MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
-
-					// LoginPage
-					LoginPage LoginPage = MainWindow.loginPage as LoginPage;
-					LoginPage.button1.Content = "Logout";
-					LoginPage.PasswordCheckBox.Visibility = Visibility.Hidden;
-					LoginPage.tbip.Visibility = Visibility.Hidden;
-					LoginPage.diTextBlock.Visibility = Visibility.Hidden;
-					LoginPage.tbpw.Visibility = Visibility.Hidden;
-					LoginPage.PasswordBox.Visibility = Visibility.Hidden;
-					LoginPage.cbSave.Visibility = Visibility.Hidden;
-
-					// MainWindow
-					MainWindow.btnLogin.Content = "Logout";
-
-					MainWindow.btnOverview.IsEnabled = true;
-					MainWindow.btnDsl.IsEnabled = true;
-					MainWindow.btnLteInfo.IsEnabled = true;
-					MainWindow.btnSyslog.IsEnabled = true;
-					MainWindow.btnTR181.IsEnabled = true;
-					MainWindow.btnPhone.IsEnabled = true;
-					MainWindow.btnLan.IsEnabled = true;
-					MainWindow.btnControls.IsEnabled = true;
-				}));
-			}
-			catch (Exception ex) {
-				Console.WriteLine(ex.Message);
-			}
-		}
-		*/
-		/**
-		 * process logout stuff
-		 */
-		/*
-		public static void logout () {
-			try {
-				Application.Current.Dispatcher.BeginInvoke(new Action(() => {
-					MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
-
-					// LteInfoPage
-					LteInfoPage lteInfo = MainWindow.lteInfoPage as LteInfoPage;
-					if (Object.Equals(lteInfo._ltepopup, null).Equals(false)) {
-						lteInfo._ltepopup.StopTimer();
-						lteInfo._ltepopup.Hide();
-						lteInfo._ltepopup = null;
-					}
-					lteInfo.StopTimer();
-
-					// DslPage
-					DslPage dslInfo = MainWindow.dslPage as DslPage;
-					dslInfo.StopTimer();
-
-					// LoginPage
-					LoginPage LoginPage = MainWindow.loginPage as LoginPage;
-					LoginPage.PasswordBox.Visibility = Visibility.Visible;
-					LoginPage.tbip.Visibility = Visibility.Visible;
-					LoginPage.diTextBlock.Visibility = Visibility.Visible;
-					LoginPage.tbpw.Visibility = Visibility.Visible;
-					LoginPage.PasswordCheckBox.Visibility = Visibility.Visible;
-					LoginPage.button1.Content = "Login";
-					LoginPage.cbSave.Visibility = Visibility.Visible;
-					LoginPage.PasswordBox.Focus();
-
-					// MainWindow
-					MainWindow.btnLogin.Content = "Login";
-					MainWindow.frame.Content = MainWindow.loginPage;
-					MainWindow.changeColor(MainWindow.btnLogin);
-
-					MainWindow.btnOverview.IsEnabled = false;
-					MainWindow.btnDsl.IsEnabled = false;
-					MainWindow.btnLteInfo.IsEnabled = false;
-					MainWindow.btnSyslog.IsEnabled = false;
-					MainWindow.btnTR181.IsEnabled = false;
-					MainWindow.btnPhone.IsEnabled = false;
-					MainWindow.btnLan.IsEnabled = false;
-					MainWindow.btnControls.IsEnabled = false;
-				}));
-			}
-			catch (Exception ex) {
-				Console.WriteLine(ex.Message);
-			}
-		}
-		*/
 
 		public static bool checkInstalled (string c_name) {
 			string displayName = string.Empty;
