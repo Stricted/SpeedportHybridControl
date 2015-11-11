@@ -8,7 +8,7 @@
       Width="Auto" Height="Auto"
       Title="ControlsPage">
 
-    <Grid>
+    <Grid DataContext="{StaticResource ControlsPageModel}">
         <StackPanel HorizontalAlignment="Left" Width="117" Height="282" VerticalAlignment="Top" Margin="10,0,0,0">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
@@ -16,17 +16,17 @@
                 </Style>
             </StackPanel.Resources>
 
-            <Button x:Name="button7" Content="Router Neustarten" Click="button_click"/>
-            <Button x:Name="button9" Content="DSL neu verbinden" Click="button_click"/>
-            <Button x:Name="button10" Content="Firmware-Update" Click="button_click"/>
-            <Button x:Name="btnflushdns" Content="DNS Cache Leeren" Click="button_click"/>
-            <Button x:Name="btnSpeedtest" Content="speedtest.net" Click="button_click"/>
+            <Button Command="{Binding Path=RebootCommand}" Content="Router Neustarten"/>
+            <Button Command="{Binding Path=DslReconnectcommand}" Content="DSL neu verbinden"/>
+            <Button Command="{Binding Path=CheckFirmwareUpdateCommand}" Content="Firmware-Update"/>
+            <Button Command="{Binding Path=ClearDNSCacheCommand}" Content="DNS Cache Leeren"/>
+            <Button Command="{Binding Path=SpeedtestNetCommand}" Content="speedtest.net"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
-            <Button x:Name="button17" Content="Werkseinstellungen" Click="button_click" />
+            <Button Command="{Binding Path=ResetToFactoryCommand}" Content="Werkseinstellungen" />
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Left" Width="117" Height="282" VerticalAlignment="Top" Margin="132,0,0,0">
@@ -37,13 +37,13 @@
             </StackPanel.Resources>
 
             <Button Visibility="Hidden" Content="[SPACER]"/>
-            <Button x:Name="button8" Content="LTE neu verbinden" Click="button_click" />
+            <Button Command="{Binding Path=LteReconncetCommand}" Content="LTE neu verbinden" />
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
-            <Button x:Name="btnSpeedtest2" Content="speedtest.t-online.de" Click="button_click"/>
+            <Button Command="{Binding Path=SpeedtestTKCommand}" Content="speedtest.t-online.de"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
-            <Button x:Name="btnDSLdisconnect" Content="DSL Trennen" Click="button_click"/>
-            <Button x:Name="btnLTEdisconnect" Content="LTE Trennen" Click="button_click"/>
+            <Button Command="{Binding Path=DisconnectDslCommand}" Content="DSL Trennen"/>
+            <Button Command="{Binding Path=DisconnectLteCommand}" Content="LTE Trennen"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
@@ -57,13 +57,13 @@
             </StackPanel.Resources>
 
             <Button Visibility="Hidden" Content="[SPACER]"/>
-            <Button IsEnabled="False" x:Name="button" Content="DSL + LTE neu verbinden"/>
+            <Button IsEnabled="False" Command="{Binding Path=DslLteReconnectCommand}" Content="DSL + LTE neu verbinden"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
-            <Button x:Name="btnDSLconnect" Content="DSL Verbinden" Click="button_click"/>
-            <Button x:Name="btnLTEconnect" Content="LTE Verbinden" Click="button_click"/>
+            <Button Command="{Binding Path=ConnectDslCommand}" Content="DSL Verbinden"/>
+            <Button Command="{Binding Path=ConnectLteCommand}" Content="LTE Verbinden"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>
             <Button Visibility="Hidden" Content="[SPACER]"/>

@@ -18,6 +18,7 @@
             <pagemodel:TR181PageModel x:Key="TR181PageModel"></pagemodel:TR181PageModel>
             <pagemodel:PhonePageModel x:Key="PhonePageModel"></pagemodel:PhonePageModel>
             <pagemodel:LanPageModel x:Key="LanPageModel"></pagemodel:LanPageModel>
+            <pagemodel:ControlsPageModel x:Key="ControlsPageModel"></pagemodel:ControlsPageModel>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
