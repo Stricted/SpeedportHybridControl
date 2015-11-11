@@ -17,8 +17,7 @@
             <pagemodel:SyslogPageModel x:Key="SyslogPageModel"></pagemodel:SyslogPageModel>
             <pagemodel:TR181PageModel x:Key="TR181PageModel"></pagemodel:TR181PageModel>
             <pagemodel:PhonePageModel x:Key="PhonePageModel"></pagemodel:PhonePageModel>
-            
-            <model:DeviceData x:Key="DeviceData"></model:DeviceData>
+            <pagemodel:LanPageModel x:Key="LanPageModel"></pagemodel:LanPageModel>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

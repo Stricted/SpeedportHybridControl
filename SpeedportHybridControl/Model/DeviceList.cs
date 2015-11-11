@@ -1,24 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SpeedportHybridControl.Model {
-	public class DeviceData : SuperViewModel {
-		private List<DeviceList> _deviceList;
-		private string _datetime;
-
-		public List<DeviceList> deviceList {
-			get { return _deviceList; }
-			set { SetProperty(ref _deviceList, value); }
-		}
-
-		public string datetime {
-			get { return _datetime; }
-			set { SetProperty(ref _datetime, value); }
-		}
-
-		public DeviceData() {
-		}
-	}
-
+﻿namespace SpeedportHybridControl.Model {
 	public class DeviceList : SuperViewModel {
 		private int _id;
 		private string _name;

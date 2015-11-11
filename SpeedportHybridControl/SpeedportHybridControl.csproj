@@ -72,12 +72,13 @@
     </Compile>
     <Compile Include="Model\bonding_client.cs" />
     <Compile Include="Model\Connection.cs" />
-    <Compile Include="Model\DeviceViewModel.cs" />
+    <Compile Include="Model\DeviceList.cs" />
     <Compile Include="Model\Line.cs" />
     <Compile Include="Model\PhoneCallList.cs" />
     <Compile Include="Model\StatusPhoneList.cs" />
     <Compile Include="Model\SyslogList.cs" />
     <Compile Include="PageModel\DslPageModel.cs" />
+    <Compile Include="PageModel\LanPageModel.cs" />
     <Compile Include="PageModel\LoginPageModel.cs" />
     <Compile Include="PageModel\LteInfoModel.cs" />
     <Compile Include="PageModel\MainWindowModel.cs" />
