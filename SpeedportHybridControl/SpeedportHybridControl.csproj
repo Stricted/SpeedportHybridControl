@@ -74,13 +74,13 @@
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\DeviceViewModel.cs" />
     <Compile Include="Model\Line.cs" />
-    <Compile Include="Model\StatusPhoneListModel.cs" />
+    <Compile Include="Model\PhoneCallList.cs" />
+    <Compile Include="Model\StatusPhoneList.cs" />
     <Compile Include="Model\SyslogList.cs" />
     <Compile Include="PageModel\DslPageModel.cs" />
     <Compile Include="PageModel\LoginPageModel.cs" />
     <Compile Include="PageModel\LteInfoModel.cs" />
     <Compile Include="PageModel\MainWindowModel.cs" />
-    <Compile Include="Model\PhoneCallViewModel.cs" />
     <Compile Include="Model\SuperViewModel.cs" />
     <Compile Include="Data\SpeedportHybridAPI.cs" />
     <Page Include="ltepopup.xaml">
@@ -145,10 +145,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\TR181ViewModel.cs" />
     <Compile Include="PageModel\OverviewPageModel.cs" />
+    <Compile Include="PageModel\PhonePageModel.cs" />
     <Compile Include="PageModel\StatusPageModel.cs" />
     <Compile Include="PageModel\SyslogPageModel.cs" />
+    <Compile Include="PageModel\TR181PageModel.cs" />
     <Compile Include="page\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>

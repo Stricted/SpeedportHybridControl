@@ -19,7 +19,7 @@ namespace SpeedportHybridControl.PageModel {
 		private string _status;
 		private string _dsl_downstream;
 		private string _dsl_upstream;
-		private List<StatusPhoneListModel> _addphonenumber;
+		private List<StatusPhoneList> _addphonenumber;
 		private string _use_dect;
 		private string _dect_devices;
 		private string _wlan_ssid;
@@ -96,7 +96,7 @@ namespace SpeedportHybridControl.PageModel {
 			set { SetProperty(ref _dsl_upstream, value); }
 		}
 
-		public List<StatusPhoneListModel> addphonenumber {
+		public List<StatusPhoneList> addphonenumber {
 			get { return _addphonenumber; }
 			set { SetProperty(ref _addphonenumber, value); }
 		}

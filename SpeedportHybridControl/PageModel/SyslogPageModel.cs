@@ -67,9 +67,7 @@ namespace SpeedportHybridControl.PageModel {
 		}
 
 		private void OnReloadCommandExecute () {
-			new Thread(() => {
-				SpeedportHybrid.initSyslog();
-			}).Start();
+			new Thread(() => { SpeedportHybrid.initSyslog(); }).Start();
 		}
 
 		private void OnCopyCommandExecute () {
@@ -86,7 +84,10 @@ namespace SpeedportHybridControl.PageModel {
 		}
 
 		private void ApplyFilter () {
-			if (object.ReferenceEquals(syslogList, null).Equals(false)) {
+			if (object.ReferenceEquals(syslogList, null)) {
+				filteredList = syslogList;
+			}
+			else {
 				List<SyslogList> tmp = syslogList;
 				filteredList = tmp.Where(item => SyslogFilter(item)).ToList();
 			}
@@ -94,8 +95,7 @@ namespace SpeedportHybridControl.PageModel {
 
 		private bool SyslogFilter (object item) {
 			if (SearchText.IsNullOrEmpty().Equals(false)) {
-				bool a = ((item as SyslogList).message.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0);
-                return a;
+				return ((item as SyslogList).message.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0);
 			}
 
 			return true;

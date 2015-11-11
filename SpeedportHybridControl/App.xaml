@@ -15,9 +15,9 @@
             <pagemodel:DslPageModel x:Key="DslPageModel"></pagemodel:DslPageModel>
             <pagemodel:LteInfoModel x:Key="LteInfoModel"></pagemodel:LteInfoModel>
             <pagemodel:SyslogPageModel x:Key="SyslogPageModel"></pagemodel:SyslogPageModel>
+            <pagemodel:TR181PageModel x:Key="TR181PageModel"></pagemodel:TR181PageModel>
+            <pagemodel:PhonePageModel x:Key="PhonePageModel"></pagemodel:PhonePageModel>
             
-            <model:TR181 x:Key="TR181"></model:TR181>
-            <model:PhoneCallData x:Key="PhoneCallData"></model:PhoneCallData>
             <model:DeviceData x:Key="DeviceData"></model:DeviceData>
         </ResourceDictionary>
     </Application.Resources>

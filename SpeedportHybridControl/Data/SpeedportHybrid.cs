@@ -253,13 +253,13 @@ namespace SpeedportHybridControl.Data {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 					return;
 
-				TR181 tr181 = Application.Current.FindResource("TR181") as TR181;
+				TR181PageModel tr181 = Application.Current.FindResource("TR181PageModel") as TR181PageModel;
 
 				string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/bonding_tr181.json");
 				if (response.IsNullOrEmpty())
 					return;
 
-				TR181 obj = JsonConvert.DeserializeObject<TR181>(response);
+				TR181PageModel obj = JsonConvert.DeserializeObject<TR181PageModel>(response);
 				response = null;
 
 				tr181.enable1 = obj.enable1;
@@ -274,7 +274,7 @@ namespace SpeedportHybridControl.Data {
 
 				response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/bonding_tunnel.json");
 
-				obj = JsonConvert.DeserializeObject<TR181>(response);
+				obj = JsonConvert.DeserializeObject<TR181PageModel>(response);
 				response = null;
 
 				tr181.lte_tunnel = obj.lte_tunnel;
@@ -451,7 +451,7 @@ namespace SpeedportHybridControl.Data {
 				status.dsl_downstream = string.Concat(jArray.getVar("dsl_downstream"), " kBit/s");
 				status.dsl_upstream = string.Concat(jArray.getVar("dsl_upstream"), " kBit/s");
 
-				List<StatusPhoneListModel> statusPhoneList = new List<StatusPhoneListModel>();
+				List<StatusPhoneList> statusPhoneList = new List<StatusPhoneList>();
 				status.addphonenumber = null;
 
 				foreach (JToken jToken in jArray) {
@@ -466,7 +466,7 @@ namespace SpeedportHybridControl.Data {
 							pstatus = "Nicht aktiv";
 						}
 
-						statusPhoneList.Add(new StatusPhoneListModel() { number = pnumber, status = pstatus });
+						statusPhoneList.Add(new StatusPhoneList() { number = pnumber, status = pstatus });
 					}
 				}
 
@@ -656,7 +656,7 @@ namespace SpeedportHybridControl.Data {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 					return;
 
-				PhoneCallData phone = Application.Current.FindResource("PhoneCallData") as PhoneCallData;
+				PhonePageModel phone = Application.Current.FindResource("PhonePageModel") as PhonePageModel;
 
 				List<PhoneCallList> missedCalls = new List<PhoneCallList>();
 				List<PhoneCallList> takenCalls = new List<PhoneCallList>();

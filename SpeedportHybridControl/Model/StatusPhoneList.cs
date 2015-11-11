@@ -1,5 +1,5 @@
 ﻿namespace SpeedportHybridControl.Model {
-	class StatusPhoneListModel : SuperViewModel {
+	class StatusPhoneList : SuperViewModel {
 		private string _number;
 		private string _status;
 
@@ -13,7 +13,7 @@
 			set { SetProperty(ref _status, value); }
 		}
 
-		public StatusPhoneListModel () {
+		public StatusPhoneList () {
 
 		}
 	}

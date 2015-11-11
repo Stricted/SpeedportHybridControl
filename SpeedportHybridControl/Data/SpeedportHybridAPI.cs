@@ -569,7 +569,7 @@ namespace SpeedportHybridControl.Data {
 			if (response.IsNullOrEmpty())
 				return;
 			try {
-				TR181 obj = JsonConvert.DeserializeObject<TR181>(response);
+				TR181PageModel obj = JsonConvert.DeserializeObject<TR181PageModel>(response);
 
 				if (obj.QueueSkbTimeOut.Equals(value)) {
 					new Thread(() => { MessageBox.Show("QueueSkbTimeOut geändert", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Information); }).Start();
