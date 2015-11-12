@@ -48,6 +48,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -74,6 +76,8 @@
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\DeviceList.cs" />
     <Compile Include="Model\Line.cs" />
+    <Compile Include="Model\LTECollection.cs" />
+    <Compile Include="Model\LTEData.cs" />
     <Compile Include="Model\PhoneCallList.cs" />
     <Compile Include="Model\StatusPhoneList.cs" />
     <Compile Include="Model\SyslogList.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="PageModel\LanPageModel.cs" />
     <Compile Include="PageModel\LoginPageModel.cs" />
     <Compile Include="PageModel\LteInfoModel.cs" />
+    <Compile Include="PageModel\ltepopupModel.cs" />
     <Compile Include="PageModel\MainWindowModel.cs" />
     <Compile Include="Model\SuperViewModel.cs" />
     <Compile Include="Data\SpeedportHybridAPI.cs" />

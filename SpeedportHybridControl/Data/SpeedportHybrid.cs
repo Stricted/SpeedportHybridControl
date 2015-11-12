@@ -11,7 +11,7 @@ using SpeedportHybridControl.Implementations;
 namespace SpeedportHybridControl.Data {
 	public class SpeedportHybrid {
 		public SpeedportHybrid() { }
-		
+
 		public static void initOverview () {
 			try {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
@@ -301,19 +301,13 @@ namespace SpeedportHybridControl.Data {
 				LogManager.WriteToLog(ex.Message);
 			}
 		}
-		
-		public static void initLTE (bool popup = false) {
+
+		public static void initLTE () {
 			try {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 					return;
 
-				LteInfoModel lte = null;
-				if (popup.Equals(true)) {
-					//lte = Application.Current.FindResource("LTE2") as LTE;
-				}
-				else {
-					lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
-				}
+				LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
 
 				string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/lteinfo.json");
 				if (response.IsNullOrEmpty())
@@ -350,9 +344,8 @@ namespace SpeedportHybridControl.Data {
 				DateTime time = DateTime.Now;
 				string format = "dd.MM.yyyy HH:mm:ss";
 				lte.datetime = time.ToString(format);
-				if (popup.Equals(false)) {
-					initSyslog(true);
-				}
+
+				initSyslog(true);
 
 				obj = null;
 			}
@@ -360,7 +353,39 @@ namespace SpeedportHybridControl.Data {
 				LogManager.WriteToLog(ex.Message);
 			}
 		}
-		
+
+		public static void initLtePopup () {
+			try {
+				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
+					return;
+
+				ltepopupModel lte = Application.Current.FindResource("ltepopupModel") as ltepopupModel;
+
+				string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/lteinfo.json");
+				if (response.IsNullOrEmpty())
+					return;
+
+				LteInfoModel obj = JsonConvert.DeserializeObject<LteInfoModel>(response);
+				response = null;
+
+				lte.phycellid = obj.phycellid;
+				lte.cellid = obj.cellid;
+				lte.rsrp = obj.rsrp;
+				lte.rsrp_bg = util.getRSRPColor(obj.rsrp.ToInt());
+				lte.rsrq = obj.rsrq;
+				lte.rsrq_bg = util.getRSRQColor(obj.rsrq.ToInt());
+
+				DateTime time = DateTime.Now;
+				string format = "dd.MM.yyyy HH:mm:ss";
+				lte.datetime = time.ToString(format);
+				
+				obj = null;
+			}
+			catch (Exception ex) {
+				LogManager.WriteToLog(ex.Message);
+			}
+		}
+
 		public static void initDSL () {
 			if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
 				return;
@@ -370,7 +395,7 @@ namespace SpeedportHybridControl.Data {
 			string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/dsl.json");
 			if (response.IsNullOrEmpty())
 				return;
-			
+
 			try {
 				DslPageModel obj = JsonConvert.DeserializeObject<DslPageModel>(response);
 
@@ -384,14 +409,14 @@ namespace SpeedportHybridControl.Data {
 
 				obj.Line.uFECsec = Math.Ceiling(obj.Line.uFEC / difference);
 				obj.Line.dFECsec = Math.Ceiling(obj.Line.dFEC / difference);
-				
+
 				dsl.Connection = obj.Connection;
 				dsl.Line = obj.Line;
 
 				DateTime time = DateTime.Now;
 				string format = "dd.MM.yyyy HH:mm:ss";
 				dsl.datetime = time.ToString(format);
-				
+
 				obj = null;
 			}
 			catch (Exception ex) {
@@ -407,7 +432,7 @@ namespace SpeedportHybridControl.Data {
 				string response = SpeedportHybridAPI.getInstance().sendRequest("data/status.json");
 				if (response.IsNullOrEmpty())
 					return;
-				
+
 				JToken jArray = JToken.Parse(response);
 				response = null;
 
@@ -558,7 +583,7 @@ namespace SpeedportHybridControl.Data {
 				LogManager.WriteToLog(ex.Message);
 			}
 		}
-		
+
 		public static void initSyslog (bool isLTE = false) {
 			try {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
@@ -600,7 +625,6 @@ namespace SpeedportHybridControl.Data {
 						// Funkzellen Info
 						if (msg.ToString().Contains("(LT004)") && isLTE.Equals(true)) {
 							LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
-							//LTE lte2 = Application.Current.FindResource("LTE2") as LTE;
 
 							string[] parts = msg.ToString().Split(',');
 							string frequenz = parts[2];
@@ -616,7 +640,6 @@ namespace SpeedportHybridControl.Data {
 							}
 
 							lte.frequenz = frequenz;
-							//lte2.frequenz = frequenz;
 
 							varid = null;
 							jArray = null;
@@ -745,7 +768,7 @@ namespace SpeedportHybridControl.Data {
 				LogManager.WriteToLog(ex.Message);
 			}
 		}
-		
+
 		public static void initLan () {
 			try {
 				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))

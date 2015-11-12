@@ -6,17 +6,24 @@
         xmlns:local="clr-namespace:SpeedportHybridControl"
         mc:Ignorable="d"
         xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+        xmlns:ig="http://schemas.infragistics.com/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Height="423.4"
         Width="530"
-        Closing="Window_Closing"
         Title="LteInfo"
+        DataContext="{StaticResource ltepopupModel}"
+        Topmost="{Binding Path=Topmost}"
         Icon="t-com icon.ico">
-    <!--
-    <Grid DataContext="{StaticResource LTE2}">
-        <ToggleButton Background="Transparent" BorderBrush="Transparent" x:Name="btnPin" HorizontalAlignment="Left" Margin="10,2,0,0" Height="20" VerticalAlignment="Top" Click="button_click">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding CloseWindowCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <ToggleButton Command="{Binding Path=PinCommand}" IsChecked="{Binding Path=PinActive, Mode=TwoWay}" Background="Transparent" BorderBrush="Transparent" x:Name="btnPin" HorizontalAlignment="Left" Margin="10,2,0,0" Height="20" VerticalAlignment="Top">
             <Image Source="assets/pin.png" x:Name="image" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
         </ToggleButton>
-        <ToggleButton x:Name="btnLog" Content="Log" HorizontalAlignment="Right" Margin="0,2,10,0" Height="20" VerticalAlignment="Top"/>
+        <ToggleButton IsChecked="{Binding Path=LogActive, Mode=TwoWay}" x:Name="btnLog" Content="Log" HorizontalAlignment="Right" Margin="0,2,10,0" Height="20" VerticalAlignment="Top"/>
         <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="54,2,0,0" TextWrapping="Wrap" Text="Cell ID" VerticalAlignment="Top" Width="85"/>
         <TextBlock FontSize="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="39,15,0,0" TextWrapping="Wrap" Text="{Binding cellid}" VerticalAlignment="Top" Width="122" Height="27"/>
 
@@ -37,16 +44,25 @@
             </d3:ChartPlotter.HorizontalAxis>
             <d3:VerticalAxisTitle FontFamily="Georgia" Content="RSRQ" />
             <d3:HorizontalAxisTitle FontFamily="Georgia" Content="Date"/>
+            <d3:LineGraph DataSource="{Binding Path=RsrqGraph}" Stroke="green" x:Name="line" StrokeThickness="1">
+                <d3:ViewportElement2D.Description >
+                    <d3:PenDescription DescriptionString="rsrq"/>
+                </d3:ViewportElement2D.Description>
+            </d3:LineGraph>
         </d3:ChartPlotter>
 
         <d3:ChartPlotter x:Name="plotter2" Margin="241,225,0,0" HorizontalAlignment="Left" Width="271" Height="159" VerticalAlignment="Top" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center">
             <d3:ChartPlotter.HorizontalAxis>
-                <d3:HorizontalDateTimeAxis Name="dateAxis2"/>
+                <d3:HorizontalDateTimeAxis DataContext="{Binding Path=DateTimeAxis1, Mode=TwoWay}" Name="dateAxis2"/>
             </d3:ChartPlotter.HorizontalAxis>
             <d3:VerticalAxisTitle FontFamily="Georgia" Content="RSRP" />
             <d3:HorizontalAxisTitle FontFamily="Georgia" Content="Date"/>
+            <d3:LineGraph DataSource="{Binding Path=RsrpGraph}" Stroke="green" x:Name="line2" StrokeThickness="1">
+                <d3:ViewportElement2D.Description >
+                    <d3:PenDescription DescriptionString="rsrp"/>
+                </d3:ViewportElement2D.Description>
+            </d3:LineGraph>
         </d3:ChartPlotter>
 
     </Grid>
-    -->
 </Window>

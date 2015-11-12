@@ -20,6 +20,7 @@
             <pagemodel:LanPageModel x:Key="LanPageModel"></pagemodel:LanPageModel>
             <pagemodel:ControlsPageModel x:Key="ControlsPageModel"></pagemodel:ControlsPageModel>
             <pagemodel:AboutPageModel x:Key="AboutPageModel"></pagemodel:AboutPageModel>
+            <pagemodel:ltepopupModel x:Key="ltepopupModel"></pagemodel:ltepopupModel>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
