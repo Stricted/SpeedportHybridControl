@@ -832,5 +832,46 @@ namespace SpeedportHybridControl.Data {
 				LogManager.WriteToLog(ex.Message);
 			}
 		}
+
+		public static void initInterface () {
+			try {
+				if (SpeedportHybridAPI.getInstance().checkLogin().Equals(false))
+					return;
+
+				InterfacePageModel IPM = Application.Current.FindResource("InterfacePageModel") as InterfacePageModel;
+
+				string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/interfaces.json");
+				if (response.IsNullOrEmpty())
+					return;
+
+				JToken jArray = JToken.Parse(response);
+				response = null;
+
+				List<InterfaceList> interfaceList = new List<InterfaceList>();
+				foreach (JToken jToken in jArray.SelectToken("line_status")) {
+					string ifc = jToken.SelectToken("interface").ToString();
+					string mtu = jToken.SelectToken("MTU").ToString();
+					string tx_packets = jToken.SelectToken("tx_packets").ToString();
+					string tx_errors = jToken.SelectToken("tx_errors").ToString();
+					string rx_packets = jToken.SelectToken("rx_packets").ToString();
+					string rx_errors = jToken.SelectToken("rx_errors").ToString();
+					string collisions = jToken.SelectToken("collisions").ToString();
+
+					interfaceList.Add(new InterfaceList() { ifc = ifc, mtu = mtu, tx_packets = tx_packets, tx_errors = tx_errors, rx_packets = rx_packets, rx_errors = rx_errors, collisions = collisions });
+				}
+
+				IPM.interfaceList = interfaceList;
+
+				interfaceList = null;
+				jArray = null;
+
+				DateTime time = DateTime.Now;
+				string format = "dd.MM.yyyy HH:mm:ss";
+				IPM.datetime = time.ToString(format);
+			}
+			catch (Exception ex) {
+				LogManager.WriteToLog(ex.Message);
+			}
+		}
 	}
 }

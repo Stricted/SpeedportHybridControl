@@ -29,6 +29,7 @@
             <Button Command="{Binding Path=SwitchToTR181Page}" IsEnabled="{Binding Path=ButtonTR181PageIsActive}" Background="{Binding Path=ButtonTR181PageBackground}" x:Name="btnTR181" Content="TR-181"/>
             <Button Command="{Binding Path=SwitchToPhonePage}" IsEnabled="{Binding Path=ButtonPhonePageIsActive}" Background="{Binding Path=ButtonPhonePageBackground}" x:Name="btnPhone" Content="Anrufe"/>
             <Button Command="{Binding Path=SwitchToLanPage}" IsEnabled="{Binding Path=ButtonLanPageIsActive}" Background="{Binding Path=ButtonLanPageBackground}" x:Name="btnLan" Content="Lan"/>
+            <Button Command="{Binding Path=SwitchToInterfacePage}" IsEnabled="{Binding Path=ButtonInterfacePageIsActive}" Background="{Binding Path=ButtonInterfacePageBackground}" x:Name="btnInterface" Content="Interface"/>
             <Button Command="{Binding Path=SwitchToControlsPage}" IsEnabled="{Binding Path=ButtonControlsPageIsActive}" Background="{Binding Path=ButtonControlsPageBackground}" x:Name="btnControls" Content="Controls"/>
         </StackPanel>
 

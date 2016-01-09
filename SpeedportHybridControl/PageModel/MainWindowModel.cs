@@ -23,6 +23,7 @@ namespace SpeedportHybridControl.PageModel {
 		private DelegateCommand _switchToTR181Page;
 		private DelegateCommand _switchToPhonePage;
 		private DelegateCommand _switchToLanPage;
+		private DelegateCommand _switchToInterfacePage;
 		private DelegateCommand _switchToControlsPage;
 		private DelegateCommand _sitchToAboutPage;
 
@@ -33,6 +34,7 @@ namespace SpeedportHybridControl.PageModel {
 		private bool _buttonTR181PageIsActive = false;
 		private bool _buttonPhonePageIsActive = false;
 		private bool _buttonLanPageIsActive = false;
+		private bool _buttonInterfacePageIsActive = false;
 		private bool _buttonControlsPageIsActive = false;
 
 		private Brush _buttonLoginPageBackground = Brushes.LightGray;
@@ -44,6 +46,7 @@ namespace SpeedportHybridControl.PageModel {
 		private Brush _buttonTR181PageBackground = Brushes.LightGray;
 		private Brush _buttonPhonePageBackground = Brushes.LightGray;
 		private Brush _buttonLanPageBackground = Brushes.LightGray;
+		private Brush _buttonInterfacePageBackground = Brushes.LightGray;
 		private Brush _buttonControlsPageBackground = Brushes.LightGray;
 		private Brush _buttonAboutPageBackground = Brushes.LightGray;
 
@@ -101,6 +104,12 @@ namespace SpeedportHybridControl.PageModel {
 			set { SetProperty(ref _switchToLanPage, value); }
 		}
 
+		public DelegateCommand SwitchToInterfacePage
+		{
+			get { return _switchToInterfacePage; }
+			set { SetProperty(ref _switchToInterfacePage, value); }
+		}
+
 		public DelegateCommand SwitchToControlsPage {
 			get { return _switchToControlsPage; }
 			set { SetProperty(ref _switchToControlsPage, value); }
@@ -144,6 +153,12 @@ namespace SpeedportHybridControl.PageModel {
 		public bool ButtonLanPageIsActive {
 			get { return _buttonLanPageIsActive; }
 			set { SetProperty(ref _buttonLanPageIsActive, value); }
+		}
+
+		public bool ButtonInterfacePageIsActive
+		{
+			get { return _buttonInterfacePageIsActive; }
+			set { SetProperty(ref _buttonInterfacePageIsActive, value); }
 		}
 
 		public bool ButtonControlsPageIsActive {
@@ -194,6 +209,12 @@ namespace SpeedportHybridControl.PageModel {
 		public Brush ButtonLanPageBackground {
 			get { return _buttonLanPageBackground; }
 			set { SetProperty(ref _buttonLanPageBackground, value); }
+		}
+
+		public Brush ButtonInterfacePageBackground
+		{
+			get { return _buttonInterfacePageBackground; }
+			set { SetProperty(ref _buttonInterfacePageBackground, value); }
 		}
 
 		public Brush ButtonControlsPageBackground {
@@ -260,6 +281,11 @@ namespace SpeedportHybridControl.PageModel {
 			new Thread(() => { SpeedportHybrid.initLan(); }).Start();
 		}
 
+		private void OnSwitchToInterfacePageExecute () {
+			changePage("interface");
+			new Thread(() => { SpeedportHybrid.initInterface(); }).Start();
+		}
+
 		private void OnSwitchToControlsPageExecute () {
 			changePage("controls");
 		}
@@ -308,6 +334,9 @@ namespace SpeedportHybridControl.PageModel {
 			else if (page.Equals("lan")) {
 				FrameSource = new LanPage();
 			}
+			else if (page.Equals("interface")) {
+				FrameSource = new InterfacePage();
+			}
 			else if (page.Equals("controls")) {
 				FrameSource = new ControlsPage();
 			}
@@ -328,6 +357,7 @@ namespace SpeedportHybridControl.PageModel {
 			ButtonTR181PageBackground = Brushes.LightGray;
 			ButtonPhonePageBackground = Brushes.LightGray;
 			ButtonLanPageBackground = Brushes.LightGray;
+			ButtonInterfacePageBackground = Brushes.LightGray;
 			ButtonControlsPageBackground = Brushes.LightGray;
 			ButtonAboutPageBackground = Brushes.LightGray;
 
@@ -367,6 +397,10 @@ namespace SpeedportHybridControl.PageModel {
 				ButtonLanPageBackground = Brushes.LightGreen;
 			}
 
+			if (page.Equals("interface")) {
+				ButtonInterfacePageBackground = Brushes.LightGreen;
+			}
+
 			if (page.Equals("controls")) {
 				ButtonControlsPageBackground = Brushes.LightGreen;
 			}
@@ -398,6 +432,7 @@ namespace SpeedportHybridControl.PageModel {
 			SwitchToTR181Page = new DelegateCommand(new Action(OnSwitchToTR181PageExecute));
 			SwitchToPhonePage = new DelegateCommand(new Action(OnSwitchToPhonePageExecute));
 			SwitchToLanPage = new DelegateCommand(new Action(OnSwitchToLanPageExecute));
+			SwitchToInterfacePage = new DelegateCommand(new Action(OnSwitchToInterfacePageExecute));
 			SwitchToControlsPage = new DelegateCommand(new Action(OnSwitchToControlsPageExecute));
 
 			SwitchToAboutPage = new DelegateCommand(new Action(OnSwitchToAboutPageExecute));

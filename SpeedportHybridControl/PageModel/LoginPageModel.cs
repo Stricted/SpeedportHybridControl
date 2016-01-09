@@ -124,6 +124,7 @@ namespace SpeedportHybridControl.PageModel {
 					mwm.ButtonTR181PageIsActive = true;
 					mwm.ButtonPhonePageIsActive = true;
 					mwm.ButtonLanPageIsActive = true;
+					mwm.ButtonInterfacePageIsActive = true;
 					mwm.ButtonControlsPageIsActive = true;
 
 					LoginButtonText = "Logout";
@@ -152,6 +153,7 @@ namespace SpeedportHybridControl.PageModel {
 			mwm.ButtonTR181PageIsActive = false;
 			mwm.ButtonPhonePageIsActive = false;
 			mwm.ButtonLanPageIsActive = false;
+			mwm.ButtonInterfacePageIsActive = false;
 			mwm.ButtonControlsPageIsActive = false;
 
 			LoginButtonText = "Login";

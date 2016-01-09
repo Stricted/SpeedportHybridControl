@@ -4,21 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeedportHybridControl"
-        mc:Ignorable="d"
         xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
-        xmlns:ig="http://schemas.infragistics.com/xaml"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
         Height="423.4"
         Width="530"
         Title="LteInfo"
+        Closing="Window_Closing"
         DataContext="{StaticResource ltepopupModel}"
         Topmost="{Binding Path=Topmost}"
         Icon="t-com icon.ico">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Closing">
-            <i:InvokeCommandAction Command="{Binding CloseWindowCommand}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
     <Grid>
         <ToggleButton Command="{Binding Path=PinCommand}" IsChecked="{Binding Path=PinActive, Mode=TwoWay}" Background="Transparent" BorderBrush="Transparent" x:Name="btnPin" HorizontalAlignment="Left" Margin="10,2,0,0" Height="20" VerticalAlignment="Top">
             <Image Source="assets/pin.png" x:Name="image" HorizontalAlignment="Left"  VerticalAlignment="Top"/>

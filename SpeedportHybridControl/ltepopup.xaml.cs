@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SpeedportHybridControl.PageModel;
+using System.Windows;
 
 namespace SpeedportHybridControl {
 	/// <summary>
@@ -8,5 +9,11 @@ namespace SpeedportHybridControl {
 		public ltepopup () {
 			InitializeComponent();
 		}
+
+		// quick & dirty
+		private void Window_Closing (object sender, System.ComponentModel.CancelEventArgs e) {
+			ltepopupModel lm = Application.Current.FindResource("ltepopupModel") as ltepopupModel;
+			lm.StopTimer();
+        }
 	}
 }

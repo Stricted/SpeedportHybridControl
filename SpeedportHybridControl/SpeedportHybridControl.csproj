@@ -49,7 +49,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -75,6 +74,7 @@
     <Compile Include="Model\bonding_client.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\DeviceList.cs" />
+    <Compile Include="Model\InterfaceList.cs" />
     <Compile Include="Model\Line.cs" />
     <Compile Include="Model\LTECollection.cs" />
     <Compile Include="Model\LTEData.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="PageModel\AboutPageModel.cs" />
     <Compile Include="PageModel\ControlsPageModel.cs" />
     <Compile Include="PageModel\DslPageModel.cs" />
+    <Compile Include="PageModel\InterfacePageModel.cs" />
     <Compile Include="PageModel\LanPageModel.cs" />
     <Compile Include="PageModel\LoginPageModel.cs" />
     <Compile Include="PageModel\LteInfoModel.cs" />
@@ -118,6 +119,10 @@
     <Page Include="page\DslPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\InterfacePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="page\LanPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +171,9 @@
     </Compile>
     <Compile Include="page\DslPage.xaml.cs">
       <DependentUpon>DslPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\InterfacePage.xaml.cs">
+      <DependentUpon>InterfacePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\LanPage.xaml.cs">
       <DependentUpon>LanPage.xaml</DependentUpon>
