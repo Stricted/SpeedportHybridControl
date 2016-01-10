@@ -14,7 +14,6 @@ namespace SpeedportHybridControl.PageModel {
 		private DelegateCommand _clearCommand;
 
 		private string _searchText;
-		private SyslogList _selectedItems;
 
 		private List<SyslogList> _syslogList;
 		private List<SyslogList> _filteredList;
@@ -41,12 +40,6 @@ namespace SpeedportHybridControl.PageModel {
 				SetProperty(ref _searchText, value);
 				ApplyFilter();
 			}
-		}
-
-		public SyslogList SelectedItems
-		{
-			get { return _selectedItems; }
-			set { SetProperty(ref _selectedItems, value); }
 		}
 
 		public List<SyslogList> syslogList {
