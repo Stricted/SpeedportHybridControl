@@ -8,6 +8,7 @@ namespace SpeedportHybridControl.Model {
 	public class SyslogList : SuperViewModel {
 		private string _message;
 		private string _timestamp;
+		private bool _isSelected;
 
 		public string message {
 			get { return _message; }
@@ -17,6 +18,12 @@ namespace SpeedportHybridControl.Model {
 		public string timestamp {
 			get { return _timestamp; }
 			set { SetProperty(ref _timestamp, value); }
+		}
+
+		public bool IsSelected
+		{
+			get { return _isSelected; }
+			set { SetProperty(ref _isSelected, value); }
 		}
 
 		public override string ToString () {

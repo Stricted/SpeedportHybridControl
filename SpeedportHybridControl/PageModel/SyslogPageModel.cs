@@ -14,7 +14,7 @@ namespace SpeedportHybridControl.PageModel {
 		private DelegateCommand _clearCommand;
 
 		private string _searchText;
-		private SyslogList _selectedItem;
+		private SyslogList _selectedItems;
 
 		private List<SyslogList> _syslogList;
 		private List<SyslogList> _filteredList;
@@ -43,9 +43,10 @@ namespace SpeedportHybridControl.PageModel {
 			}
 		}
 
-		public SyslogList SelectedItem {
-			get { return _selectedItem; }
-			set { SetProperty(ref _selectedItem, value); }
+		public SyslogList SelectedItems
+		{
+			get { return _selectedItems; }
+			set { SetProperty(ref _selectedItems, value); }
 		}
 
 		public List<SyslogList> syslogList {
@@ -70,8 +71,18 @@ namespace SpeedportHybridControl.PageModel {
 			new Thread(() => { SpeedportHybrid.initSyslog(); }).Start();
 		}
 
+		public IEnumerable<SyslogList> SelectedItens
+		{
+			get { return filteredList.Where(o => o.IsSelected); }
+		}
+
 		private void OnCopyCommandExecute () {
-			Clipboard.SetText(SelectedItem.ToString());
+			string text = string.Empty;
+			foreach (SyslogList item in SelectedItens) {
+				text = string.Concat(text, Environment.NewLine, item.ToString());
+			}
+
+			Clipboard.SetText(text);
 		}
 
 		private void OnClearCommandExecute () {
