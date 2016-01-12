@@ -15,7 +15,7 @@
             <TextBox Text="{Binding Path=ip, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="115,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
             <TextBlock Text="Passwort:" HorizontalAlignment="Left" Margin="55,49,0,0" VerticalAlignment="Top" />
-            <PasswordBox Implementations:PasswordHelper.Password="{Binding Path=password, Mode=TwoWay, NotifyOnSourceUpdated=True}"  Visibility="{Binding Path=PasswordBoxVisibility}" x:Name="passwordBox" HorizontalAlignment="Left" Height="23" Margin="115,42,0,0" VerticalAlignment="Top" Width="120" ForceCursor="True" />
+            <PasswordBox Implementations:PasswordHelper.BindPassword="true" Implementations:PasswordHelper.BoundPassword="{Binding Path=password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Visibility="{Binding Path=PasswordBoxVisibility}" x:Name="passwordBox" HorizontalAlignment="Left" Height="23" Margin="115,42,0,0" VerticalAlignment="Top" Width="120" ForceCursor="True" />
             <TextBox Text="{Binding Path=password, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="115,42,0,0" VerticalAlignment="Top" Width="120" Visibility="{Binding Path=PasswordTextBoxVisibility}"/>
             <CheckBox Command="{Binding Path=ShowPasswordCommand}" IsChecked="{Binding Path=ShowPassword, Mode=TwoWay}" Content="Passwort anzeigen" Margin="240,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <CheckBox Command="{Binding Path=SavePasswordCommand}" IsChecked="{Binding Path=SavePassword, Mode=TwoWay}" Content="Passwort speichern" Margin="240,65,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
