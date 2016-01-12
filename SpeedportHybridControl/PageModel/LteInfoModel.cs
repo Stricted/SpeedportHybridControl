@@ -93,6 +93,9 @@ namespace SpeedportHybridControl.PageModel {
 				_ltepopup.Show();
 				StopTimer();
 			}
+
+			ltepopupModel lm = Application.Current.FindResource("ltepopupModel") as ltepopupModel;
+			lm.StartTimer();
 		}
 
 		public bool AutoReload {

@@ -130,7 +130,7 @@ namespace SpeedportHybridControl.PageModel {
 			}
 		}
 
-		private void StartTimer () {
+		public void StartTimer () {
 			_timer = new System.Timers.Timer {
 				Interval = 1000, // every second
 			};
@@ -201,8 +201,6 @@ namespace SpeedportHybridControl.PageModel {
 			ds2.SetYMapping(y => y.Data);
 
 			RsrpGraph = ds2;
-
-			StartTimer();
         }
 	}
 }

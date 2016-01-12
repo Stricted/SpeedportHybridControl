@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace SpeedportHybridControl.PageModel {
 	class MainWindowModel : SuperViewModel {
-		public const string VERSION = "1.0-pre9"; //TODO: change this later
+		public const string VERSION = "1.0-pre11";
 
 		private string _loginButtonContent = "Login";
 
