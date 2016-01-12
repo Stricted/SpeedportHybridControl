@@ -13,7 +13,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" Text="Copyright © 2015 stricted.net" VerticalAlignment="Top"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" Text="Version:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="tbVersion" HorizontalAlignment="Left" Margin="57,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbVersion" Text="{Binding Path=version}" HorizontalAlignment="Left" Margin="57,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
         <Button Command="{Binding Path=BugtrackerCommand}" x:Name="btnBugtracker" Content="Bugtracker" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
         <Button Command="{Binding Path=UpdateCommand}" x:Name="btnUpdate" Content="Auf Update prüfen" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" />
