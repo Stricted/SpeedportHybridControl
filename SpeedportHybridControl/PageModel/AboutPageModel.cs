@@ -7,28 +7,29 @@ using System.Windows;
 
 namespace SpeedportHybridControl.PageModel {
 	class AboutPageModel : SuperViewModel {
-		private string _version;
 		private DelegateCommand _donateCommand;
 		private DelegateCommand _bugtrackerCommand;
 		private DelegateCommand _updateCommand;
 
 		public string version
 		{
-			get { return _version; }
-			set { SetProperty(ref _version, value); }
+			get { return MainWindowModel.VERSION; }
 		}
 
-		public DelegateCommand DonateCommand {
+		public DelegateCommand DonateCommand
+		{
 			get { return _donateCommand; }
 			set { SetProperty(ref _donateCommand, value); }
 		}
 
-		public DelegateCommand BugtrackerCommand {
+		public DelegateCommand BugtrackerCommand
+		{
 			get { return _bugtrackerCommand; }
 			set { SetProperty(ref _bugtrackerCommand, value); }
 		}
 
-		public DelegateCommand UpdateCommand {
+		public DelegateCommand UpdateCommand
+		{
 			get { return _updateCommand; }
 			set { SetProperty(ref _updateCommand, value); }
 		}
@@ -54,8 +55,6 @@ namespace SpeedportHybridControl.PageModel {
 			DonateCommand = new DelegateCommand(new Action(OnDonateCommandExecute));
 			BugtrackerCommand = new DelegateCommand(new Action(OnBugtrackerCommandExecute));
 			UpdateCommand = new DelegateCommand(new Action(OnUpdateCommandExecute));
-
-			version = MainWindowModel.VERSION;
 		}
 	}
 }

@@ -92,10 +92,10 @@ namespace SpeedportHybridControl.PageModel {
 			if (_ltepopup.Visibility.Equals(Visibility.Visible).Equals(false)) {
 				_ltepopup.Show();
 				StopTimer();
-			}
 
-			ltepopupModel lm = Application.Current.FindResource("ltepopupModel") as ltepopupModel;
-			lm.StartTimer();
+				ltepopupModel lm = Application.Current.FindResource("ltepopupModel") as ltepopupModel;
+				lm.StartTimer();
+			}
 		}
 
 		public bool AutoReload {
