@@ -7,26 +7,30 @@ using System.Text;
 using System.Windows.Media;
 using System.Xml;
 
-namespace SpeedportHybridControl.Implementations {
-	public static class util {
-		public static byte[] HexToByte (string hex) {
-			return Enumerable.Range(0, hex.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
-		}
+namespace SpeedportHybridControl.Implementations
+{
+    public static class util
+    {
+        public static byte[] HexToByte(string hex)
+        {
+            return Enumerable.Range(0, hex.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
+        }
 
-		/**
+        /**
 		 * get sha256
 		 *
 		 * @param	string	password
 		 * @return	string
 		 */
-		public static string sha256 (this string password) {
-			SHA256Managed crypt = new SHA256Managed();
-			string hash = BitConverter.ToString(crypt.ComputeHash(Encoding.ASCII.GetBytes(password), 0, Encoding.ASCII.GetByteCount(password)));
-			crypt = null;
-			return hash.Replace("-", "").ToLower();
-		}
+        public static string sha256(this string password)
+        {
+            SHA256Managed crypt = new SHA256Managed();
+            string hash = BitConverter.ToString(crypt.ComputeHash(Encoding.ASCII.GetBytes(password), 0, Encoding.ASCII.GetByteCount(password)));
+            crypt = null;
+            return hash.Replace("-", "").ToLower();
+        }
 
-		/**
+        /**
 		 * get pbkdf2
 		 *
 		 * @param	string	password
@@ -35,173 +39,204 @@ namespace SpeedportHybridControl.Implementations {
 		 * @param	int		length
 		 * @return	string
 		 */
-		public static string pbkdf2 (this string password, string salt, int iterations = 1000, int length = 16) {
-			Rfc2898DeriveBytes hash = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(salt), iterations);
-			string derivedk = BitConverter.ToString(hash.GetBytes(length));
-			hash = null;
-			return derivedk.Replace("-", "").ToLower(); ;
-		}
+        public static string pbkdf2(this string password, string salt, int iterations = 1000, int length = 16)
+        {
+            Rfc2898DeriveBytes hash = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(salt), iterations);
+            string derivedk = BitConverter.ToString(hash.GetBytes(length));
+            hash = null;
+            return derivedk.Replace("-", "").ToLower(); ;
+        }
 
-		/**
+        /**
 		 * get specific value from JToken
 		 *
 		 * @param	JToken	jArray
 		 * @param	string	varid
 		 * @return	string
 		 */
-		public static string getVar (this JToken jArray, string varid) {
-			foreach (JToken jToken in jArray) {
-				JToken jVarid = jToken["varid"];
-				if (jVarid.ToString().Equals(varid)) {
-					jVarid = null;
-					jArray = null;
-					varid = null;
-					return jToken["varvalue"].ToString();
-				}
+        public static string getVar(this JToken jArray, string varid)
+        {
+            foreach (JToken jToken in jArray)
+            {
+                JToken jVarid = jToken["varid"];
+                if (jVarid.ToString().Equals(varid))
+                {
+                    jVarid = null;
+                    jArray = null;
+                    varid = null;
+                    return jToken["varvalue"].ToString();
+                }
 
-				jVarid = null;
-			}
+                jVarid = null;
+            }
 
-			jArray = null;
-			varid = null;
+            jArray = null;
+            varid = null;
 
-			return string.Empty;
-		}
+            return string.Empty;
+        }
 
-		/**
+        /**
 		 * check if string is empty or null
 		 *
 		 * @param	string	value
 		 * @return	bool
 		 */
-		public static bool IsNullOrEmpty (this string value) {
-			return string.IsNullOrEmpty(value);
-		}
+        public static bool IsNullOrEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value);
+        }
 
-		/**
+        /**
 		 * convert string to int
 		 *
 		 * @param	string	value
 		 * @return	int
 		 */
-		public static int ToInt (this string value) {
-			int b = 0;
-			int.TryParse(value, out b);
+        public static int ToInt(this string value)
+        {
+            int b = 0;
+            int.TryParse(value, out b);
 
-			return b;
-		}
+            return b;
+        }
 
-		/**
+        /**
 		 * calculate the background color for rsrp
 		 * see http://www.lte-anbieter.info/technik/rsrp.php
 		 *
 		 * @param	int	rsrp
 		 * @return	Brush
 		 */
-		public static Brush getRSRPColor (int rsrp) {
-			if (rsrp >= -65) {
-				return Brushes.DarkGreen;
-			}
-			else if (rsrp <= -66 && rsrp >= -83) {
-				return Brushes.Green;
-			}
-			else if (rsrp <= -84 && rsrp >= -95) {
+        public static Brush getRSRPColor(int rsrp)
+        {
+            if (rsrp >= -65)
+            {
+                return Brushes.DarkGreen;
+            }
+            else if (rsrp <= -66 && rsrp >= -83)
+            {
+                return Brushes.Green;
+            }
+            else if (rsrp <= -84 && rsrp >= -95)
+            {
 
-				return Brushes.Yellow;
-			}
-			else if (rsrp <= -96 && rsrp >= -105) {
-				return Brushes.Orange;
-			}
-			else if (rsrp <= -106 && rsrp >= -125) {
-				return Brushes.Red;
-			}
-			else if (rsrp >= -126) {
-				return Brushes.DarkRed;
-			}
+                return Brushes.Yellow;
+            }
+            else if (rsrp <= -96 && rsrp >= -105)
+            {
+                return Brushes.Orange;
+            }
+            else if (rsrp <= -106 && rsrp >= -125)
+            {
+                return Brushes.Red;
+            }
+            else if (rsrp >= -126)
+            {
+                return Brushes.DarkRed;
+            }
 
-			return Brushes.Transparent;
-		}
+            return Brushes.Transparent;
+        }
 
-		/**
+        /**
 		 * calculate the background color for rsrq
 		 * see http://www.lte-anbieter.info/technik/rsrq.php
 		 *
 		 * @param	int	rsrp
 		 * @return	Brush
 		 */
-		public static Brush getRSRQColor (int rsrq) {
-			if (rsrq >= -3) {
-				return Brushes.DarkGreen;
-			}
-			else if (rsrq <= -4 && rsrq >= -6) {
-				return Brushes.Green;
-			}
-			else if (rsrq <= -7 && rsrq >= -8) {
-				return Brushes.Yellow;
-			}
-			else if (rsrq <= -9 && rsrq >= -11) {
-				return Brushes.Orange;
-			}
-			else if (rsrq <= -12 && rsrq >= -15) {
-				return Brushes.Red;
-			}
-			else if (rsrq <= -16 && rsrq >= -20) {
-				return Brushes.DarkRed;
-			}
+        public static Brush getRSRQColor(int rsrq)
+        {
+            if (rsrq >= -3)
+            {
+                return Brushes.DarkGreen;
+            }
+            else if (rsrq <= -4 && rsrq >= -6)
+            {
+                return Brushes.Green;
+            }
+            else if (rsrq <= -7 && rsrq >= -8)
+            {
+                return Brushes.Yellow;
+            }
+            else if (rsrq <= -9 && rsrq >= -11)
+            {
+                return Brushes.Orange;
+            }
+            else if (rsrq <= -12 && rsrq >= -15)
+            {
+                return Brushes.Red;
+            }
+            else if (rsrq <= -16 && rsrq >= -20)
+            {
+                return Brushes.DarkRed;
+            }
 
-			return Brushes.Transparent;
-		}
+            return Brushes.Transparent;
+        }
 
-		/**
+        /**
 		 * check for update
 		 */
-		public static bool checkUpdate (string currentVersion) {
-			try {
-				XmlDocument xmlDocument = new XmlDocument();
-				xmlDocument.Load("https://stricted.net/version.xml");
+        public static bool checkUpdate(string currentVersion)
+        {
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load("https://stricted.net/version.xml");
 
-				string version = xmlDocument.DocumentElement["version"].InnerText;
-				if (currentVersion.Equals(version).Equals(false)) {
-					return true;
-				}
-			}
-			catch (Exception ex) {
-				Console.WriteLine(ex.Message);
-			}
+                string version = xmlDocument.DocumentElement["version"].InnerText;
+                if (currentVersion.Equals(version).Equals(false))
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
-			return false;
-		}
+            return false;
+        }
 
-		public static bool checkInstalled (string c_name) {
-			string displayName = string.Empty;
+        public static bool checkInstalled(string c_name)
+        {
+            string displayName = string.Empty;
 
-			string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-			RegistryKey key = Registry.LocalMachine.OpenSubKey(registryKey);
-			if (key != null) {
-				foreach (RegistryKey subkey in key.GetSubKeyNames().Select(keyName => key.OpenSubKey(keyName))) {
-					displayName = subkey.GetValue("DisplayName") as string;
+            string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(registryKey);
+            if (key != null)
+            {
+                foreach (RegistryKey subkey in key.GetSubKeyNames().Select(keyName => key.OpenSubKey(keyName)))
+                {
+                    displayName = subkey.GetValue("DisplayName") as string;
 
-					if (string.IsNullOrWhiteSpace(displayName).Equals(false) && displayName.Equals(c_name)) {
-						return true;
-					}
-				}
-				key.Close();
-			}
+                    if (string.IsNullOrWhiteSpace(displayName).Equals(false) && displayName.Equals(c_name))
+                    {
+                        return true;
+                    }
+                }
+                key.Close();
+            }
 
-			registryKey = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
-			key = Registry.LocalMachine.OpenSubKey(registryKey);
-			if (key != null) {
-				foreach (RegistryKey subkey in key.GetSubKeyNames().Select(keyName => key.OpenSubKey(keyName))) {
-					displayName = subkey.GetValue("DisplayName") as string;
+            registryKey = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+            key = Registry.LocalMachine.OpenSubKey(registryKey);
+            if (key != null)
+            {
+                foreach (RegistryKey subkey in key.GetSubKeyNames().Select(keyName => key.OpenSubKey(keyName)))
+                {
+                    displayName = subkey.GetValue("DisplayName") as string;
 
-					if (string.IsNullOrWhiteSpace(displayName).Equals(false) && displayName.Equals(c_name)) {
-						return true;
-					}
-				}
-				key.Close();
-			}
+                    if (string.IsNullOrWhiteSpace(displayName).Equals(false) && displayName.Equals(c_name))
+                    {
+                        return true;
+                    }
+                }
+                key.Close();
+            }
 
-			return false;
-		}
-	}
+            return false;
+        }
+    }
 }
