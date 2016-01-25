@@ -78,7 +78,15 @@ namespace SpeedportHybridControl.PageModel
         {
             if (AutoReload.Equals(true))
             {
-                StartTimer();
+                // allow autoreload only if popup is closed
+                if (Object.Equals(_ltepopup, null) || _ltepopup.IsLoaded.Equals(false))
+                {
+                    StartTimer();
+                }
+                else
+                {
+                    AutoReload = false;
+                }
             }
             else {
                 StopTimer();

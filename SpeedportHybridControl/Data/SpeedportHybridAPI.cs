@@ -52,7 +52,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -116,7 +116,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -160,7 +160,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -196,7 +196,7 @@ namespace SpeedportHybridControl.Data
                         _derivedk = "";
 
                         LoginPageModel lpm = Application.Current.FindResource("LoginPageModel") as LoginPageModel;
-                        lpm.LoginCommand.Execute();
+                        lpm.LogoutAction();
                         MainWindowModel mwm = Application.Current.FindResource("MainWindowModel") as MainWindowModel;
                         mwm.SwitchToLoginPage.Execute();
 
@@ -242,7 +242,7 @@ namespace SpeedportHybridControl.Data
 
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -284,7 +284,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -322,7 +322,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -373,7 +373,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -412,7 +412,7 @@ namespace SpeedportHybridControl.Data
                 }
                 catch (Exception ex)
                 {
-                    LogManager.WriteToLog(ex.Message);
+                    LogManager.WriteToLog(ex.ToString());
                 }
 
                 response = null;
@@ -457,7 +457,7 @@ namespace SpeedportHybridControl.Data
                 }
                 catch (Exception ex)
                 {
-                    LogManager.WriteToLog(ex.Message);
+                    LogManager.WriteToLog(ex.ToString());
                 }
 
                 response = null;
@@ -495,7 +495,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -541,7 +541,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -578,7 +578,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -616,7 +616,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -651,7 +651,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -701,7 +701,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             response = null;
@@ -800,11 +800,11 @@ namespace SpeedportHybridControl.Data
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             return response;
@@ -860,7 +860,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             return response;
@@ -951,7 +951,7 @@ namespace SpeedportHybridControl.Data
             }
             catch (Exception ex)
             {
-                LogManager.WriteToLog(ex.Message);
+                LogManager.WriteToLog(ex.ToString());
             }
 
             return response;
