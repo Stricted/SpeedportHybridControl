@@ -43,7 +43,7 @@ namespace SpeedportHybridControl.PageModel
 
         private void OnBugtrackerCommandExecute()
         {
-            Process.Start("https://stricted.net/bugtracker/index.php/ProductList/");
+            Process.Start("https://bugtracker.stricted.net/index.php/ProductList/");
         }
 
         private void OnUpdateCommandExecute()

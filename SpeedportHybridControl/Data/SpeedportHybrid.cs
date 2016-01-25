@@ -282,9 +282,7 @@ namespace SpeedportHybridControl.Data
                         }
                     }
                 }
-
-                // overview.days_online = ""; // TODO
-
+                
                 overview.datetime = time.ToString(format);
 
                 jArray = null;

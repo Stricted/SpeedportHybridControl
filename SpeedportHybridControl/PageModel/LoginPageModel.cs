@@ -19,7 +19,6 @@ namespace SpeedportHybridControl.PageModel
         private Visibility _loginFieldsVisibility = Visibility.Visible;
 
         private DelegateCommand _showPasswordCommand;
-        private DelegateCommand _savePasswordCommand;
         private DelegateCommand _loginCommand;
 
         public string ip
@@ -31,7 +30,16 @@ namespace SpeedportHybridControl.PageModel
         public string password
         {
             get { return _password; }
-            set { SetProperty(ref _password, value); }
+            set {
+                // TODO: find a better way
+                if (value.IsNullOrEmpty().Equals(true))
+                {
+                    if (SavePassword.Equals(true))
+                        return;
+
+                }
+                SetProperty(ref _password, value);
+            }
         }
 
         public string LoginButtonText
@@ -76,12 +84,6 @@ namespace SpeedportHybridControl.PageModel
             set { SetProperty(ref _showPasswordCommand, value); }
         }
 
-        public DelegateCommand SavePasswordCommand
-        {
-            get { return _savePasswordCommand; }
-            set { SetProperty(ref _savePasswordCommand, value); }
-        }
-
         public DelegateCommand LoginCommand
         {
             get { return _loginCommand; }
@@ -99,11 +101,6 @@ namespace SpeedportHybridControl.PageModel
                 PasswordBoxVisibility = Visibility.Visible;
                 PasswordTextBoxVisibility = Visibility.Hidden;
             }
-        }
-
-        private void OnSavePasswordCommandExecute()
-        {
-            Console.WriteLine(SavePassword);
         }
 
         private void OnLoginCommandExecute()
@@ -139,6 +136,7 @@ namespace SpeedportHybridControl.PageModel
 
                         Settings.save(SettingsModel);
                     }
+
                     LoginFieldsVisibility = Visibility.Hidden;
                     mwm.ButtonOverviewPageIsActive = true;
                     mwm.ButtonDSLPageIsActive = true;
@@ -161,7 +159,6 @@ namespace SpeedportHybridControl.PageModel
             else {
                 if (SpeedportHybridAPI.getInstance().logout().Equals(true))
                 {
-                    // TODO: util.logout();
                     LogoutAction();
                 }
             }
@@ -169,6 +166,13 @@ namespace SpeedportHybridControl.PageModel
 
         public void LogoutAction()
         {
+            LteInfoModel lim = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
+            lim.ClosePopup();
+            lim.StopTimer();
+
+            DslPageModel dpm = Application.Current.FindResource("DslPageModel") as DslPageModel;
+            dpm.StopTimer();
+            
             MainWindowModel mwm = Application.Current.FindResource("MainWindowModel") as MainWindowModel;
             LoginFieldsVisibility = Visibility.Visible;
             mwm.ButtonOverviewPageIsActive = false;
@@ -202,7 +206,6 @@ namespace SpeedportHybridControl.PageModel
             }
 
             ShowPasswordCommand = new DelegateCommand(new Action(OnShowPasswordCommandExecute));
-            SavePasswordCommand = new DelegateCommand(new Action(OnSavePasswordCommandExecute));
             LoginCommand = new DelegateCommand(new Action(OnLoginCommandExecute));
         }
     }

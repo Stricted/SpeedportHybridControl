@@ -154,6 +154,8 @@ namespace SpeedportHybridControl.PageModel
 
         public void StartTimer()
         {
+            StopTimer();
+
             _timer = new System.Timers.Timer
             {
                 Interval = 1000, // every second

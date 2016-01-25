@@ -244,6 +244,17 @@ namespace SpeedportHybridControl.PageModel
             set { SetProperty(ref _frequenz, value); }
         }
 
+        public void ClosePopup()
+        {
+            ltepopupModel lm = Application.Current.FindResource("ltepopupModel") as ltepopupModel;
+            lm.StopTimer();
+            if (Object.Equals(_ltepopup, null).Equals(false))
+            {
+                _ltepopup.Close();
+                _ltepopup = null;
+            }
+        }
+
         public LteInfoModel()
         {
             ReloadCommand = new DelegateCommand(new Action(OnReloadCommandExecute));

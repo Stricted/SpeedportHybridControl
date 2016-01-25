@@ -131,7 +131,7 @@ namespace SpeedportHybridControl.Implementations
             {
                 return Brushes.Red;
             }
-            else if (rsrp >= -126)
+            else if (rsrp <= -126)
             {
                 return Brushes.DarkRed;
             }
