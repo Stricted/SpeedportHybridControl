@@ -174,8 +174,6 @@ namespace SpeedportHybridControl.Data
                 _checkIsActive = true;
                 if (isLoggedin().Equals(false))
                 {
-                    Console.WriteLine("Session expired, try to relogin");
-
                     Thread.Sleep(400);
 
                     if (login(_password).Equals(false))
@@ -201,9 +199,6 @@ namespace SpeedportHybridControl.Data
                 }
 
                 _checkIsActive = false;
-            }
-            else {
-                Console.WriteLine("check allready in progress");
             }
 
             return true;
@@ -745,8 +740,7 @@ namespace SpeedportHybridControl.Data
             response = null;
             a = null;
             b = null;
-
-            Console.WriteLine("csrf_token: " + token);
+            
             return token;
         }
 
