@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SpeedportHybridControl"
+      xmlns:Implementations="clr-namespace:SpeedportHybridControl.Implementations;assembly=SpeedportHybridControl.Implementations"
       mc:Ignorable="d"
       Width="Auto" Height="Auto"
       Title="TR181Page">
@@ -52,7 +53,7 @@
         <GroupBox Header="Einstellungen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="335,0,0,0" Height="76">
             <Grid>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="QueueSkbTimeOut:" VerticalAlignment="Top" Margin="0,3,0,0"/>
-                <TextBox x:Name="tbQueue" HorizontalAlignment="Left" Margin="115,2,0,0" TextWrapping="Wrap" Text="{Binding QueueSkbTimeOut}" VerticalAlignment="Top" Width="42" />
+                <Implementations:NumberTextBox x:Name="tbQueue" HorizontalAlignment="Left" Margin="115,2,0,0" TextWrapping="Wrap" Text="{Binding QueueSkbTimeOut}" VerticalAlignment="Top" Width="42" />
                 <Button Command="{Binding Path=SaveCommand}" x:Name="btnSave" Content="Speichern" HorizontalAlignment="Left" Margin="44,34,0,0" VerticalAlignment="Top" Width="75" />
             </Grid>
         </GroupBox>

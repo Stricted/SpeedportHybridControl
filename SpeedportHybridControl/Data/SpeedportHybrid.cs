@@ -448,7 +448,7 @@ namespace SpeedportHybridControl.Data
                 return;
 
             DslPageModel dsl = Application.Current.FindResource("DslPageModel") as DslPageModel;
-
+            
             string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/dsl.json");
             if (response.IsNullOrEmpty())
                 return;
@@ -671,90 +671,76 @@ namespace SpeedportHybridControl.Data
                     return;
 
                 SyslogPageModel syslog = Application.Current.FindResource("SyslogPageModel") as SyslogPageModel;
-
-                string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/SystemMessages.json");
+                string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/Syslog.json", string.Concat("csrf_token=",SpeedportHybridAPI.getInstance().getToken(), "&exporttype=0"));
                 if (response.IsNullOrEmpty())
                     return;
 
-                JToken jArray = JToken.Parse(response);
-                response = null;
-
+                string[] lines = response.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 List<SyslogList> syslogList = new List<SyslogList>();
-                foreach (JToken jToken in jArray)
+                foreach (string line in lines)
                 {
-                    JToken varid = jToken["varid"];
-                    if (varid.ToString().Equals("addmessage"))
+                    // first line / last line
+                    if ((line.Contains("Datum/Uhrzeit") && line.Contains("Meldung")) || line.IsNullOrEmpty())
+                        continue;
+
+                    // login
+                    if (line.Contains("(G101)").Equals(true))
+                        continue;
+
+                    // logout
+                    if (line.Contains("(G102)").Equals(true))
+                        continue;
+
+                    // session timeout
+                    if (line.Contains("(G103)").Equals(true))
+                        continue;
+
+                    // dnsv6 error
+                    if (line.Contains("(P008)").Equals(true))
+                        continue;
+
+                    string[] parts;
+
+                    // Funkzellen Info
+                    if (line.Contains("(LT004)") && isLTE.Equals(true))
                     {
-                        var a = jToken["varvalue"];
-                        var stamp = a[1]["varvalue"];
-                        var msg = a[2]["varvalue"];
+                        LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
 
-                        // login
-                        if (msg.ToString().Contains("(G101)").Equals(true))
-                            continue;
+                        parts = line.Split(',');
+                        string frequenz = parts[2];
 
-                        // logout
-                        if (msg.ToString().Contains("(G102)").Equals(true))
-                            continue;
-
-                        // session timeout
-                        if (msg.ToString().Contains("(G103)").Equals(true))
-                            continue;
-
-                        // dnsv6 error
-                        if (msg.ToString().Contains("(P008)").Equals(true))
-                            continue;
-
-                        // Funkzellen Info
-                        if (msg.ToString().Contains("(LT004)") && isLTE.Equals(true))
+                        if (frequenz.Equals("20"))
                         {
-                            LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
-
-                            string[] parts = msg.ToString().Split(',');
-                            string frequenz = parts[2];
-
-                            if (frequenz.Equals("20"))
-                            {
-                                frequenz = "800 MHz";
-                            }
-                            else if (frequenz.Equals("3"))
-                            {
-                                frequenz = "1800 MHz";
-                            }
-                            else if (frequenz.Equals("7"))
-                            {
-                                frequenz = "2600 MHz";
-                            }
-
-                            lte.frequenz = frequenz;
-
-                            varid = null;
-                            jArray = null;
-                            a = null;
-                            stamp = null;
-                            msg = null;
-                            syslogList = null;
-                            return;
+                            frequenz = "800 MHz";
+                        }
+                        else if (frequenz.Equals("3"))
+                        {
+                            frequenz = "1800 MHz";
+                        }
+                        else if (frequenz.Equals("7"))
+                        {
+                            frequenz = "2600 MHz";
                         }
 
-                        syslogList.Add(new SyslogList() { timestamp = stamp.ToString(), message = msg.ToString() });
+                        lte.frequenz = frequenz;
 
-                        a = null;
-                        stamp = null;
-                        msg = null;
+                        syslogList = null;
+                        return;
                     }
-                    varid = null;
+
+                    parts = line.Split(new string[] { " " }, 3, StringSplitOptions.None);
+                    syslogList.Add(new SyslogList() { timestamp = string.Concat(parts[0], " ", parts[1]), message = parts[2] });
                 }
 
                 syslog.syslogList = syslogList;
                 syslogList = null;
-                jArray = null;
 
                 DateTime time = DateTime.Now;
                 string format = "dd.MM.yyyy HH:mm:ss";
                 syslog.datetime = time.ToString(format);
 
                 syslog = null;
+                
             }
             catch (Exception ex)
             {

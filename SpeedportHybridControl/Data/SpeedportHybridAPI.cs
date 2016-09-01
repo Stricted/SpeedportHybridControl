@@ -141,19 +141,13 @@ namespace SpeedportHybridControl.Data
                 JToken jArray = JToken.Parse(response);
                 if (jArray.getVar("status").Equals("ok"))
                 {
-                    if (isLoggedin().Equals(true))
-                    {
-                        logout = false;
-                    }
-                    else {
-                        logout = true;
-                        _password = "";
-                        _challenge = "";
-                        _cookie = new CookieContainer();
-                        _lastReboot = DateTime.MinValue;
-                        _hash = "";
-                        _derivedk = "";
-                    }
+                    logout = true;
+                    _password = "";
+                    _challenge = "";
+                    _cookie = new CookieContainer();
+                    _lastReboot = DateTime.MinValue;
+                    _hash = "";
+                    _derivedk = "";
                 }
 
                 jArray = null;
@@ -223,7 +217,7 @@ namespace SpeedportHybridControl.Data
 		 */
         public bool isLoggedin()
         {
-            string response = sendRequest("data/SecureStatus.json");
+            string response = sendRequest("data/heartbeat.json");
             if (response.IsNullOrEmpty())
                 return false;
 
@@ -232,7 +226,7 @@ namespace SpeedportHybridControl.Data
             {
                 JToken jArray = JToken.Parse(response);
 
-                if (jArray.getVar("loginstate").Equals("1")/* && jArray.getVar("login").Equals("true")*/)
+                if (jArray.getVar("loginstate").Equals("1"))
                 {
                     login = true;
                 }
