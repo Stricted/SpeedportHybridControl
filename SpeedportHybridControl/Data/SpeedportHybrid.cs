@@ -704,25 +704,35 @@ namespace SpeedportHybridControl.Data
                     // Funkzellen Info
                     if (line.Contains("(LT004)") && isLTE.Equals(true))
                     {
+                        //2016-09-01 17:15:20: LTE-ZellInfo: PLMN = 26201, CellID = 25721859, Band = LTE1800, RSRP = -90dBm, RSRQ = -8dB (LT004)
+                        //01.09.2016 19:44:48: Funkzellen Info: 26201,34701569,3,-96,-11 (LT004)
                         LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
-
-                        parts = line.Split(',');
-                        string frequenz = parts[2];
-
-                        if (frequenz.Equals("20"))
+                        if (line.Contains("Band = LTE"))
                         {
-                            frequenz = "800 MHz";
+                            parts = line.Split(',');
+                            string frequenz = parts[2];
+                            lte.frequenz = string.Concat(frequenz.Substring(10, frequenz.Length - 10), " MHz");
                         }
-                        else if (frequenz.Equals("3"))
+                        else
                         {
-                            frequenz = "1800 MHz";
-                        }
-                        else if (frequenz.Equals("7"))
-                        {
-                            frequenz = "2600 MHz";
-                        }
+                            parts = line.Split(',');
+                            string frequenz = parts[2];
 
-                        lte.frequenz = frequenz;
+                            if (frequenz.Equals("20"))
+                            {
+                                frequenz = "800 MHz";
+                            }
+                            else if (frequenz.Equals("3"))
+                            {
+                                frequenz = "1800 MHz";
+                            }
+                            else if (frequenz.Equals("7"))
+                            {
+                                frequenz = "2600 MHz";
+                            }
+
+                            lte.frequenz = frequenz;
+                        }
 
                         syslogList = null;
                         return;
