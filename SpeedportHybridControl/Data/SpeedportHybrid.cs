@@ -707,17 +707,16 @@ namespace SpeedportHybridControl.Data
                         //2016-09-01 17:15:20: LTE-ZellInfo: PLMN = 26201, CellID = 25721859, Band = LTE1800, RSRP = -90dBm, RSRQ = -8dB (LT004)
                         //01.09.2016 19:44:48: Funkzellen Info: 26201,34701569,3,-96,-11 (LT004)
                         LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
+
+                        parts = line.Split(',');
+                        string frequenz = parts[2];
+
                         if (line.Contains("Band = LTE"))
                         {
-                            parts = line.Split(',');
-                            string frequenz = parts[2];
                             lte.frequenz = string.Concat(frequenz.Substring(10, frequenz.Length - 10), " MHz");
                         }
                         else
                         {
-                            parts = line.Split(',');
-                            string frequenz = parts[2];
-
                             if (frequenz.Equals("20"))
                             {
                                 frequenz = "800 MHz";

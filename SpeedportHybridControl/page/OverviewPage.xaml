@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SpeedportHybridControl"
       mc:Ignorable="d"
+      d:DesignWidth="514" d:DesignHeight="287"
       Width="Auto" Height="Auto"
       Title="OverviewPage">
 
