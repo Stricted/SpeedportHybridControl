@@ -1,0 +1,4 @@
+Configuration: Release
+
+before build:
+  -nuget restore
