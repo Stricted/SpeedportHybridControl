@@ -249,19 +249,23 @@ namespace SpeedportHybridControl.Implementations
 			Ping ping = new Ping();
 			try
 			{
-				PingReply reply = ping.Send("172.10.10.2", 2);
+				PingReply reply = ping.Send("172.10.10.1", 2);
 
 				if (reply.Status == IPStatus.Success)
 				{
 					return true;
 				}
+#if DEBUG
 				else
 				{
 					LogManager.WriteToLog("unable to reach LTE Modul");
 				}
+#endif
 			}
 			catch (PingException) {
+#if DEBUG
 				LogManager.WriteToLog("unable to reach LTE Modul");
+#endif
 			}
 
 			return false;
@@ -282,7 +286,7 @@ namespace SpeedportHybridControl.Implementations
 				}
 				catch (Exception)
 				{
-					new Thread(() => { MessageBox.Show("couldn't send Command to LTE Modul", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
+					new Thread(() => { MessageBox.Show("couldn't send Command to LTE Modul", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
 					LogManager.WriteToLog("couldn't send Command to LTE Modul");
 				}
 			}
