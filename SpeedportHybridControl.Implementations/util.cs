@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
+using SpeedportHybridControl.Implementations.Enum;
 using System;
 using System.Linq;
 using System.Net;
@@ -271,9 +272,9 @@ namespace SpeedportHybridControl.Implementations
 			return false;
 		}
 
-		public static void sendCommandToLteModul (string Command)
+		public static void sendCommandToLteModul(string Command)
 		{
-			if (checkLteModul().Equals(true))
+			if (checkLteModul().Equals(true) && Command.IsNullOrEmpty().Equals(false))
 			{
 				try
 				{
@@ -290,6 +291,54 @@ namespace SpeedportHybridControl.Implementations
 					LogManager.WriteToLog("couldn't send Command to LTE Modul");
 				}
 			}
+		}
+
+		public static void setLteFrequency (Band band)
+		{
+			/**
+			 * pissible lte frequency band commands:
+			 * 
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80000,,  # 800
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,4,,      # 1800
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,40,,     # 2600
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80044,,  # 800 | 1800 | 2600
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80004,,  # 800 | 1800
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80040,,  # 800 | 2600
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,44,,     # 1800 | 2600
+			 */
+
+			string Command = string.Empty;
+
+			if ((band & Band.LTE800) == Band.LTE800)
+			{
+				Command = "AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,80000,,";
+			}
+			else if ((band & Band.LTE1800) == Band.LTE1800)
+			{
+				Command = "AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,4,,";
+			}
+			else if ((band & Band.LTE2600) == Band.LTE2600)
+			{
+				Command = "AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,40,,";
+			}
+			else if ((band & (Band.LTE800 | Band.LTE1800 | Band.LTE2600)) == (Band.LTE800 | Band.LTE1800 | Band.LTE2600))
+			{
+				Command = "AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,80044,,";
+			}
+			else if ((band & (Band.LTE800 | Band.LTE1800)) == (Band.LTE800 | Band.LTE1800))
+			{
+				Command = "AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,80004,,";
+			}
+			else if ((band & (Band.LTE800 | Band.LTE2600)) == (Band.LTE800 | Band.LTE2600))
+			{
+				Command = "AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,80040,,";
+			}
+			else if ((band & (Band.LTE1800 | Band.LTE2600)) == (Band.LTE1800 | Band.LTE2600))
+			{
+				Command = "AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,44,,";
+			}
+
+			sendCommandToLteModul(Command);
 		}
     }
 }
