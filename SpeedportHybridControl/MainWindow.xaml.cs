@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using SpeedportHybridControl.Implementations;
+using System.Threading;
+using System.Windows;
 
 namespace SpeedportHybridControl
 {
@@ -10,6 +12,16 @@ namespace SpeedportHybridControl
         public MainWindow()
         {
             InitializeComponent();
-        }
+			/*
+			if (util.checkLteModul())
+			{
+				MessageBox.Show("ABC", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			else
+			{
+				MessageBox.Show("DEF", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			*/
+		}
     }
 }
