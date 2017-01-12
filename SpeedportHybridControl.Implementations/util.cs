@@ -2,7 +2,6 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
-using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Security.Cryptography;
@@ -14,7 +13,7 @@ using System.Xml;
 
 namespace SpeedportHybridControl.Implementations
 {
-    public static class util
+	public static class util
     {
         public static byte[] HexToByte(string hex)
         {
@@ -255,18 +254,8 @@ namespace SpeedportHybridControl.Implementations
 				{
 					return true;
 				}
-#if DEBUG
-				else
-				{
-					LogManager.WriteToLog("unable to reach LTE Modul");
-				}
-#endif
 			}
-			catch (PingException) {
-#if DEBUG
-				LogManager.WriteToLog("unable to reach LTE Modul");
-#endif
-			}
+			catch (PingException) { }
 
 			return false;
 		}
@@ -286,7 +275,7 @@ namespace SpeedportHybridControl.Implementations
 				}
 				catch (Exception)
 				{
-					new Thread(() => { MessageBox.Show("couldn't send Command to LTE Modul", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
+					new Thread(() => { MessageBox.Show("couldn't send Command to the LTE Modul", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
 					LogManager.WriteToLog("couldn't send Command to LTE Modul");
 				}
 			}
@@ -305,7 +294,7 @@ namespace SpeedportHybridControl.Implementations
 			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80040,,  # 800 | 2600
 			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,44,,     # 1800 | 2600
 			 */
-			string Command = string.Concat(@"AT^SYSCFGEX=""03"",3FFFFFFF,3,1,", (int)band, ",,", "\r");
+			string Command = string.Concat("AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,", (int)band, ",,\r");
 
 			sendCommandToLteModul(Command);
 		}
