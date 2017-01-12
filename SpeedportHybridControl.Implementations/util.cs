@@ -277,12 +277,12 @@ namespace SpeedportHybridControl.Implementations
 			{
 				try
 				{
-					Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-					IPAddress serverAddr = IPAddress.Parse("172.10.10.1");
-					IPEndPoint endPoint = new IPEndPoint(serverAddr, 1280);
+					TcpClient client = new TcpClient("172.10.10.1", 1280);
+					NetworkStream stream = client.GetStream();
 					byte[] cmd = Encoding.ASCII.GetBytes(Command);
-					sock.SendTo(cmd, endPoint);
-					sock.Close();
+					stream.Write(cmd, 0, cmd.Length);
+					stream.Close();
+					client.Close();
 				}
 				catch (Exception)
 				{
@@ -305,7 +305,7 @@ namespace SpeedportHybridControl.Implementations
 			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80040,,  # 800 | 2600
 			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,44,,     # 1800 | 2600
 			 */
-			string Command = string.Concat("AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,", (int)band, ",,");
+			string Command = string.Concat(@"AT^SYSCFGEX=""03"",3FFFFFFF,3,1,", (int)band, ",,", "\r");
 
 			sendCommandToLteModul(Command);
 		}

@@ -122,7 +122,41 @@ namespace SpeedportHybridControl.PageModel
 
 		private void OnSaveFrequencyCommandExecute()
 		{
-			// @TODO:
+			if (Object.Equals(SelectedFrequency, null).Equals(true))
+			{
+				return;
+			}
+
+			switch (SelectedFrequency.Name)
+			{
+				case "B1":
+					util.setLteFrequency(LTEBand.LTE800);
+					break;
+
+				case "B2":
+					util.setLteFrequency(LTEBand.LTE1800);
+					break;
+
+				case "B3":
+					util.setLteFrequency(LTEBand.LTE2600);
+					break;
+
+				case "B4":
+					util.setLteFrequency(LTEBand.LTE800 | LTEBand.LTE1800 | LTEBand.LTE2600);
+					break;
+
+				case "B5":
+					util.setLteFrequency(LTEBand.LTE800 | LTEBand.LTE1800);
+					break;
+
+				case "B6":
+					util.setLteFrequency(LTEBand.LTE800 | LTEBand.LTE2600);
+					break;
+
+				case "B7":
+					util.setLteFrequency(LTEBand.LTE1800 | LTEBand.LTE2600);
+					break;
+			}
 		}
 
         private void OnPopupCommandExecute()
