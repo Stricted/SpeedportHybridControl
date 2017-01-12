@@ -2,6 +2,9 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Media;
@@ -238,5 +241,31 @@ namespace SpeedportHybridControl.Implementations
 
             return false;
         }
+
+		public static bool checkLteModul ()
+		{
+			Ping ping = new Ping();
+			PingReply reply = ping.Send("172.10.10.1");
+			
+			if (reply.Status == IPStatus.Success)
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+		public static void sendCommandToLteModul (string Command)
+		{
+			if (checkLteModul().Equals(true))
+			{
+				Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+				IPAddress serverAddr = IPAddress.Parse("172.10.10.1");
+				IPEndPoint endPoint = new IPEndPoint(serverAddr, 1280);
+				byte[] cmd = Encoding.ASCII.GetBytes(Command);
+				sock.SendTo(cmd, endPoint);
+				sock.Close();
+			}
+		}
     }
 }
