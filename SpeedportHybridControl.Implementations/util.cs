@@ -255,8 +255,14 @@ namespace SpeedportHybridControl.Implementations
 				{
 					return true;
 				}
+				else
+				{
+					LogManager.WriteToLog("unable to reach LTE Modul");
+				}
 			}
-			catch (PingException) { }
+			catch (PingException) {
+				LogManager.WriteToLog("unable to reach LTE Modul");
+			}
 
 			return false;
 		}
