@@ -5,58 +5,75 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SpeedportHybridControl"
       mc:Ignorable="d"
+      d:DesignWidth="514" d:DesignHeight="287"
       Width="Auto" Height="Auto"
       Title="LteInfoPage">
 
-    <Grid DataContext="{StaticResource LteInfoModel}">
-        <GroupBox Header="LTE-parameter" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Grid>
-                <StackPanel HorizontalAlignment="Left" Width="86">
-                    <TextBlock Text="IMEI:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="IMSI:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="Device Status:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="Sim Card Status:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="Antenna Mode:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="Pysical Cell ID:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="Cell ID:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="RSRP:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="RSRQ:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="Service Status:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="TAC:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="Frequenz:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                </StackPanel>
-                <StackPanel Margin="90,0,0,0" HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding imei}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding imsi}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding device_status}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding card_status}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding antenna_mode}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding phycellid}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding cellid}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Background="{Binding rsrp_bg}" Text="{Binding rsrp}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Background="{Binding rsrq_bg}" Text="{Binding rsrq}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding service_status}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding tac}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding frequenz}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                </StackPanel>
-            </Grid>
-        </GroupBox>
-        <ToggleButton Command="{Binding Path=AutoReloadCommand}" IsChecked="{Binding Path=AutoReload}" x:Name="autoreload" Content="Automatisch aktualisieren" HorizontalAlignment="Left" Margin="0,214,0,0" VerticalAlignment="Top"/>
-        <Button Command="{Binding Path=PopupCommand}" x:Name="btnPopup" Content="Popup" HorizontalAlignment="Left" Margin="145,214,0,0" VerticalAlignment="Top"/>
+	<Grid DataContext="{StaticResource LteInfoModel}">
+		<GroupBox Header="LTE-parameter" HorizontalAlignment="Left" VerticalAlignment="Top">
+			<Grid>
+				<StackPanel HorizontalAlignment="Left" Width="86">
+					<TextBlock Text="IMEI:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="IMSI:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="Device Status:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="Sim Card Status:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="Antenna Mode:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="Pysical Cell ID:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="Cell ID:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="RSRP:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="RSRQ:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="Service Status:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="TAC:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="Frequenz:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+				</StackPanel>
+				<StackPanel Margin="90,0,0,0" HorizontalAlignment="Left">
+					<TextBlock Text="{Binding imei}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding imsi}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding device_status}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding card_status}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding antenna_mode}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding phycellid}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding cellid}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Background="{Binding rsrp_bg}" Text="{Binding rsrp}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Background="{Binding rsrq_bg}" Text="{Binding rsrq}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding service_status}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding tac}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<TextBlock Text="{Binding frequenz}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+				</StackPanel>
+			</Grid>
+		</GroupBox>
+		<ToggleButton Command="{Binding Path=AutoReloadCommand}" IsChecked="{Binding Path=AutoReload}" x:Name="autoreload" Content="Automatisch aktualisieren" HorizontalAlignment="Left" Margin="0,214,0,0" VerticalAlignment="Top"/>
+		<Button Command="{Binding Path=PopupCommand}" x:Name="btnPopup" Content="Popup" HorizontalAlignment="Left" Margin="145,214,0,0" VerticalAlignment="Top"/>
 
-        <GroupBox Header="Einstelungen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="188,209,0,0" Height="45" Width="284">
-            <Grid>
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Antennen Modus:" VerticalAlignment="Top"/>
-                <ComboBox x:Name="cbAntenna" SelectedValue="{Binding antenna_mode2}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" SelectedValuePath="Name" HorizontalAlignment="Left" Width="91" Margin="101,1,0,0">
-                    <ComboBoxItem Content="Automatisch" Name="Auto" HorizontalAlignment="Left" Width="92"/>
-                    <ComboBoxItem Content="Intern" Name="Inner" HorizontalAlignment="Left" Width="92"/>
-                    <ComboBoxItem Content="Extern" Name="Outer" HorizontalAlignment="Left" Width="92"/>
-                </ComboBox>
-                <Button Command="{Binding Path=SaveCommand}" x:Name="btnSave" Content="Speichern" HorizontalAlignment="Left" Margin="197,1,0,2" Width="75"/>
-            </Grid>
-        </GroupBox>
+		<GroupBox Header="Einstellungen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="188,209,0,0" Height="45" Width="284">
+			<Grid>
+				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Antennen Modus:" VerticalAlignment="Top"/>
+				<ComboBox x:Name="cbAntenna" SelectedValue="{Binding antenna_mode2}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" SelectedValuePath="Name" HorizontalAlignment="Left" Width="91" Margin="101,1,0,0">
+					<ComboBoxItem Content="Automatisch" Name="Auto" HorizontalAlignment="Left" Width="92"/>
+					<ComboBoxItem Content="Intern" Name="Inner" HorizontalAlignment="Left" Width="92"/>
+					<ComboBoxItem Content="Extern" Name="Outer" HorizontalAlignment="Left" Width="92"/>
+				</ComboBox>
+				<Button Command="{Binding Path=SaveCommand}" x:Name="btnSave" Content="Speichern" HorizontalAlignment="Left" Margin="197,1,0,2" Width="75"/>
+			</Grid>
+		</GroupBox>
 
-        <TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-        <Button Command="{Binding Path=ReloadCommand}" x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom"/>
-    </Grid>
+		<GroupBox Visibility="{Binding Path=FrequencySettingsVisibility}" Header="LTE Einstellungen" HorizontalAlignment="Right" Width="122" Height="122" VerticalAlignment="Top">
+			<StackPanel Margin="0,0,0,0">
+				<TextBlock Text="Frequenz" TextAlignment="Center" Height="20" />
+				<ComboBox x:Name="lteFrequency" SelectedItem="{Binding Path=SelectedFrequency, Mode=TwoWay}" SelectedValuePath="Name" HorizontalAlignment="Left" Width="110">
+					<ComboBoxItem Content="800" Name="B1" HorizontalAlignment="Left" Width="110"/>
+					<ComboBoxItem Content="1800" Name="B2" HorizontalAlignment="Left" Width="110"/>
+					<ComboBoxItem Content="2600" Name="B3" HorizontalAlignment="Left" Width="110"/>
+					<ComboBoxItem Content="800 + 1800 + 2600" Name="B4" HorizontalAlignment="Left" Width="110"/>
+					<ComboBoxItem Content="800 + 1800" Name="B5" HorizontalAlignment="Left" Width="110"/>
+					<ComboBoxItem Content="800 + 2600" Name="B6" HorizontalAlignment="Left" Width="110"/>
+					<ComboBoxItem Content="1800 + 2600" Name="B7" HorizontalAlignment="Left" Width="110"/>
+				</ComboBox>
+				<Button Command="{Binding Path=SaveFrequencyCommand}" Content="Speichern"/>
+			</StackPanel>
+		</GroupBox>
+
+		<TextBlock Text="{Binding datetime}" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+		<Button Command="{Binding Path=ReloadCommand}" x:Name="reload" Content="Aktualisieren" Margin="218,0,218,0" VerticalAlignment="Bottom"/>
+	</Grid>
 </Page>

@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:SpeedportHybridControl.page"
       xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
       mc:Ignorable="d"
+      d:DesignWidth="514" d:DesignHeight="287"
       Width="Auto" Height="Auto"
       Title="DslPage">
 

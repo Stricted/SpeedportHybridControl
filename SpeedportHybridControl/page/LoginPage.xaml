@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:SpeedportHybridControl"
       xmlns:Implementations="clr-namespace:SpeedportHybridControl.Implementations;assembly=SpeedportHybridControl.Implementations"
       mc:Ignorable="d"
+      d:DesignWidth="514" d:DesignHeight="287"
       Width="Auto" Height="Auto"
       Title="LoginPage">
 

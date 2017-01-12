@@ -141,19 +141,13 @@ namespace SpeedportHybridControl.Data
                 JToken jArray = JToken.Parse(response);
                 if (jArray.getVar("status").Equals("ok"))
                 {
-                    if (isLoggedin().Equals(true))
-                    {
-                        logout = false;
-                    }
-                    else {
-                        logout = true;
-                        _password = "";
-                        _challenge = "";
-                        _cookie = new CookieContainer();
-                        _lastReboot = DateTime.MinValue;
-                        _hash = "";
-                        _derivedk = "";
-                    }
+                    logout = true;
+                    _password = "";
+                    _challenge = "";
+                    _cookie = new CookieContainer();
+                    _lastReboot = DateTime.MinValue;
+                    _hash = "";
+                    _derivedk = "";
                 }
 
                 jArray = null;
@@ -180,8 +174,6 @@ namespace SpeedportHybridControl.Data
                 _checkIsActive = true;
                 if (isLoggedin().Equals(false))
                 {
-                    Console.WriteLine("Session expired, try to relogin");
-
                     Thread.Sleep(400);
 
                     if (login(_password).Equals(false))
@@ -208,9 +200,6 @@ namespace SpeedportHybridControl.Data
 
                 _checkIsActive = false;
             }
-            else {
-                Console.WriteLine("check allready in progress");
-            }
 
             return true;
         }
@@ -223,7 +212,7 @@ namespace SpeedportHybridControl.Data
 		 */
         public bool isLoggedin()
         {
-            string response = sendRequest("data/SecureStatus.json");
+            string response = sendRequest("data/heartbeat.json");
             if (response.IsNullOrEmpty())
                 return false;
 
@@ -232,7 +221,7 @@ namespace SpeedportHybridControl.Data
             {
                 JToken jArray = JToken.Parse(response);
 
-                if (jArray.getVar("loginstate").Equals("1")/* && jArray.getVar("login").Equals("true")*/)
+                if (jArray.getVar("loginstate").Equals("1"))
                 {
                     login = true;
                 }
@@ -751,8 +740,7 @@ namespace SpeedportHybridControl.Data
             response = null;
             a = null;
             b = null;
-
-            Console.WriteLine("csrf_token: " + token);
+            
             return token;
         }
 

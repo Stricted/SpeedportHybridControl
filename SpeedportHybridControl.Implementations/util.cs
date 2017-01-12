@@ -2,14 +2,18 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml;
 
 namespace SpeedportHybridControl.Implementations
 {
-    public static class util
+	public static class util
     {
         public static byte[] HexToByte(string hex)
         {
@@ -238,5 +242,61 @@ namespace SpeedportHybridControl.Implementations
 
             return false;
         }
+
+		public static bool checkLteModul ()
+		{
+			Ping ping = new Ping();
+			try
+			{
+				PingReply reply = ping.Send("172.10.10.1", 2);
+
+				if (reply.Status == IPStatus.Success)
+				{
+					return true;
+				}
+			}
+			catch (PingException) { }
+
+			return false;
+		}
+
+		public static void sendCommandToLteModul(string Command)
+		{
+			if (checkLteModul().Equals(true) && Command.IsNullOrEmpty().Equals(false))
+			{
+				try
+				{
+					TcpClient client = new TcpClient("172.10.10.1", 1280);
+					NetworkStream stream = client.GetStream();
+					byte[] cmd = Encoding.ASCII.GetBytes(Command);
+					stream.Write(cmd, 0, cmd.Length);
+					stream.Close();
+					client.Close();
+				}
+				catch (Exception)
+				{
+					new Thread(() => { MessageBox.Show("couldn't send Command to the LTE Modul", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error); }).Start();
+					LogManager.WriteToLog("couldn't send Command to LTE Modul");
+				}
+			}
+		}
+
+		public static void setLteFrequency (LTEBand band)
+		{
+			/**
+			 * possible lte frequency band commands:
+			 * 
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80000,,  # 800
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,4,,      # 1800
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,40,,     # 2600
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80044,,  # 800 | 1800 | 2600
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80004,,  # 800 | 1800
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,80040,,  # 800 | 2600
+			 * AT^SYSCFGEX="03",3FFFFFFF,3,1,44,,     # 1800 | 2600
+			 */
+			string Command = string.Concat("AT^SYSCFGEX=\"03\",3FFFFFFF,3,1,", (int)band, ",,\r");
+
+			sendCommandToLteModul(Command);
+		}
     }
 }

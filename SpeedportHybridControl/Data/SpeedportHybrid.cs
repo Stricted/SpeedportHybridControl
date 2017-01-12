@@ -448,7 +448,7 @@ namespace SpeedportHybridControl.Data
                 return;
 
             DslPageModel dsl = Application.Current.FindResource("DslPageModel") as DslPageModel;
-
+            
             string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/dsl.json");
             if (response.IsNullOrEmpty())
                 return;
@@ -671,48 +671,52 @@ namespace SpeedportHybridControl.Data
                     return;
 
                 SyslogPageModel syslog = Application.Current.FindResource("SyslogPageModel") as SyslogPageModel;
-
-                string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/SystemMessages.json");
+                string response = SpeedportHybridAPI.getInstance().sendEnryptedRequest("data/Syslog.json", string.Concat("csrf_token=",SpeedportHybridAPI.getInstance().getToken(), "&exporttype=0"));
                 if (response.IsNullOrEmpty())
                     return;
 
-                JToken jArray = JToken.Parse(response);
-                response = null;
-
+                string[] lines = response.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 List<SyslogList> syslogList = new List<SyslogList>();
-                foreach (JToken jToken in jArray)
+                foreach (string line in lines)
                 {
-                    JToken varid = jToken["varid"];
-                    if (varid.ToString().Equals("addmessage"))
+                    // first line / last line
+                    if ((line.Contains("Datum/Uhrzeit") && line.Contains("Meldung")) || line.IsNullOrEmpty())
+                        continue;
+
+                    // login
+                    if (line.Contains("(G101)").Equals(true))
+                        continue;
+
+                    // logout
+                    if (line.Contains("(G102)").Equals(true))
+                        continue;
+
+                    // session timeout
+                    if (line.Contains("(G103)").Equals(true))
+                        continue;
+
+                    // dnsv6 error
+                    if (line.Contains("(P008)").Equals(true))
+                        continue;
+
+                    string[] parts;
+
+                    // Funkzellen Info
+                    if (line.Contains("(LT004)") && isLTE.Equals(true))
                     {
-                        var a = jToken["varvalue"];
-                        var stamp = a[1]["varvalue"];
-                        var msg = a[2]["varvalue"];
+                        //2016-09-01 17:15:20: LTE-ZellInfo: PLMN = 26201, CellID = 25721859, Band = LTE1800, RSRP = -90dBm, RSRQ = -8dB (LT004)
+                        //01.09.2016 19:44:48: Funkzellen Info: 26201,34701569,3,-96,-11 (LT004)
+                        LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
 
-                        // login
-                        if (msg.ToString().Contains("(G101)").Equals(true))
-                            continue;
+                        parts = line.Split(',');
+                        string frequenz = parts[2];
 
-                        // logout
-                        if (msg.ToString().Contains("(G102)").Equals(true))
-                            continue;
-
-                        // session timeout
-                        if (msg.ToString().Contains("(G103)").Equals(true))
-                            continue;
-
-                        // dnsv6 error
-                        if (msg.ToString().Contains("(P008)").Equals(true))
-                            continue;
-
-                        // Funkzellen Info
-                        if (msg.ToString().Contains("(LT004)") && isLTE.Equals(true))
+                        if (line.Contains("Band = LTE"))
                         {
-                            LteInfoModel lte = Application.Current.FindResource("LteInfoModel") as LteInfoModel;
-
-                            string[] parts = msg.ToString().Split(',');
-                            string frequenz = parts[2];
-
+                            lte.frequenz = string.Concat(frequenz.Substring(10, frequenz.Length - 10), " MHz");
+                        }
+                        else
+                        {
                             if (frequenz.Equals("20"))
                             {
                                 frequenz = "800 MHz";
@@ -727,34 +731,25 @@ namespace SpeedportHybridControl.Data
                             }
 
                             lte.frequenz = frequenz;
-
-                            varid = null;
-                            jArray = null;
-                            a = null;
-                            stamp = null;
-                            msg = null;
-                            syslogList = null;
-                            return;
                         }
 
-                        syslogList.Add(new SyslogList() { timestamp = stamp.ToString(), message = msg.ToString() });
-
-                        a = null;
-                        stamp = null;
-                        msg = null;
+                        syslogList = null;
+                        return;
                     }
-                    varid = null;
+
+                    parts = line.Split(new string[] { " " }, 3, StringSplitOptions.None);
+                    syslogList.Add(new SyslogList() { timestamp = string.Concat(parts[0], " ", parts[1]), message = parts[2] });
                 }
 
                 syslog.syslogList = syslogList;
                 syslogList = null;
-                jArray = null;
 
                 DateTime time = DateTime.Now;
                 string format = "dd.MM.yyyy HH:mm:ss";
                 syslog.datetime = time.ToString(format);
 
                 syslog = null;
+                
             }
             catch (Exception ex)
             {
