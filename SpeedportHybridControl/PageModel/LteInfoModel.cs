@@ -15,14 +15,17 @@ namespace SpeedportHybridControl.PageModel
         private DelegateCommand _reloadCommand;
         private DelegateCommand _autoReloadCommand;
         private DelegateCommand _saveCommand;
-        private DelegateCommand _popupCommand;
+        private DelegateCommand _saveFrequencyCommand;
+		private DelegateCommand _popupCommand;
         private System.Timers.Timer _timer;
         private bool _autoReload;
         private ltepopup _ltepopup;
         private ComboBoxItem _selectedItem;
+		private ComboBoxItem _selectedFrequency;
+		private Visibility _frequencySettingsVisibility = Visibility.Hidden;
 
 
-        private string _imei;
+		private string _imei;
         private string _imsi;
         private string _device_status;
         private string _card_status;
@@ -57,7 +60,13 @@ namespace SpeedportHybridControl.PageModel
             set { SetProperty(ref _saveCommand, value); }
         }
 
-        public DelegateCommand PopupCommand
+
+		public DelegateCommand SaveFrequencyCommand
+		{
+			get { return _saveFrequencyCommand; }
+			set { SetProperty(ref _saveFrequencyCommand, value); }
+		}
+		public DelegateCommand PopupCommand
         {
             get { return _popupCommand; }
             set { SetProperty(ref _popupCommand, value); }
@@ -67,9 +76,21 @@ namespace SpeedportHybridControl.PageModel
         {
             get { return _selectedItem; }
             set { SetProperty(ref _selectedItem, value); }
-        }
+		}
 
-        private void OnReloadCommandExecute()
+		public ComboBoxItem SelectedFrequency
+		{
+			get { return _selectedFrequency; }
+			set { SetProperty(ref _selectedFrequency, value); }
+		}
+
+		public Visibility FrequencySettingsVisibility
+		{
+			get { return _frequencySettingsVisibility; }
+			set { SetProperty(ref _frequencySettingsVisibility, value); }
+		}
+
+		private void OnReloadCommandExecute()
         {
             new Thread(() => { SpeedportHybrid.initLTE(); }).Start();
         }
@@ -98,6 +119,11 @@ namespace SpeedportHybridControl.PageModel
             SpeedportHybridAPI.getInstance().setAntennaMode(SelectedItem.Name);
             OnReloadCommandExecute();
         }
+
+		private void OnSaveFrequencyCommandExecute()
+		{
+			// @TODO:
+		}
 
         private void OnPopupCommandExecute()
         {
@@ -268,7 +294,13 @@ namespace SpeedportHybridControl.PageModel
             ReloadCommand = new DelegateCommand(new Action(OnReloadCommandExecute));
             AutoReloadCommand = new DelegateCommand(new Action(OnAutoReloadCommandExecute));
             SaveCommand = new DelegateCommand(new Action(OnSaveCommandExecute));
-            PopupCommand = new DelegateCommand(new Action(OnPopupCommandExecute));
+            SaveFrequencyCommand = new DelegateCommand(new Action(OnSaveFrequencyCommandExecute));
+			PopupCommand = new DelegateCommand(new Action(OnPopupCommandExecute));
+
+			if (util.checkLteModul().Equals(true))
+			{
+				FrequencySettingsVisibility = Visibility.Visible;
+			}
         }
     }
 }
