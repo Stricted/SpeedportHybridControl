@@ -54,6 +54,7 @@
     <Compile Include="Cryptography.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="LogManager.cs" />
+    <Compile Include="LTEBand.cs" />
     <Compile Include="NumberTextBox.cs" />
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
