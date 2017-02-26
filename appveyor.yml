@@ -1,5 +1,5 @@
 image: Visual Studio 2015
-platform: Any CPU
+platform: x86
 configuration: Release
 skip_tags: true
 
