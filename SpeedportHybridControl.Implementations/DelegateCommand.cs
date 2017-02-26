@@ -17,7 +17,7 @@ namespace SpeedportHybridControl.Implementations
             return true;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged = delegate { };
 
         public void Execute(object parameter = null)
         {
