@@ -12,7 +12,7 @@ namespace SpeedportHybridControl.PageModel
 {
     class MainWindowModel : SuperViewModel
     {
-        public const string VERSION = "1.0-pre12";
+        public const string VERSION = "1.0-pre13";
 
         private string _loginButtonContent = "Login";
 
