@@ -36,9 +36,10 @@ namespace SpeedportHybridControl.Data
 		 *
 		 * @return	string
 		 */
-        public string getChallenge()
+        public string getChallenge_old()
         {
-            string response = sendRequest("data/Login.json", "csrf_token=nulltoken&showpw=0&challengev=null");
+			/* var challenge = "3FFBFE45EF0B7f76b6BCADD3fccBC5ab07b1aa36EC97Ab690C23F90Fd374c016"; */
+			string response = sendRequest("data/Login.json", "csrf_token=nulltoken&showpw=0&challengev=null");
             if (response.IsNullOrEmpty())
                 return string.Empty;
 
@@ -59,14 +60,33 @@ namespace SpeedportHybridControl.Data
 
             return challenge;
         }
+		public string getChallenge()
+		{
+			string response = sendRequest("html/content/overview/index.html");
+			if (response.IsNullOrEmpty())
+				return string.Empty;
 
-        /**
+			string a = "challenge = \"";
+			if (response.IndexOf(a) == -1)
+			{
+				response = null;
+				return getChallenge_old();
+			}
+
+			string token = response.Substring((response.IndexOf(a) + a.Length), 64);
+
+			response = null;
+
+			return token;
+		}
+
+		/**
 		 * calculate the derivedk
 		 *
 		 * @param	string	$password
 		 * @return	string
 		 */
-        public string getDerviedk()
+		public string getDerviedk()
         {
             return _password.sha256().pbkdf2(_challenge.Substring(0, 16));
         }
@@ -90,12 +110,19 @@ namespace SpeedportHybridControl.Data
             _challenge = getChallenge();
             _hash = string.Concat(_challenge, ":", password).sha256();
 
-            string response = sendRequest("data/Login.json", string.Concat("csrf_token=nulltoken&showpw=0&password=", _hash));
+            string response = sendRequest("data/Login.json", string.Concat("csrf_token=nulltoken", "&challengev=", _challenge, "&showpw=0&password=", _hash));
             if (response.IsNullOrEmpty())
                 return false;
 
-            _cookie.Add(new Cookie("challengev", _challenge) { Domain = "speedport.ip" });
+			if (response.IndexOf("challenge") != -1)
+			{
+				response = sendRequest("data/Login.json", string.Concat("csrf_token=nulltoken&showpw=0&password=", _hash));
+				if (response.IsNullOrEmpty())
+					return false;
 
+				_cookie.Add(new Cookie("challengev", _challenge) { Domain = _ip });
+			}
+			
             bool login = false;
             try
             {
