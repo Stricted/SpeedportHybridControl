@@ -1,4 +1,6 @@
-﻿namespace SpeedportHybridControl.Model
+﻿using System;
+
+namespace SpeedportHybridControl.Model
 {
     class Line : SuperViewModel
     {
@@ -20,12 +22,12 @@
         private string _dCodeword;
         private string _uInterleave;
         private string _dInterleave;
-        private int _uCRC;
-        private int _dCRC;
-        private int _uHEC;
-        private int _dHEC;
-        private int _uFEC;
-        private int _dFEC;
+        private Int64 _uCRC;
+        private Int64 _dCRC;
+        private Int64 _uHEC;
+        private Int64 _dHEC;
+        private Int64 _uFEC;
+        private Int64 _dFEC;
 
         private double _uCRCsec;
         private double _dCRCsec;
@@ -142,37 +144,37 @@
             set { SetProperty(ref _dInterleave, value); }
         }
 
-        public int uCRC
+        public Int64 uCRC
         {
             get { return _uCRC; }
             set { SetProperty(ref _uCRC, value); }
         }
 
-        public int dCRC
+        public Int64 dCRC
         {
             get { return _dCRC; }
             set { SetProperty(ref _dCRC, value); }
         }
 
-        public int uHEC
+        public Int64 uHEC
         {
             get { return _uHEC; }
             set { SetProperty(ref _uHEC, value); }
         }
 
-        public int dHEC
+        public Int64 dHEC
         {
             get { return _dHEC; }
             set { SetProperty(ref _dHEC, value); }
         }
 
-        public int uFEC
+        public Int64 uFEC
         {
             get { return _uFEC; }
             set { SetProperty(ref _uFEC, value); }
         }
 
-        public int dFEC
+        public Int64 dFEC
         {
             get { return _dFEC; }
             set { SetProperty(ref _dFEC, value); }

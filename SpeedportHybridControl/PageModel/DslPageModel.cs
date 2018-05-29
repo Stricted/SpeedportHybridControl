@@ -26,12 +26,12 @@ namespace SpeedportHybridControl.PageModel
         private string _lastHEC;
         private string _lastFEC;
 
-        private int lastdFEC;
-        private int lastuFEC;
-        private int lastdHEC;
-        private int lastuHEC;
-        private int lastdCRC;
-        private int lastuCRC;
+        private Int64 lastdFEC;
+        private Int64 lastuFEC;
+        private Int64 lastdHEC;
+        private Int64 lastuHEC;
+        private Int64 lastdCRC;
+        private Int64 lastuCRC;
         private DateTime lastReload;
 
         public Connection Connection
